@@ -1,39 +1,41 @@
 package geografico;
 
+import descripciones.Descripcion;
+
 import java.util.*;
 
 public class Ciudad {
-	
-	//declaracion de atributos:
-	ArrayList<Lugar> lugares;
-	
-	//declaracion de metodos:
-	
-	//constructor
-	public Ciudad(){
-		this.lugares = new ArrayList<Lugar>();
-	}
-	
-	public String obtenerCiudadesDestinoDisponibles(){
-		//No estoy seguro del tipo de lo que devuelve este metodo. CORREGIR!
-		//inicializo un elemento para que devuelva el metodo y no me tire error
-		String ciudades = new String();
-			//IMPLEMENTAR
-		
-		return ciudades;
-	}
-	
+
+	private ArrayList<Lugar> lugares;
+    private ArrayList<Ciudad> ciudades;
+
+    public Ciudad() {
+        this.lugares = new ArrayList<Lugar>();
+    }
+
+    public ArrayList<Ciudad> obtenerCiudadesDestinoDisponibles() {
+        return ciudades;
+    }
+
 	public ArrayList<Lugar> obtenerLugaresDisponibles(){
-		
-		ArrayList<Lugar> lugaresDisponibles = new ArrayList<Lugar>();
-		
-		return lugaresDisponibles;
+		return lugares;
 	}
 	
-	public int distanciaA(Ciudad unaCiudad){
-		//obtener distancia entre ciudades de google maps
-		int distancia = 0;
-		
-		return distancia;
-	}
+	public int distanciaA(Ciudad unaCiudad){return 0;}
+
+    public void setNombre(String nombre) {}
+
+    public void setBandera(ArrayList<Color> colores) {}
+
+    public void setMoneda(Moneda moneda) {}
+
+    public void setPuntoInteres(PuntoInteres monteHuascaran) {}
+
+    public void setArte(Arte arte) {}
+
+    public void setIndustrias(Industria moda) {}
+
+    public void agregarLugar(Lugar lugar) {
+        lugares.add(lugar);
+    }
 }

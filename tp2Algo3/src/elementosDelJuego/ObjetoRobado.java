@@ -1,8 +1,15 @@
 package elementosDelJuego;
 
 public class ObjetoRobado {
-	
-	public String contenidoComoString(){
+
+
+    private Valor valor;
+
+    public ObjetoRobado(Valor valor) {
+        this.valor = valor;
+    }
+
+    public String contenidoComoString(){
 		//declaro variable para que no tire error el metodo
 		//COMPLETAR!!
 		String unContenido = new String();
@@ -10,4 +17,7 @@ public class ObjetoRobado {
 		return unContenido;
 	}
 
+    public Valor obtenerValor() {
+        return valor;
+    }
 }

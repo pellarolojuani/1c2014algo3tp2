@@ -1,34 +1,34 @@
 package geografico;
 
 import elementosDelJuego.Pista;
+import personajes.Sospechoso;
 
-public class Lugar {
-	
-	//declaracion de atributos:
-	private Pista unaPista;
-	
-	//declaracion de metodos:
-	
-	//constructor
-	public Lugar(){
-		/*Aca inicializar los atributos de la clase*/
-		this.unaPista = new Pista();
-	};
-	
-	public Pista obtenerPista(){
-		return unaPista;
+public abstract class Lugar {
+
+	Pista pista;
+    private boolean visitado;
+    private TipoEdificio tipo;
+
+    public Lugar(TipoEdificio tipo) {
+        this.tipo=tipo;
+        this.visitado = false;
+    }
+
+    public String obtenerPista(){
+        return pista.contenidoComoString();
 	}
-	
+
+    public void visitar(){this.visitado=true;}
+
 	public boolean fueVisitado(){
-		//implementacion
-		
-		return true;
-	}
-	
-	public boolean estaLadron(){
-		//implementacion
-		
-		return true;		
+		return visitado;
 	}
 
+    public void plantarPista(Pista pista){
+        this.pista=pista;
+    }
+
+    public TipoEdificio obtenerTipo() {
+        return tipo;
+    }
 }

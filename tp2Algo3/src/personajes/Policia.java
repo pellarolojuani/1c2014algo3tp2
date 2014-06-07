@@ -4,33 +4,28 @@ import elementosDelJuego.*;
 import geografico.*;
 
 public class Policia {
-
-	//declaracion de atributos:
 	private Tiempo tiempoFinal;
 	private Tiempo tiempoInicial;
 	private Grado grado;
-	private Ciudad ciudadActual;	// indica en que ciudad y lugar se encuentra el 
-	private Lugar lugarActual;		// policia en determinado momento
-	
-	//declaracion de metodos:
-	
-	//constructor
+	private Ciudad ciudadActual;
+	private Lugar lugarActual;
+
 	public Policia(){
 		this.tiempoFinal = new Tiempo();
 		this.tiempoInicial = new Tiempo();
-		//falta inicializar el grado del policia
+		this.grado=Grado.NOVATO;
 	}
 	
-	public void visitarLugar(Lugar unLugar){
-		this.lugarActual = unLugar;
-		//falta descontar tiempo y etc.
-		
+	public void visitarLugar(Lugar unLugar) throws NoSePuedeVisitarLugarExcepcion {
+        if(ciudadActual.obtenerLugaresDisponibles().contains(unLugar)) {
+            this.lugarActual = unLugar;
+            unLugar.visitar();
+        }
+        else throw new NoSePuedeVisitarLugarExcepcion();
 	};
 	
 	public void viajarA(Ciudad destino){
 		this.ciudadActual = destino;
-		//flata descontar tiempo y etc.
-		
 	};
 	
 	public Grado obtenerGrado(){
@@ -42,9 +37,8 @@ public class Policia {
 	};
 	
 	public boolean debeDormir(){
-		//implementar!!
 		return true;
 	};
-	
-	
+
+    public void dormir(){}
 }
