@@ -1,16 +1,11 @@
 package elementosDelJuego;
 
+/**
+ * Created by chris on 06/06/2014.
+ */
 public class Pista {
-	
-	//constructor
-	public Pista(){/*Aca inicializar los parametros que tenga la clase*/};
-	
-	public String contenidoComoString(){
-		//implementacion
-		//inicializo variable para que devuelva el metodo y no de error
-		String contenido = new String();
-		
-		return contenido;
-	}
-
+    String string;
+    public String contenidoComoString(){
+        return string;
+    }
 }
