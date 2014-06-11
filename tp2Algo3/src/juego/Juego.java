@@ -23,10 +23,10 @@ public class Juego {
         this.cuartelGeneral.cargarSospechosos(sospechosos);
     }
     public void asignarPolicia(Policia policia){
-        this.policia=policia;
+        this.policia = policia;
     }
     public void crearCaso(){
-        caso=new Caso(ciudades,policia.obtenerGrado(),objetos,sospechosos);
+        caso = new Caso(ciudades,policia.obtenerGrado(),objetos,sospechosos);
 	}
     public Caso obtenerCaso() {
         return caso;

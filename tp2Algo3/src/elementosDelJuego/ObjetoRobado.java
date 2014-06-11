@@ -2,7 +2,6 @@ package elementosDelJuego;
 
 public class ObjetoRobado {
 
-
     private Valor valor;
 
     public ObjetoRobado(Valor valor) {
