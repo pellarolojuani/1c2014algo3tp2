@@ -3,7 +3,7 @@ package geografico;
 import elementosDelJuego.Pista;
 import personajes.Sospechoso;
 
-public abstract class Lugar {
+public class Lugar {
 
 	Pista pista;
     private boolean visitado;

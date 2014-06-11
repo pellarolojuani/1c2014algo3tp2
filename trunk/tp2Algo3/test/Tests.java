@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 import geografico.*;
 import juego.*;
@@ -14,27 +13,26 @@ public class Tests {
 
     @Test
     public void testPoliciaEsCreadoNovato() throws Exception {
-
-        Policia policia=new Policia();
+        Policia policia=new Policia("Nombre",Grado.NOVATO);
         assertEquals(policia.obtenerGrado(),Grado.NOVATO);
     }
 
     @Test
-    public void testPoliciaVisitaCiudadCambiaCiudadActual() throws Exception {
-        Policia policia=new Policia();
+    public void testPoliciaViajaCambiaCiudadActual() throws Exception {
+        Policia policia=new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad=new Ciudad();
-        policia.viajarA(ciudad);
+        policia.asignarNuevoCasoEn(ciudad);
         assertEquals(policia.obtenerCiudadActual(),ciudad);
     }
 
     @Test(expected = NoSePuedeVisitarLugarExcepcion.class)
     public void testPoliciaNoPuedeVisitarLugarDeOtraCiudad() throws Exception {
-        Policia policia=new Policia();
+        Policia policia=new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad=new Ciudad();
         Ciudad ciudad1=new Ciudad();
-        Banco banco=new Banco();
+        Lugar banco=new Lugar(TipoEdificio.BANCO);
         ciudad1.agregarLugar(banco);
-        policia.viajarA(ciudad);
+        policia.asignarNuevoCasoEn(ciudad);
         policia.visitarLugar(banco);
     }
 
@@ -43,14 +41,24 @@ public class Tests {
         //Hay que ver que hacemos con el tiempo
     }
 
-    //Hasta aca estan +- prolijos los tests
-
     @Test
     public void testEnCasoAsignadoAPoliciaNovatoElObjetoEsComun() {
 
-        Policia policia = new Policia();
-        Juego juego=new Juego();
-        juego.crearCaso(policia);
+        Policia policia = new Policia("Nombre", Grado.NOVATO);
+
+
+        ArrayList<Ciudad> ciudades=new ArrayList<Ciudad>();
+        ArrayList<ObjetoRobado> objetoRobados=new ArrayList<ObjetoRobado>();
+        ArrayList<Sospechoso> sospechosos=new ArrayList<Sospechoso>();
+        ciudades.add(new Ciudad());
+        objetoRobados.add(new ObjetoRobado(Valor.COMUN));
+        objetoRobados.add(new ObjetoRobado(Valor.VALIOSO));
+        sospechosos.add(new Sospechoso(new Descripcion(new Sexo(),new Pelo(),new Senia(),new Auto(),new Hobbie())));
+        //Lo de arriba seria mejor ponerlo para que se haga siempre, antes de las pruebas.
+
+        Juego juego=new Juego(objetoRobados,ciudades,sospechosos);
+        juego.asignarPolicia(policia);
+        juego.crearCaso();
         Caso caso= juego.obtenerCaso();
         ObjetoRobado objRobado = caso.obtenerObjetoRobado();
         assertEquals(objRobado.obtenerValor(), Valor.COMUN );
@@ -58,23 +66,13 @@ public class Tests {
     }
 
     @Test
-    public void testPoliciaViajaACiudadCambiaCiudadActual (){
-
-        Policia policia = new Policia();
-        Ciudad ciudad = new Ciudad();
-        policia.viajarA(ciudad);
-        assertEquals(policia.obtenerCiudadActual(), ciudad);
-
-    }
-
-    @Test
     public void testPoliciaVisitaLugarDejaALugarVisitado() throws NoSePuedeVisitarLugarExcepcion {
 
-        Policia policia = new Policia();
+        Policia policia = new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad = new Ciudad();
-        Banco banco=new Banco();
+        Lugar banco=new Lugar(TipoEdificio.BANCO);
         ciudad.agregarLugar(banco);
-        policia.viajarA(ciudad);
+        policia.asignarNuevoCasoEn(ciudad);
         policia.visitarLugar(banco);
         assertTrue(banco.fueVisitado());
     }
@@ -104,6 +102,8 @@ public class Tests {
         assertNull(cuartel.buscarSospechoso(otraDescripcion));
 
     }
+
+
 
 }
 
