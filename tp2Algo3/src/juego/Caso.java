@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import static jdk.nashorn.internal.objects.NativeArray.forEach;
 
 public class Caso {
-	
-	//declaracion de atributos:
+
 	private Ciudad ciudadDelRobo;
 	private ObjetoRobado objetoRobado;
 	private Sospechoso ladron;
@@ -20,15 +19,13 @@ public class Caso {
     private Tiempo tiempoInicial;
     private Tiempo tiempoActual;
     private Lugar ubicacionLadron;
-	
-	//declaracion de metodos:
-	
-	//constructor
+    private RecorridoLadron recorridoLadron;
 
     public Caso(ArrayList<Ciudad> ciudades, Grado grado, ArrayList<ObjetoRobado> objetos, ArrayList<Sospechoso> sospechosos) {
-        /*Aca primero elegimos un objeto y un ladron al azar. Despues, segun el grado del policia
-         inventamos un recorrido empezando desde la ciudad que dice en el XML para el objeto elegido.
-         */
+        objetoRobado=new ObjetoRobado(Valor.COMUN);
+        ladron=sospechosos.get((int)(Math.random()*sospechosos.size()+0));//Elige un ladron al azar  enter los sospechosos.
+
+        //Segun el grado del policia tenemos que armar un recorrido de 4,5 o 7 paises.
     }
 
     public Ciudad obtenerCiudadRobo(){
@@ -43,14 +40,15 @@ public class Caso {
 		return this.ladron.obtenerDescripcion().getSexo();
 	}
 
-    private void plantarPistas(){
-        //Para cada ciudad del recorrido del ladron hacemos:
-        Ciudad ciudad = new Ciudad();
-        Ciudad ciudadSiguiente= new Ciudad();
-        CreadorDePistas creadorDePistas=new CreadorDePistas(ciudadSiguiente,ladron);
-        ArrayList<Lugar> lugares=ciudad.obtenerLugaresDisponibles();
-        for(Lugar lugar: lugares)
+    private void plantarPistas() {
+        for (Ciudad ciudad : recorridoLadron.obtenerCiudades()) {
+            //Para que esto quede mejor tendriamos que crear un iterador para recorridoLadro
+            Ciudad ciudadSiguiente = recorridoLadron.obtenerCiudadSiguiente(ciudad);
+            CreadorDePistas creadorDePistas = new CreadorDePistas(ciudadSiguiente, ladron);
+            ArrayList<Lugar> lugares = ciudad.obtenerLugaresDisponibles();
+            for (Lugar lugar : lugares)
                 lugar.plantarPista(creadorDePistas.crearNuevaPista(lugar.obtenerTipo()));
+        }
     }
 
 }

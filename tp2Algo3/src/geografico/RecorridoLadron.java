@@ -14,4 +14,8 @@ public class RecorridoLadron {
     public Ciudad obtenerCiudadFinal(){
         return recorrido.get(recorrido.size()-1);
     }
+    public Ciudad obtenerCiudadSiguiente(Ciudad ciudad){
+        return null;
+    }
+    public ArrayList<Ciudad> obtenerCiudades(){return recorrido;}
 }

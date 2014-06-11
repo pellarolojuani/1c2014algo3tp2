@@ -3,23 +3,24 @@ package personajes;
 import elementosDelJuego.*;
 import geografico.*;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class Policia {
-	private Tiempo tiempoFinal;
-	private Tiempo tiempoInicial;
 	private Grado grado;
 	private Ciudad ciudadActual;
 	private Lugar lugarActual;
+    private String nombre;
 
-	public Policia(){
-		this.tiempoFinal = new Tiempo();
-		this.tiempoInicial = new Tiempo();
-		this.grado=Grado.NOVATO;
+	public Policia(String nombre, Grado grado){
+		this.grado=grado;
+        this.nombre=nombre;
 	}
 	
-	public void visitarLugar(Lugar unLugar) throws NoSePuedeVisitarLugarExcepcion {
-        if(ciudadActual.obtenerLugaresDisponibles().contains(unLugar)) {
-            this.lugarActual = unLugar;
-            unLugar.visitar();
+	public void visitarLugar(Lugar lugar) throws NoSePuedeVisitarLugarExcepcion {
+        if(ciudadActual.obtenerLugaresDisponibles().contains(lugar)) {
+            this.lugarActual = lugar;
+            lugar.visitar();
         }
         else throw new NoSePuedeVisitarLugarExcepcion();
 	};
@@ -27,6 +28,11 @@ public class Policia {
 	public void viajarA(Ciudad destino){
 		this.ciudadActual = destino;
 	};
+
+    public void asignarNuevoCasoEn(Ciudad ciudad){
+        this.ciudadActual=ciudad;
+        //Esto lo manda a la ciudad del robo directamente, sin sacar tiempo
+    }
 	
 	public Grado obtenerGrado(){
 		return this.grado;
@@ -36,9 +42,9 @@ public class Policia {
 		return this.ciudadActual;
 	};
 	
-	public boolean debeDormir(){
+	private boolean debeDormir(){
 		return true;
 	};
 
-    public void dormir(){}
+    private void dormir(){}
 }

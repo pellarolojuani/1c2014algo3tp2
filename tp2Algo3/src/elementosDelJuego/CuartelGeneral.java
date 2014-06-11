@@ -5,9 +5,7 @@ import personajes.Sospechoso;
 
 import java.util.ArrayList;
 
-/**
- * Created by chris on 06/06/2014.
- */
+//El cuartel general tambien tendria que ser unico
 public class CuartelGeneral {
     private ArrayList<Sospechoso> sospechosos;
 
@@ -15,11 +13,12 @@ public class CuartelGeneral {
         this.sospechosos = new ArrayList<Sospechoso>();
     }
 
-    public void cargarSospechoso(Sospechoso sospechoso) {
-        sospechosos.add(sospechoso);
+    public void cargarSospechosos(ArrayList<Sospechoso> sospechosos) {
+        this.sospechosos=sospechosos;
     }
 
-    public Object buscarSospechoso(Descripcion otraDescripcion) {
+    public Sospechoso buscarSospechoso(Descripcion otraDescripcion) {
+        //Hay que implementar esto para que busque bien, y encuentre un sospechoso aunque la descripcion sea parcial.
         return sospechosos.get(0);
     }
 }

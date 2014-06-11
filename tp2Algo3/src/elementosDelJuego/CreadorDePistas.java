@@ -18,7 +18,7 @@ public class CreadorDePistas {
         if(tipo==TipoEdificio.PUERTO)return crearPistaPuerto();
         if(tipo==TipoEdificio.BANCO)return crearPistaBanco();
         if(tipo==TipoEdificio.BOLSA)return crearPistaBolsa();
-        if(tipo==TipoEdificio.BIBLIOTECA)return crearPistaBiblioteca();
+        return crearPistaBiblioteca();
     }
 
     private PistaBanco crearPistaBanco(){
