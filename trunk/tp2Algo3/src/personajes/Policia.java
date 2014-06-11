@@ -42,9 +42,11 @@ public class Policia {
 		return this.ciudadActual;
 	};
 	
-	private boolean debeDormir(){
+	public boolean debeDormir(){
 		return true;
 	};
 
-    private void dormir(){}
+    public void dormir(Tiempo tiempo){
+    	tiempo.aumentarHoras(8);
+    }
 }

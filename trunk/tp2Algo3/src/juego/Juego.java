@@ -1,6 +1,7 @@
 package juego;
 import elementosDelJuego.CuartelGeneral;
 import elementosDelJuego.ObjetoRobado;
+import elementosDelJuego.Tiempo;
 import geografico.Ciudad;
 import personajes.*;
 
@@ -14,6 +15,7 @@ public class Juego {
     private ArrayList<Ciudad> ciudades;
     private ArrayList<Sospechoso> sospechosos;
     private CuartelGeneral cuartelGeneral;
+    private Tiempo tiempo; 
 
     public Juego(ArrayList<ObjetoRobado> objetos, ArrayList<Ciudad> ciudades, ArrayList<Sospechoso> sospechosos) {
         this.objetos = objetos;
@@ -21,6 +23,7 @@ public class Juego {
         this.sospechosos = sospechosos;
         this.cuartelGeneral=new CuartelGeneral();
         this.cuartelGeneral.cargarSospechosos(sospechosos);
+        this.tiempo = new Tiempo();
     }
     public void asignarPolicia(Policia policia){
         this.policia = policia;

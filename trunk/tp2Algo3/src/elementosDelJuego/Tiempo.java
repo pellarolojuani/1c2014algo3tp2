@@ -12,4 +12,13 @@ public class Tiempo {
 	public void aumentarHoras(int cantidadHoras){
 		this.horas += cantidadHoras;
 	}
+	public int getTiempo(){
+		return this.horas;
+	}
+	public String tiempoComoSring(){
+		//deberiamos imprimir dia y hora segun el valor del atributo tiempo
+		String fecha = "";
+		//TODO
+		return fecha;
+	}
 }
