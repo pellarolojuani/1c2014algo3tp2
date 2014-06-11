@@ -9,6 +9,6 @@ import personajes.Sospechoso;
 public class PistaBanco extends Pista {
 
     public PistaBanco(Ciudad ciudadSiguiente, Sospechoso ladron) {
-        string="";
+        pista = "";
     }
 }

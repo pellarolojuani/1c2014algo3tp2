@@ -4,8 +4,10 @@ package elementosDelJuego;
  * Created by chris on 06/06/2014.
  */
 public class Pista {
-    String string;
+	
+    String pista;
+    
     public String contenidoComoString(){
-        return string;
+        return pista;
     }
 }
