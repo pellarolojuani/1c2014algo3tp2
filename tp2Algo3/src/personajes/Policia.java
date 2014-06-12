@@ -37,6 +37,11 @@ public class Policia {
 	public Grado obtenerGrado(){
 		return this.grado;
 	};
+		
+	// Promueve de grado al policia salvo que este sea de grado maximo
+	public void promoverGrado(){
+		this.grado = this.grado.getNext();
+	}
 	
 	public Ciudad obtenerCiudadActual(){
 		return this.ciudadActual;
