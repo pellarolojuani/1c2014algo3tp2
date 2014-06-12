@@ -18,11 +18,25 @@ public class Tests {
     }
 
     @Test
-    public void testPoliciaViajaCambiaCiudadActual() throws Exception {
+    public void testPoliciaEsAsignadoUnCasoEnUnaCiudad() throws Exception {
         Policia policia=new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad=new Ciudad();
         policia.asignarNuevoCasoEn(ciudad);
         assertEquals(policia.obtenerCiudadActual(),ciudad);
+    }
+    
+    @Test
+    public void testPoliciaViajaCambiaCiudadActual() throws Exception {
+        Policia policia=new Policia("Nombre", Grado.NOVATO);
+        Ciudad ciudad1=new Ciudad();
+        ciudad1.setNombre('Buenos Aires');
+        Ciudad ciudad2=new Ciudad();
+        ciudad2.setNombre('Londres');
+        
+        policia.viajarA(ciudad1);
+        assertEquals(policia.obtenerCiudadActual(),ciudad1);
+        policia.viajarA(ciudad2);
+        assertEquals(policia.obtenerCiudadActual(),ciudad2);
     }
 
     @Test(expected = NoSePuedeVisitarLugarExcepcion.class)
