@@ -15,4 +15,8 @@ public class Sospechoso {
     public Descripcion obtenerDescripcion() {
         return descripcion;
     }
+    
+    public boolean describeLoMismo(Descripcion unaDescripcion){
+    	return ( this.descripcion.puedeSerIgualA(unaDescripcion) );
+    }
 }

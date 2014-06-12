@@ -21,4 +21,21 @@ public class CuartelGeneral {
         //Hay que implementar esto para que busque bien, y encuentre un sospechoso aunque la descripcion sea parcial.
         return sospechosos.get(0);
     }
+    
+    public boolean sospechosoEsUnico(Descripcion unaDescripcion){
+    	int cantidadDeMatches = 0;
+    	for (int i=0; i<sospechosos.size()-1; i++){
+    		if ( sospechosos.get(i).describeLoMismo(unaDescripcion) ){
+    			cantidadDeMatches++;
+    		}
+    	}
+    	
+    	if ( cantidadDeMatches == 1 ){
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
 }

@@ -39,4 +39,24 @@ public class Descripcion {
 	public Senia getSenia(){
 		return this.senia;
 	}
+	
+	public boolean puedeSerIgualA(Descripcion unaDescripcion){
+		if ( (unaDescripcion.getSexo() != null) && (this.sexo == unaDescripcion.getSexo()) ){
+			return false;
+		}
+		if ( (unaDescripcion.getAuto() != null) && (this.auto == unaDescripcion.getAuto()) ){
+			return false;
+		}
+		if ( (unaDescripcion.getHobbie() != null) && (this.hobbie == unaDescripcion.getHobbie()) ){
+			return false;
+		}
+		if ( (unaDescripcion.getPelo() != null) && (this.pelo == unaDescripcion.getPelo()) ){
+			return false;
+		}
+		if ( (unaDescripcion.getSenia() != null) && (this.senia == unaDescripcion.getSenia()) ){
+			return false;
+		}
+		return true;
+	}
+	
 }
