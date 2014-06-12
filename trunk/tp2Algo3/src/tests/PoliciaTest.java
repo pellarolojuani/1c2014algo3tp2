@@ -25,5 +25,12 @@ public class PoliciaTest {
 		assertEquals (tiempo.getTiempo(), 8);
 		
 	}
+	
+	@Test
+	public void testPoliciaEsPromovidoDeRango(){
+		Policia unPolicia = new Policia("Matute", Grado.NOVATO);
+		unPolicia.promoverGrado();
+		assertEquals (unPolicia.obtenerGrado(), Grado.DETECTIVE);
+	}
 
 }
