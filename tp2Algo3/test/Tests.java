@@ -29,9 +29,9 @@ public class Tests {
     public void testPoliciaViajaCambiaCiudadActual() throws Exception {
         Policia policia=new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad1=new Ciudad();
-        ciudad1.setNombre('Buenos Aires');
+        ciudad1.setNombre("Buenos Aires");
         Ciudad ciudad2=new Ciudad();
-        ciudad2.setNombre('Londres');
+        ciudad2.setNombre("Londres");
         
         policia.viajarA(ciudad1);
         assertEquals(policia.obtenerCiudadActual(),ciudad1);
