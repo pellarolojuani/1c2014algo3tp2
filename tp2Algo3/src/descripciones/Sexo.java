@@ -1,5 +1,3 @@
 package descripciones;
 
-public class Sexo {
-
-}
+public enum Sexo { MASCULINO, FEMENINO}

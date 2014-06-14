@@ -1,5 +1,5 @@
 package descripciones;
 
-public class Senia {
+public enum Senia {
 
 }
