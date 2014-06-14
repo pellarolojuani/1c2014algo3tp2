@@ -18,7 +18,9 @@ public class Lugar {
         return pista.contenidoComoString();
 	}
 
-    public void visitar(){this.visitado=true;}
+    public void visitar(){
+    	this.visitado=true;
+    }
 
 	public boolean fueVisitado(){
 		return visitado;
@@ -31,4 +33,5 @@ public class Lugar {
     public TipoEdificio obtenerTipo() {
         return tipo;
     }
+    
 }

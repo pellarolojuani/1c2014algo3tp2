@@ -1,7 +1,11 @@
 package personajes;
 
 import static org.junit.Assert.*;
-import geografico.Ciudad;
+import elementosDelJuego.Tiempo;
+import geografico.*;
+import personajes.Policia;
+
+import java.util.*;
 
 import org.junit.Test;
 
@@ -22,14 +26,34 @@ public class PoliciaTest {
 
 	@Test
 	public void testPoliciaPorDefectoEsNovato() {
-		
-		assertEquals(Grado.NOVATO,new Policia().obtenerGrado());
+		Policia unPolicia = new Policia("pepe");
+		assertEquals(Grado.NOVATO,unPolicia.obtenerGrado());
 		
 	}
 
 	@Test
 	public void testVisitarLugar() {
-		fail("Not yet implemented");
+		
+		Ciudad unaCiudadActual = new Ciudad();
+		unaCiudadActual.setNombre("Buenos Aires");
+		
+		Lugar unaBiblioteca = new Lugar(TipoEdificio.BIBLIOTECA);
+		Lugar unPuerto = new Lugar(TipoEdificio.PUERTO);
+		Lugar unBanco = new Lugar(TipoEdificio.BANCO);
+		
+		unaCiudadActual.agregarLugar(unaBiblioteca);
+		unaCiudadActual.agregarLugar(unPuerto);
+		unaCiudadActual.agregarLugar(unBanco);
+		
+		Policia unPolicia = new Policia("Perez");
+		unPolicia.asignarCiudadActual(unaCiudadActual);
+		
+		unPolicia.visitarLugar(new Lugar(TipoEdificio.BIBLIOTECA));
+		assertEquals(unPolicia.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
+		
+		unPolicia.visitarLugar(new Lugar(TipoEdificio.BOLSA));
+		assertNotEquals(unPolicia.getLugarActual().obtenerTipo(), TipoEdificio.BOLSA);
+		assertEquals(unPolicia.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
 	}
 
 //	@Test
@@ -56,7 +80,13 @@ public class PoliciaTest {
 
 	@Test
 	public void testObtenerCiudadActual() {
-		fail("Not yet implemented");
+		
+		Ciudad madrid = new Ciudad();
+		madrid.setNombre("Madrid");
+		
+		Policia unPolicia = new Policia("Juan Carlos");
+		unPolicia.asignarCiudadActual(madrid);
+		
 	}
 
 	@Test
@@ -67,6 +97,23 @@ public class PoliciaTest {
 	@Test
 	public void testDormir() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testPoliciaDuermeOchoHorasPorLasNoches(){	
+		Policia unPolicia = new Policia("pepe", Grado.NOVATO);
+		Tiempo tiempo = new Tiempo();
+		
+		if (unPolicia.debeDormir()) unPolicia.dormir(tiempo);
+		assertEquals (tiempo.getTiempo(), 8);
+		
+	}
+	
+	@Test
+	public void testPoliciaEsPromovidoDeRango(){
+		Policia unPolicia = new Policia("Matute", Grado.NOVATO);
+		unPolicia.promoverGrado();
+		assertEquals (unPolicia.obtenerGrado(), Grado.DETECTIVE);
 	}
 
 }

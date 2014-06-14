@@ -17,13 +17,34 @@ public class Policia {
         this.nombre=nombre;
 	}
 	
-	public void visitarLugar(Lugar lugar) throws NoSePuedeVisitarLugarExcepcion {
-        if(ciudadActual.obtenerLugaresDisponibles().contains(lugar)) {
+	public Policia(String nombre){
+		//si no se le indica grado, por defecto es NOVATO
+		this.nombre = nombre;
+		this.grado = Grado.NOVATO;
+	}
+	
+	public void asignarCiudadActual(Ciudad unaCiudad){
+		this.ciudadActual = unaCiudad;
+	}
+	
+	public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */{
+		TipoEdificio tipo = lugar.obtenerTipo();
+		ArrayList<Lugar> lugares = ciudadActual.obtenerLugaresDisponibles();
+		boolean esta = false;
+		for (Lugar unLugar: lugares){
+			if (unLugar.obtenerTipo() == tipo) esta = true;
+		}
+        if(esta) {
             this.lugarActual = lugar;
             lugar.visitar();
         }
-        else throw new NoSePuedeVisitarLugarExcepcion();
+        
+       // else throw new NoSePuedeVisitarLugarExcepcion();
 	};
+	
+	public Lugar getLugarActual(){
+		return this.lugarActual;
+	}
 	
 	public void viajarA(Ciudad destino){
 		this.ciudadActual = destino;
