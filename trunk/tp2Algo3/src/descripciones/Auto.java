@@ -1,5 +1,5 @@
 package descripciones;
 
-public class Auto {
+public enum Auto {
 
 }

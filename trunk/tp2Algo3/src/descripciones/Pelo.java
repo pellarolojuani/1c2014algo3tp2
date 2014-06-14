@@ -1,5 +1,5 @@
 package descripciones;
 
-public class Pelo {
+public enum Pelo {
 
 }

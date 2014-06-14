@@ -1,5 +1,5 @@
 package descripciones;
 
-public class Hobbie {
+public enum Hobbie {
 
 }
