@@ -1,5 +1,6 @@
 package descripciones;
 
-public enum Hobbie {
-
-}
+public enum Hobbie { 
+		TENIS, MUSICA, ALPINISMO, PARACAIDISMO, NATACION, CROQUET 
+				   }
+		
