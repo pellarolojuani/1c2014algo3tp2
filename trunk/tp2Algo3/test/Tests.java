@@ -1,9 +1,9 @@
 import org.junit.Test;
-import geografico.*;
-import juego.*;
-import personajes.*;
-import elementosDelJuego.*;
-import descripciones.*;
+import modelo.geografico.*;
+import modelo.juego.*;
+import modelo.personajes.*;
+import modelo.elementosDelJuego.*;
+import modelo.descripciones.*;
 
 import java.util.ArrayList;
 
@@ -59,7 +59,6 @@ public class Tests {
     public void testEnCasoAsignadoAPoliciaNovatoElObjetoEsComun() {
 
         Policia policia = new Policia("Nombre", Grado.NOVATO);
-
 
         ArrayList<Ciudad> ciudades=new ArrayList<Ciudad>();
         ArrayList<ObjetoRobado> objetoRobados=new ArrayList<ObjetoRobado>();
