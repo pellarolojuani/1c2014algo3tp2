@@ -116,7 +116,138 @@ public class Tests {
 
     }
 
+    
+    public Sospechoso crearLadronNickBrunch(){
+//		Name:     Nick Brunch
+//		Sex:      Male
+//		Hobby:    Mountain Climbing
+//		Hair:     Black
+//		Feature:  Ring
+//		Auto:     Motorcyle
+			Descripcion descripcion = new Descripcion(Sexo.MASCULINO, Pelo.RUBIO, new Senia(), new Auto(), new Hobbie());
+			Sospechoso NickBrunch = new Sospechoso("Nick Brunch",descripcion);
+			return NickBrunch;
+		}
+	
+	public Ciudad crearCiudadBsAs(){
+		
+		Ciudad bsas = new Ciudad();
+		Ciudad hongKong = new Ciudad();
+		Lugar biblio= new Lugar(TipoEdificio.BIBLIOTECA);
+	
+		bsas.setNombre("Buenos Aires");
+		
+		bsas.ciudades.add(hongKong);
+		bsas.lugares.add(biblio);
+		
+		hongKong.ciudades.add(bsas);
+		Lugar banco = new Lugar(TipoEdificio.BANCO);
+		hongkong.lugares.add(banco);
 
+		
+
+		return bsas;
+	}
+	
+	
+    @Test
+    public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() {
+    //    Caso2(Masomenos): No lo atrapa porque se acabó el tiempo:
+    //    	 - Empiezo en Buenos Aires.
+    //    	 - Busco una pista en la biblioteca, “Fue a un país asiático. Tenía una horrible cicatriz”.
+    //    	 - Viajo, opciones: Hong Kong, Polonia, Lima.
+    //    	 - Elijo Hong Kong
+    //    	 - Busco una pista en el banco, “Consultó por el tipo de cambio del yen.”.
+    //    	 - Busco una pista en el puerto, “Fue a un país con bandera blanca y roja. Llevaba una raqueta”.
+    //    	 - Viajo, opciones: Tokio, Brasilia, Moscu, Buenos Aires.
+    //    	 - Elijo Buenos Aires.
+    //    	 - Busco pista en...
+    //    	 - Viajo a Hong Kong
+    //    	 - Busco pista en...
+    //    	 - etc
+    //    	 - Se acaba el tiempo
+    	Ciudad bsAs = crearCiudadBsAs();
+    	ObjetoRobado bolaDeOro = new ObjetoRobado(Valor.COMUN);
+    	Policia poli = new Policia();
+    	Sospechoso ladron = this.crearLadronNickBrunch();
+    	
+    	Caso caso2 = new Caso(bsAs, bolaDeOro, poli, ladron);
+    	//Lunes 7 AM
+    	assertEquals(0 , caso2.obtenerTiempoTranscurridoEnHs());
+    	final int BIBLIO_BSAS=0;
+    	Lugar biblioteca = poli.obtenerCiudadActual().obtenerLugaresDisponibles().get(BIBLIO);
+    	
+    	poli.visitarLugar(biblioteca);
+    	
+    	assertEquals(1 , caso2.obtenerTiempoTranscurridoEnHs());
+    	
+    	poli.visitarLugar(biblioteca);
+    	//Visita edificio la 2da vez, 2hs. Lunes 10 AM
+    	assertEquals(3 , caso2.obtenerTiempoTranscurridoEnHs());
+    	
+    	Ciudad hongKong = poli.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles().get(0);
+    	poli.viajarA( hongKong  );// Viaje dura 12hs
+    	// Lunes 10 PM
+    	assertEquals(15, caso2.obtenerTiempoTranscurridoEnHs() )
+    	
+    	//Como son las 10 PM, el policia duerme 8 HS
+    	assertTrue( poli.debeDormir() );
+    	
+    	//Martes 6 PM 
+    	assertEquals(23, caso2.obtenerTiempoTranscurridoEnHs() );
+    	final int BANCO_HK = 0;
+    	Lugar bancoHongkong = poli.obtenerCiudadActual().obtenerLugaresDisponibles().get(BANCO_HK);
+    	poli.visitarLugar(bancoHongkong);
+    	
+    	assertEquals(24, caso2.obtenerTiempoTranscurridoEnHs() );
+    	
+    	poli.visitarLugar(bancoHongkong);
+    	
+    	assertEquals(26, caso2.obtenerTiempoTranscurridoEnHs() );
+    	
+    	poli.visitarLugar(bancoHongkong);
+    	// Martes 12 AM
+    	assertEquals(29, caso2.obtenerTiempoTranscurridoEnHs() );
+
+    	poli.viajarA(bsAs);
+    	// Miercoles 0 AM
+    	assertEquals(41, caso2.obtenerTiempoTranscurridoEnHs() );    	
+    	// Duerme hasta las 8 am
+    	assertEquals(49,caso2.obtenerTiempoTranscurridoEnHs() );    	
+    	
+    	poli.viajarA(hongKong);
+    	// 20 hs
+    	assertEquals(53, caso2.obtenerTiempoTranscurridoEnHs() );
+    	
+    	poli.viajarA(bsAs);
+    	// Duerme durante el viaje? o sumamos tiempo de viaje + 8 hs (por ahora sumo) 
+    	assertEquals(73, caso2.obtenerTiempoTranscurridoEnHs() );  //Jueves 16hs  	
+    	
+    	poli.viajarA(hongKong);
+    	assertEquals(85, caso2.obtenerTiempoTranscurridoEnHs() );// Viernes 4 am
+    	
+    	// Duerme
+    	assertEquals(93, caso2.obtenerTiempoTranscurridoEnHs() );//Viernes 12am
+
+    	poli.viajarA(bsAs);
+    	// Sabado 0 AM
+    	assertEquals(105, caso2.obtenerTiempoTranscurridoEnHs() );    	
+    	// Duerme hasta las 8 am
+    	assertEquals(113,caso2.obtenerTiempoTranscurridoEnHs() );    	
+    	
+    	poli.viajarA(hongKong);
+    	// 20 hs
+    	assertEquals(125, caso2.obtenerTiempoTranscurridoEnHs() );
+    	
+    	poli.viajarA(bsAs);
+    	// Domingo 16hs
+    	assertEquals(145, caso2.obtenerTiempoTranscurridoEnHs() );
+
+    	poli.visitarLugar(biblioteca);// Para probar que se acabo el tiempo,
+    	// creo que conviene usar una excepcion: SeAcaboElTiempoDelCasoExcepcion
+    	
+    
+    }
 
 }
 
