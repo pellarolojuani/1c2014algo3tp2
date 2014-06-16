@@ -15,7 +15,7 @@ public class MenuBase{
         int opcion;
         do {
 	        	
-	        System.out.println("Por favor elija una de las siguientes opciones");
+	        System.out.println("Por favor elija una de las opciones");
 	        opcion = in.nextInt();
 	        
 	        switch (opcion) {
