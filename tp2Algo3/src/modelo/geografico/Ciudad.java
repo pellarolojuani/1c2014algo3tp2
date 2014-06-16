@@ -9,16 +9,29 @@ public class Ciudad {
 	private ArrayList<Lugar> lugares;
     private ArrayList<Ciudad> ciudadesvisitables;
     private String nombre;
-    private ArrayList<Color> bandera;
-    private Moneda moneda;
 	private double Latitud;   
 	private double Longitud;
+	private String moneda;
+	private String bandera;
+
+	private String lugaresdeinteres;
+	private String personaje;
+	private String industria;
+	private String fauna;
+	private String idiomas;
+	//private String edificios
 	
-    public Ciudad(String nombre, ArrayList<Ciudad> ciudadesvisitables, ArrayList<Lugar> lugares, ArrayList<Color> bandera,double unalatitud, double unalongitud){
+    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Ciudad> ciudadesvisitables, ArrayList<Lugar> lugares, String unabandera,double unalatitud, double unalongitud){
     	this.nombre = nombre;
         this.lugares = lugares;
+    	this.moneda = unamoneda;
+    	this.lugaresdeinteres=lugaresdeinteres;
+    	this.personaje=personaje;
+    	this.industria=industria;
+    	this.fauna=fauna;
+    	this.idiomas=idiomas;
         this.ciudadesvisitables = ciudadesvisitables;
-        this.bandera = bandera;
+        this.bandera = unabandera;
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
     }
