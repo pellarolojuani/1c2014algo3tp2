@@ -1,7 +1,7 @@
 package modelo.geografico;
 
-import elementosDelJuego.Pista;
-import personajes.Sospechoso;
+import modelo.elementosDelJuego.Pista;
+import modelo.personajes.Sospechoso;
 
 public class Lugar {
 
