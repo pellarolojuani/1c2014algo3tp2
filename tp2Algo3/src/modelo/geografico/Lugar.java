@@ -7,9 +7,9 @@ public class Lugar {
 
 	Pista pista;
     private boolean visitado;
-    private TipoEdificio tipo;
+    private String tipo;
 
-    public Lugar(TipoEdificio tipo) {
+    public Lugar(String tipo) {
         this.tipo=tipo;
         this.visitado = false;
     }

@@ -36,9 +36,8 @@ public class Ciudad {
         this.Longitud = unalongitud;
     }
     
-    public Ciudad(){
-    	/*nada*/
-    }
+    // No hace nada, borrar.
+    public Ciudad(){}
 
     public ArrayList<Ciudad> obtenerCiudadesDestinoDisponibles() {
         return this.ciudadesvisitables;
@@ -65,14 +64,6 @@ public class Ciudad {
 
 		return distancia;
 	}
-	
-    public void setNombre(String nombre) {
-    	this.nombre = nombre;
-    }
-
-    public void agregarLugar(Lugar lugar) {
-        lugares.add(lugar);
-    }
     
     public void agregarCiudadVisitable(Ciudad unaCiudad){
     	this.ciudadesvisitables.add(unaCiudad);
@@ -82,3 +73,4 @@ public class Ciudad {
     	return this.nombre;
     }
 }
+
