@@ -47,7 +47,14 @@ public class Policia {
 	}
 	
 	public void viajarA(Ciudad destino){
-		this.ciudadActual = destino;
+		ArrayList<Ciudad> ciudadesDisponibles = new ArrayList<Ciudad>();
+		ciudadesDisponibles = this.ciudadActual.obtenerCiudadesDestinoDisponibles();
+		for (Ciudad unaCiudad : ciudadesDisponibles){
+			if (unaCiudad.getNombre() == destino.getNombre()){
+				this.ciudadActual = destino;
+				return;
+			}
+		}
 	};
 
     public void asignarNuevoCasoEn(Ciudad ciudad){

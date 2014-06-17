@@ -67,7 +67,7 @@ public class Tests {
         ciudades.add(new Ciudad());
         objetoRobados.add(new ObjetoRobado(Valor.COMUN));
         objetoRobados.add(new ObjetoRobado(Valor.VALIOSO));
-        sospechosos.add(new Sospechoso(new Descripcion(new Sexo(),new Pelo(),new Senia(),new Auto(),new Hobbie())));
+        sospechosos.add(new Sospechoso(new Descripcion("Masculino","Rubio","Cicatriz","Descapotable","Tenis")));
         //Lo de arriba seria mejor ponerlo para que se haga siempre, antes de las pruebas.
 
         Juego juego=new Juego(objetoRobados,ciudades,sospechosos);
@@ -95,8 +95,8 @@ public class Tests {
     public void testBuscarSospechosoDevuelveSospechosoCorrecto(){
 
         CuartelGeneral cuartel = new CuartelGeneral();
-        Descripcion descripcion1=new Descripcion(new Sexo(),new Pelo(),new Senia(),new Auto(),new Hobbie());
-        Descripcion descripcion2=new Descripcion(new Sexo(),new Pelo(),new Senia(),new Auto(),new Hobbie());
+        Descripcion descripcion1=new Descripcion("Masculino","Rubio","Cicatriz","Descapotable","Tenis");
+        Descripcion descripcion2=new Descripcion("Femenino","Rubio","Anillo","Deportivo","Alpinismo");
         Sospechoso sospechoso1=new Sospechoso(descripcion1);
         Sospechoso sospechoso2=new Sospechoso(descripcion2);
         cuartel.cargarSospechoso(sospechoso1);
@@ -125,7 +125,7 @@ public class Tests {
 //		Hair:     Black
 //		Feature:  Ring
 //		Auto:     Motorcyle
-			Descripcion descripcion = new Descripcion(Sexo.MASCULINO, Pelo.RUBIO, new Senia(), new Auto(), new Hobbie());
+			Descripcion descripcion = new Descripcion("Femenino","Rubio","Anillo","Deportivo","Alpinismo");
 			Sospechoso NickBrunch = new Sospechoso("Nick Brunch",descripcion);
 			return NickBrunch;
 		}
@@ -137,13 +137,14 @@ public class Tests {
 		Lugar biblio= new Lugar(TipoEdificio.BIBLIOTECA);
 	
 		bsas.setNombre("Buenos Aires");
+		hongKong.setNombre("Hong Kong");
 		
-		bsas.ciudades.add(hongKong);
-		bsas.lugares.add(biblio);
+		bsas.agregarCiudadVisitable(hongKong);
+		bsas.agregarLugar(biblio);
 		
-		hongKong.ciudades.add(bsas);
+		hongKong.agregarCiudadVisitable(bsas);
 		Lugar banco = new Lugar(TipoEdificio.BANCO);
-		hongkong.lugares.add(banco);
+		hongKong.agregarLugar(banco);
 
 		
 
@@ -167,16 +168,25 @@ public class Tests {
     //    	 - Busco pista en...
     //    	 - etc
     //    	 - Se acaba el tiempo
-    	Ciudad bsAs = crearCiudadBsAs();
     	ObjetoRobado bolaDeOro = new ObjetoRobado(Valor.COMUN);
-    	Policia poli = new Policia();
+    	Ciudad bsas = this.crearCiudadBsAs();
+    	Policia poli = new Policia("Juan Carlos");
     	Sospechoso ladron = this.crearLadronNickBrunch();
+    	ArrayList<Ciudad> ciudades = new ArrayList<Ciudad>();
+    	ciudades.add(bsas);
     	
-    	Caso caso2 = new Caso(bsAs, bolaDeOro, poli, ladron);
+    	ArrayList<Sospechoso> sospechosos = new ArrayList<Sospechoso>();
+    	sospechosos.add(ladron);
+    	
+    	ArrayList<ObjetoRobado> objetosRobados = new ArrayList<ObjetoRobado>();
+    	objetosRobados.add(bolaDeOro);
+    	
+    	Caso caso2 = new Caso(ciudades, poli.obtenerGrado(), objetosRobados, sospechosos);
+    	poli.asignarCiudadActual(ciudades.get(0)); //Ciudad actual: Buenos Aires
     	//Lunes 7 AM
     	assertEquals(0 , caso2.obtenerTiempoTranscurridoEnHs());
     	final int BIBLIO_BSAS=0;
-    	Lugar biblioteca = poli.obtenerCiudadActual().obtenerLugaresDisponibles().get(BIBLIO);
+    	Lugar biblioteca = poli.obtenerCiudadActual().obtenerLugaresDisponibles().get(BIBLIO_BSAS);
     	
     	poli.visitarLugar(biblioteca);
     	
@@ -189,7 +199,7 @@ public class Tests {
     	Ciudad hongKong = poli.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles().get(0);
     	poli.viajarA( hongKong  );// Viaje dura 12hs
     	// Lunes 10 PM
-    	assertEquals(15, caso2.obtenerTiempoTranscurridoEnHs() )
+    	assertEquals(15, caso2.obtenerTiempoTranscurridoEnHs() );
     	
     	//Como son las 10 PM, el policia duerme 8 HS
     	assertTrue( poli.debeDormir() );
@@ -210,7 +220,7 @@ public class Tests {
     	// Martes 12 AM
     	assertEquals(29, caso2.obtenerTiempoTranscurridoEnHs() );
 
-    	poli.viajarA(bsAs);
+    	poli.viajarA(ciudades.get(0)); //Primera y unica ciudad almacenada : Buenos Aires
     	// Miercoles 0 AM
     	assertEquals(41, caso2.obtenerTiempoTranscurridoEnHs() );    	
     	// Duerme hasta las 8 am
@@ -220,7 +230,7 @@ public class Tests {
     	// 20 hs
     	assertEquals(53, caso2.obtenerTiempoTranscurridoEnHs() );
     	
-    	poli.viajarA(bsAs);
+    	poli.viajarA(ciudades.get(0));
     	// Duerme durante el viaje? o sumamos tiempo de viaje + 8 hs (por ahora sumo) 
     	assertEquals(73, caso2.obtenerTiempoTranscurridoEnHs() );  //Jueves 16hs  	
     	
@@ -230,7 +240,7 @@ public class Tests {
     	// Duerme
     	assertEquals(93, caso2.obtenerTiempoTranscurridoEnHs() );//Viernes 12am
 
-    	poli.viajarA(bsAs);
+    	poli.viajarA(ciudades.get(0));
     	// Sabado 0 AM
     	assertEquals(105, caso2.obtenerTiempoTranscurridoEnHs() );    	
     	// Duerme hasta las 8 am
@@ -240,7 +250,7 @@ public class Tests {
     	// 20 hs
     	assertEquals(125, caso2.obtenerTiempoTranscurridoEnHs() );
     	
-    	poli.viajarA(bsAs);
+    	poli.viajarA(ciudades.get(0));
     	// Domingo 16hs
     	assertEquals(145, caso2.obtenerTiempoTranscurridoEnHs() );
 

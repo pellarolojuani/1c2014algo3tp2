@@ -27,6 +27,8 @@ public class Juego {
     }
     public void asignarPolicia(Policia policia){
         this.policia = policia;
+        //asigno al policia la primera ciudad de la lista de ciudades.
+        this.policia.asignarCiudadActual(this.ciudades.get(0));
     }
     public void crearCaso(){
         caso = new Caso(ciudades,policia.obtenerGrado(),objetos,sospechosos);
