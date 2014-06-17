@@ -3,40 +3,40 @@ package modelo.descripciones;
 public class Descripcion {
 	
 	//declaracion de atributos
-	private Senia senia;
-	private Hobbie hobbie;
-	private Pelo pelo;
-	private Auto auto;
-	private Sexo sexo;
+	private String senia;
+	private String hobby;
+	private String pelo;
+	private String auto;
+	private String sexo;
 	
 	//declaracion de metodos:
 	
 	//constructor
-	public Descripcion(Sexo unSexo, Pelo unPelo, Senia unaSenia, Auto unAuto, Hobbie unHobbie){
+	public Descripcion(String unSexo, String unPelo, String unaSenia, String unAuto, String unHobby){
 		this.sexo = unSexo;
 		this.pelo = unPelo;
 		this.senia = unaSenia;
 		this.auto = unAuto;
-		this.hobbie = unHobbie;
+		this.hobby = unHobby;
 	}
 	
-	public Sexo getSexo(){
+	public String getSexo(){
 		return this.sexo;
 	}
 	
-	public Auto getAuto(){
+	public String getAuto(){
 		return this.auto;
 	}
 	
-	public Pelo getPelo(){
+	public String getPelo(){
 		return this.pelo;
 	}
 	
-	public Hobbie getHobbie(){
-		return this.hobbie;
+	public String getHobby(){
+		return this.hobby;
 	}
 	
-	public Senia getSenia(){
+	public String getSenia(){
 		return this.senia;
 	}
 	
@@ -47,7 +47,7 @@ public class Descripcion {
 		if ( (unaDescripcion.getAuto() != null) && (this.auto == unaDescripcion.getAuto()) ){
 			return false;
 		}
-		if ( (unaDescripcion.getHobbie() != null) && (this.hobbie == unaDescripcion.getHobbie()) ){
+		if ( (unaDescripcion.getHobby() != null) && (this.hobby == unaDescripcion.getHobby()) ){
 			return false;
 		}
 		if ( (unaDescripcion.getPelo() != null) && (this.pelo == unaDescripcion.getPelo()) ){
