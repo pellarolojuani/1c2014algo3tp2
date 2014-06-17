@@ -1,4 +1,5 @@
 import org.junit.Test;
+
 import modelo.geografico.*;
 import modelo.juego.*;
 import modelo.personajes.*;
@@ -20,7 +21,7 @@ public class Tests {
     @Test
     public void testPoliciaEsAsignadoUnCasoEnUnaCiudad() throws Exception {
         Policia policia=new Policia("Nombre", Grado.NOVATO);
-        Ciudad ciudad=new Ciudad();
+        Ciudad ciudad = new Ciudad();
         policia.asignarNuevoCasoEn(ciudad);
         assertEquals(policia.obtenerCiudadActual(),ciudad);
     }
@@ -152,13 +153,13 @@ public class Tests {
 	
     @Test
     public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() {
-    //    Caso2(Masomenos): No lo atrapa porque se acabó el tiempo:
+    //    Caso2(Masomenos): No lo atrapa porque se acabÃ³ el tiempo:
     //    	 - Empiezo en Buenos Aires.
-    //    	 - Busco una pista en la biblioteca, “Fue a un país asiático. Tenía una horrible cicatriz”.
+    //    	 - Busco una pista en la biblioteca, â€œFue a un paÃ­s asiÃ¡tico. TenÃ­a una horrible cicatrizâ€�.
     //    	 - Viajo, opciones: Hong Kong, Polonia, Lima.
     //    	 - Elijo Hong Kong
-    //    	 - Busco una pista en el banco, “Consultó por el tipo de cambio del yen.”.
-    //    	 - Busco una pista en el puerto, “Fue a un país con bandera blanca y roja. Llevaba una raqueta”.
+    //    	 - Busco una pista en el banco, â€œConsultÃ³ por el tipo de cambio del yen.â€�.
+    //    	 - Busco una pista en el puerto, â€œFue a un paÃ­s con bandera blanca y roja. Llevaba una raquetaâ€�.
     //    	 - Viajo, opciones: Tokio, Brasilia, Moscu, Buenos Aires.
     //    	 - Elijo Buenos Aires.
     //    	 - Busco pista en...

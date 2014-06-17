@@ -21,7 +21,7 @@ public class Ciudad {
 	private String idiomas;
 	//private String edificios
 	
-    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Ciudad> ciudadesvisitables, ArrayList<Lugar> lugares, String unabandera,double unalatitud, double unalongitud){
+    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Ciudad> ciudadesvisitables, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
     	this.nombre = nombre;
         this.lugares = lugares;
     	this.moneda = unamoneda;
@@ -31,9 +31,13 @@ public class Ciudad {
     	this.fauna=fauna;
     	this.idiomas=idiomas;
         this.ciudadesvisitables = ciudadesvisitables;
-        this.bandera = unabandera;
+        this.bandera = bandera;
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
+    }
+    
+    public Ciudad(){
+    	/*nada*/
     }
 
     public ArrayList<Ciudad> obtenerCiudadesDestinoDisponibles() {
@@ -65,20 +69,6 @@ public class Ciudad {
     public void setNombre(String nombre) {
     	this.nombre = nombre;
     }
-
-    public void setBandera(ArrayList<Color> colores) {
-    	this.bandera = colores;
-    }
-
-    public void setMoneda(Moneda moneda) {
-    	this.moneda = moneda;
-    }
-
-    public void setPuntoInteres(PuntoInteres monteHuascaran) {}
-
-    public void setArte(Arte arte) {}
-
-    public void setIndustrias(Industria moda) {}
 
     public void agregarLugar(Lugar lugar) {
         lugares.add(lugar);
