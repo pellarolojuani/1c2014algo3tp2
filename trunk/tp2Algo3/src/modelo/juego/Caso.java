@@ -1,10 +1,10 @@
 package modelo.juego;
 
 import jdk.nashorn.internal.objects.NativeArray;
-import personajes.*;
-import geografico.*;
-import elementosDelJuego.*;
-import descripciones.*;
+import modelo.personajes.*;
+import modelo.geografico.*;
+import modelo.elementosDelJuego.*;
+import modelo.descripciones.*;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class Caso {
 		return this.objetoRobado;
 	}
 	
-	public Sexo obtenerSexoLadron(){
+	public String obtenerSexoLadron(){
 		return this.ladron.obtenerDescripcion().getSexo();
 	}
 
