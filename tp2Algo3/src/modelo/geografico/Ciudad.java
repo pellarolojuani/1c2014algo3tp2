@@ -73,4 +73,12 @@ public class Ciudad {
     public void agregarLugar(Lugar lugar) {
         lugares.add(lugar);
     }
+    
+    public void agregarCiudadVisitable(Ciudad unaCiudad){
+    	this.ciudadesvisitables.add(unaCiudad);
+    }
+    
+    public String getNombre(){
+    	return this.nombre;
+    }
 }

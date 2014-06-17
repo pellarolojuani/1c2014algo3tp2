@@ -51,4 +51,8 @@ public class Caso {
         }
     }
 
+	public int obtenerTiempoTranscurridoEnHs() {
+		return (this.tiempoFinal.getTiempo() - this.tiempoActual.getTiempo());
+	}
+
 }

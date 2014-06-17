@@ -16,6 +16,10 @@ public class CuartelGeneral {
     public void cargarSospechosos(ArrayList<Sospechoso> sospechosos) {
         this.sospechosos=sospechosos;
     }
+    
+    public void cargarSospechoso(Sospechoso unSospechoso){
+    	this.sospechosos.add(unSospechoso);
+    }
 
     public Sospechoso buscarSospechoso(Descripcion otraDescripcion) {
         //Hay que implementar esto para que busque bien, y encuentre un sospechoso aunque la descripcion sea parcial.
