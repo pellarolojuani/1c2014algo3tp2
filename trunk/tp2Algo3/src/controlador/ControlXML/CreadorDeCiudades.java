@@ -1,10 +1,14 @@
 package controlador.ControlXML;
 
+import modelo.descripciones.Descripcion;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
+import modelo.personajes.Sospechoso;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,29 +22,69 @@ import org.xml.sax.SAXException;
 
 public class CreadorDeCiudades {
     //Lo creamos con el archivo XML que tiene las ciudades. Creamos cada ciudad con crearCiudad, creamos sus lugares con crearLugar.
-    public ArrayList<Ciudad>ciudades;
+
     private ArrayList<Lugar>lugares;
-    private String f;
-    private int numerodeciudades;
+    public Ciudad ciudadespartida[];
     
-    public CreadorDeCiudades(String f, int numerodeciudades) {
+    public CreadorDeCiudades(int numerodeciudades) {
         DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
-        try {
+        try { 
+        	File xmlFile = new File("ciudades.xml");  
             DocumentBuilder documentBuilder=documentBuilderFactory.newDocumentBuilder();
-            Document document=documentBuilder.parse(f);
+            Document document=documentBuilder.parse(xmlFile);
             Element element=document.getDocumentElement();
             NodeList ciudadesList=element.getChildNodes();
-            for (int i = 0; i < numerodeciudades; i++) {
+            
+            for (int i = 0; i < ciudadesList.getLength(); i++) {
                 if(ciudadesList.item(0).getNodeType()==Node.ELEMENT_NODE){
                     Element e= (Element) ciudadesList.item(i);
-                    String[] listaedificios = e.getAttribute("edificios").split(":");
-                    for(int i1 = 0; i1 < listaedificios.length; i1++){
-                    	lugares.add(new Lugar(listaedificios[i1]));
-                    }
-                    Ciudad s=new Ciudad(e.getAttribute("nombre"),e.getAttribute("bandera"),e.getAttribute("moneda"),e.getAttribute("lugaresdeinteres"),e.getAttribute("personaje"),e.getAttribute("industria"),e.getAttribute("fauna"),e.getAttribute("idiomas"),null,lugares,Double.parseDouble(e.getAttribute("Latitud")),Double.parseDouble(e.getAttribute("Longitud")));
-                    ciudades.add(s);
+                    Ciudad s=new Ciudad();
+                    ArrayList<Lugar> ciudadespre;
+					ciudadespre.add(s);
                 }
+            
+            
+            
+            
+            
+            Ciudad[] ciudadespartida = new Ciudad[numerodeciudades]; 
+            Random rand = new Random();
+            int contador = 0; 
+
+
+            do 
+            { 
+                 int i;
+                 Element e = (Element)ciudadesList.item(rand.nextInt(numerodeciudades + 1)); 
+                 String[] listaedificios = e.getAttribute("edificios").split(":");
+                 System.out.println(listaedificios);
+                 
+
+            	 ArrayList<Lugar> nuevoslugares = new ArrayList<Lugar>();
+            	 
+                 for(int i1 = 0; i1 < listaedificios.length; i1++){
+                	 Lugar a = new Lugar(listaedificios[i1]);
+                 	 nuevoslugares.add(a);
+                 }
+                 
+                 Ciudad s=new Ciudad(e.getAttribute("nombre"),e.getAttribute("bandera"),e.getAttribute("moneda"),e.getAttribute("lugaresdeinteres"),e.getAttribute("personaje"),e.getAttribute("industria"),e.getAttribute("fauna"),e.getAttribute("idiomas"),null,nuevoslugares,Double.parseDouble(e.getAttribute("Latitud")),Double.parseDouble(e.getAttribute("Longitud")));                 
+                
+                 for(i = 0; i < contador; i++) 
+                      if(ciudadespartida[i] == s) 
+                           break; 
+                 if(i == contador) 
+                	 ciudadespartida[contador++] = s; 
+            } while(contador < numerodeciudades); 
+            
+
+            
+            for(int a = 0; a < numerodeciudades; a++) {
+            	for (int b = 0; b < numerodeciudades; b++)
+                if(ciudadespartida[a] != ciudadespartida[b]) 
+            	ciudadespartida[a].agregarCiudadVisitable(ciudadespartida[b]);
+            	
             }
+
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -51,17 +95,9 @@ public class CreadorDeCiudades {
 
     }
     
-    public ArrayList<Ciudad> obtenerListaDeCiudades(){
-        return ciudades;
+    public Ciudad[] obtenerCiudades(){
+        return ciudadespartida;
     }
     
-
-    private Ciudad crearCiudad(){
-        return null;
-    }
-
-    private Lugar crearLugar(){
-        return null;
-    }
-
+    
 }
