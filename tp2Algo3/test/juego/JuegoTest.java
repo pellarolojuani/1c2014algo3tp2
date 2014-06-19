@@ -12,6 +12,11 @@ public class JuegoTest {
 	}
 
 	@Test
+	public void testCrearciudades() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
 	public void testAsignarPolicia() {
 		fail("Not yet implemented");
 	}

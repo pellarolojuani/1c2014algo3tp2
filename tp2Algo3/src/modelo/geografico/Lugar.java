@@ -7,7 +7,7 @@ public class Lugar {
 
 	Pista pista;
     private boolean visitado;
-    private String tipo;
+    public String tipo;
 
     public Lugar(String tipo) {
         this.tipo=tipo;
@@ -30,8 +30,8 @@ public class Lugar {
         this.pista=pista;
     }
 
-    public TipoEdificio obtenerTipo() {
-        return tipo;
+    public String obtenerTipo() {
+        return this.tipo;
     }
     
 }
