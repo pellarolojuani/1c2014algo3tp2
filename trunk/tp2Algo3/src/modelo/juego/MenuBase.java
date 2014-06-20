@@ -26,11 +26,10 @@ public class MenuBase{
 	        System.out.println("Por favor elija una de las opciones");
 	        opcion = in.nextInt();
 	        
-	        Ciudad[] ciudadespartida;
 			switch (opcion) {
 	        
 	        case 1: 
-	        	new Juego(null, null, null);
+	        	new Juego(null, null);
 	            break;
 	        
 	        case 2: 

@@ -13,6 +13,7 @@ import static jdk.nashorn.internal.objects.NativeArray.forEach;
 public class Caso {
 
 	private Ciudad ciudadDelRobo;
+	private Ciudad ciudadActual;
 	private ObjetoRobado objetoRobado;
 	private Sospechoso ladron;
     private Tiempo tiempoFinal;
@@ -24,8 +25,11 @@ public class Caso {
     public Caso(ArrayList<Ciudad> ciudades, Grado grado, ArrayList<ObjetoRobado> objetos, ArrayList<Sospechoso> sospechosos) {
         objetoRobado=new ObjetoRobado(Valor.COMUN);
         ladron=sospechosos.get((int)(Math.random()*sospechosos.size()+0));//Elige un ladron al azar entre los sospechosos.
-
+        
+        
+        
         //Segun el grado del policia tenemos que armar un recorrido de 4,5 o 7 paises.
+        
     }
 
     public Ciudad obtenerCiudadRobo(){

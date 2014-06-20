@@ -4,8 +4,10 @@ import modelo.elementosDelJuego.ObjetoRobado;
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.personajes.*;
+import controlador.ControlXML.CreadorDeCiudades;
 
 import java.util.ArrayList;
+
 
 public class Juego {
 
@@ -16,14 +18,15 @@ public class Juego {
     private ArrayList<Sospechoso> sospechosos;
     private CuartelGeneral cuartelGeneral;
     private Tiempo tiempo; 
+    private CreadorDeCiudades creadorciudades;
     
-    public Juego(ArrayList<ObjetoRobado> objetos, ArrayList<Ciudad> ciudades, ArrayList<Sospechoso> sospechosos) {
+    public Juego(ArrayList<ObjetoRobado> objetos, ArrayList<Sospechoso> sospechosos) {
         this.objetos = objetos;
-        this.ciudades = ciudades;
         this.sospechosos = sospechosos;
         this.cuartelGeneral=new CuartelGeneral();
         this.cuartelGeneral.cargarSospechosos(sospechosos);
         this.tiempo = new Tiempo();
+        this.creadorciudades = new CreadorDeCiudades();
     }
     public void asignarPolicia(Policia policia){
         this.policia = policia;
