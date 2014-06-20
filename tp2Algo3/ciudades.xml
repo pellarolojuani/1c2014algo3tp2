@@ -12,5 +12,4 @@
 <Ciudad nombre="Katmandu" bandera="Doble triangulo" moneda="la rupia" lugaresdeinteres="Baruntse, Himalayas" personaje="Gurkhas" industria="Agricultura" fauna="Rinoceronte indio, leopardo de las nieves" idiomas="Nepali" edificios="BANCO,AEROPUERTO,BIBLIOTECA" Latitud="27.716667" Longitud="85.366667"></Ciudad>
 <Ciudad nombre="Kigali" bandera="Roja, amarilla y verde" moneda="el Franco" lugaresdeinteres="Monte Karisimbi" personaje="Tutsis, pigmeos" industria="Estanio" fauna="gorilas de montania, mamba negra" idiomas="kiniaruanda, el ingles y el frances" edificios="BANCO,AEROPUERTO,BIBLIOTECA" Latitud="-1.953611" Longitud="30.060556"></Ciudad>
 <Ciudad nombre="Lima" bandera="Roja y blanca" moneda="nuevo sol" lugaresdeinteres="monte huascaran" personaje="Francisco Pizarro" industria="harina de pescado" fauna="Puma, vicunia, amancay" idiomas="Espaniol" edificios="BANCO,PUERTO,AEROPUERTO,BIBLIOTECA,BOLSA" Latitud="-12.043333" Longitud="-77.028333"></Ciudad>
-<Ciudad nombre="" bandera="" moneda="" lugaresdeinteres="" personaje="" industria="" fauna="" idiomas="" edificios="" Latitud="" Longitud=""></Ciudad>
 </Ciudades>

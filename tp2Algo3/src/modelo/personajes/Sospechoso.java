@@ -12,7 +12,7 @@ public class Sospechoso {
     public Sospechoso(Descripcion descripcion) {
         this.descripcion = descripcion;
     }
-
+    
     public Sospechoso(String nombre, Descripcion descripcion) {
     	this.nombre = nombre;
         this.descripcion = descripcion;
