@@ -45,7 +45,7 @@ public class Tests {
         Policia policia=new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad=new Ciudad();
         Ciudad ciudad1=new Ciudad();
-        Lugar banco=new Lugar(TipoEdificio.BANCO);
+        Lugar banco=new Lugar("Banco");
         ciudad1.agregarLugar(banco);
         policia.asignarNuevoCasoEn(ciudad);
         policia.visitarLugar(banco);
@@ -84,7 +84,7 @@ public class Tests {
 
         Policia policia = new Policia("Nombre", Grado.NOVATO);
         Ciudad ciudad = new Ciudad();
-        Lugar banco=new Lugar(TipoEdificio.BANCO);
+        Lugar banco=new Lugar("Banco");
         ciudad.agregarLugar(banco);
         policia.asignarNuevoCasoEn(ciudad);
         policia.visitarLugar(banco);
@@ -134,7 +134,7 @@ public class Tests {
 		
 		Ciudad bsas = new Ciudad();
 		Ciudad hongKong = new Ciudad();
-		Lugar biblio= new Lugar(TipoEdificio.BIBLIOTECA);
+		Lugar biblio = new Lugar("Biblioteca");
 	
 		bsas.setNombre("Buenos Aires");
 		hongKong.setNombre("Hong Kong");
@@ -143,10 +143,13 @@ public class Tests {
 		bsas.agregarLugar(biblio);
 		
 		hongKong.agregarCiudadVisitable(bsas);
-		Lugar banco = new Lugar(TipoEdificio.BANCO);
+		Lugar banco = new Lugar("Banco");
 		hongKong.agregarLugar(banco);
 
-		
+		bsas.setLatitud(-34.6);
+		bsas.setLongitud(-58.38);
+		hongKong.setLatitud(22.15);
+		hongKong.setLongitud(114.11);
 
 		return bsas;
 	}
@@ -168,23 +171,20 @@ public class Tests {
     //    	 - Busco pista en...
     //    	 - etc
     //    	 - Se acaba el tiempo
-    	ObjetoRobado bolaDeOro = new ObjetoRobado(Valor.COMUN);
+    	
     	Ciudad bsas = this.crearCiudadBsAs();
+    	ObjetoRobado bolaDeOro = new ObjetoRobado(Valor.COMUN, bsas);
     	Policia poli = new Policia("Juan Carlos");
-    	Sospechoso ladron = this.crearLadronNickBrunch();
-    	ArrayList<Ciudad> ciudades = new ArrayList<Ciudad>();
-    	ciudades.add(bsas);
     	
-    	ArrayList<Sospechoso> sospechosos = new ArrayList<Sospechoso>();
-    	sospechosos.add(ladron);
+    	//Sospechoso ladron = this.crearLadronNickBrunch();
     	
-    	ArrayList<ObjetoRobado> objetosRobados = new ArrayList<ObjetoRobado>();
-    	objetosRobados.add(bolaDeOro);
+    	Caso caso2 = new Caso( poli, bolaDeOro);
     	
-    	Caso caso2 = new Caso(ciudades, poli.obtenerGrado(), objetosRobados, sospechosos);
-    	poli.asignarCiudadActual(ciudades.get(0)); //Ciudad actual: Buenos Aires
+    	assertEquals(bsas,poli.obtenerCiudadActual() ); //Ciudad actual: Buenos Aires
+    	
     	//Lunes 7 AM
     	assertEquals(0 , caso2.obtenerTiempoTranscurridoEnHs());
+    	
     	final int BIBLIO_BSAS=0;
     	Lugar biblioteca = poli.obtenerCiudadActual().obtenerLugaresDisponibles().get(BIBLIO_BSAS);
     	
@@ -197,17 +197,13 @@ public class Tests {
     	assertEquals(3 , caso2.obtenerTiempoTranscurridoEnHs());
     	
     	Ciudad hongKong = poli.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles().get(0);
-    	poli.viajarA( hongKong  );// Viaje dura 12hs
-    	// Lunes 10 PM
-    	assertEquals(15, caso2.obtenerTiempoTranscurridoEnHs() );
-    	
-    	//Como son las 10 PM, el policia duerme 8 HS
-    	assertTrue( poli.debeDormir() );
-    	
-    	//Martes 6 PM 
+    	poli.viajarA( hongKong  );// Viaje , dura 20hs, duerme en el viaje
+    	// Martes 6 AM 
     	assertEquals(23, caso2.obtenerTiempoTranscurridoEnHs() );
+    	    	
     	final int BANCO_HK = 0;
     	Lugar bancoHongkong = poli.obtenerCiudadActual().obtenerLugaresDisponibles().get(BANCO_HK);
+    	
     	poli.visitarLugar(bancoHongkong);
     	
     	assertEquals(24, caso2.obtenerTiempoTranscurridoEnHs() );
@@ -220,41 +216,32 @@ public class Tests {
     	// Martes 12 AM
     	assertEquals(29, caso2.obtenerTiempoTranscurridoEnHs() );
 
-    	poli.viajarA(ciudades.get(0)); //Primera y unica ciudad almacenada : Buenos Aires
-    	// Miercoles 0 AM
-    	assertEquals(41, caso2.obtenerTiempoTranscurridoEnHs() );    	
-    	// Duerme hasta las 8 am
+    	poli.viajarA(bsas); //Primera y unica ciudad almacenada : Buenos Aires
+    	// Miercoles 6 AM, duerme en el viaje
     	assertEquals(49,caso2.obtenerTiempoTranscurridoEnHs() );    	
     	
     	poli.viajarA(hongKong);
-    	// 20 hs
-    	assertEquals(53, caso2.obtenerTiempoTranscurridoEnHs() );
+    	// Llega Jueves 2 AM, cansado, duerme 8 hs
+    	// Por lo tanto ---> Jueves 10 AM
+    	assertEquals(77, caso2.obtenerTiempoTranscurridoEnHs() );
     	
-    	poli.viajarA(ciudades.get(0));
-    	// Duerme durante el viaje? o sumamos tiempo de viaje + 8 hs (por ahora sumo) 
-    	assertEquals(73, caso2.obtenerTiempoTranscurridoEnHs() );  //Jueves 16hs  	
-    	
-    	poli.viajarA(hongKong);
-    	assertEquals(85, caso2.obtenerTiempoTranscurridoEnHs() );// Viernes 4 am
-    	
-    	// Duerme
-    	assertEquals(93, caso2.obtenerTiempoTranscurridoEnHs() );//Viernes 12am
-
-    	poli.viajarA(ciudades.get(0));
-    	// Sabado 0 AM
-    	assertEquals(105, caso2.obtenerTiempoTranscurridoEnHs() );    	
-    	// Duerme hasta las 8 am
-    	assertEquals(113,caso2.obtenerTiempoTranscurridoEnHs() );    	
+    	poli.viajarA(bsas);
+    	// Viernes 6 AM, durmio en el viaje
+    	assertEquals(97, caso2.obtenerTiempoTranscurridoEnHs() ); 	
     	
     	poli.viajarA(hongKong);
-    	// 20 hs
+    	// Llega Sabado 2 AM, y duerme 8 HS --> Sabado 10 AM
     	assertEquals(125, caso2.obtenerTiempoTranscurridoEnHs() );
     	
-    	poli.viajarA(ciudades.get(0));
-    	// Domingo 16hs
-    	assertEquals(145, caso2.obtenerTiempoTranscurridoEnHs() );
+    	poli.viajarA(bsas);
+    	// Domingo 6 AM, durmio en el viaje
+    	assertEquals(145, caso2.obtenerTiempoTranscurridoEnHs() );    	
+   
 
-    	poli.visitarLugar(biblioteca);// Para probar que se acabo el tiempo,
+    	poli.visitarLugar(biblioteca);
+    	assertEquals(148, caso2.obtenerTiempoTranscurridoEnHs() );    	
+
+    	// Para probar que se acabo el tiempo,
     	// creo que conviene usar una excepcion: SeAcaboElTiempoDelCasoExcepcion
     	
     
