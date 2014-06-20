@@ -21,7 +21,7 @@ public class CreadorDeCiudades {
     private ArrayList<Lugar>lugares;
     public ArrayList<Ciudad>ciudades;
     
-    public CreadorDeCiudades(int numerodeciudades) {
+    public CreadorDeCiudades() {
         DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
         try { 
         	File xmlFile = new File("ciudades.xml");  
