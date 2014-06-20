@@ -8,12 +8,12 @@ public class Ciudad {
 
 	private ArrayList<Lugar> lugares;
     private ArrayList<Ciudad> ciudadesvisitables;
+    private boolean ciudadvisitadaladron;
     private String nombre;
 	private double Latitud;   
 	private double Longitud;
 	private String moneda;
 	private String bandera;
-
 	private String lugaresdeinteres;
 	private String personaje;
 	private String industria;
@@ -31,6 +31,7 @@ public class Ciudad {
     	this.fauna=fauna;
     	this.idiomas=idiomas;
         this.ciudadesvisitables = ciudadesvisitables;
+        this.ciudadvisitadaladron = false;
         this.bandera = bandera;
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
