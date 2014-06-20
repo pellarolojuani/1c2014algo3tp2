@@ -1,5 +1,6 @@
 package modelo.juego;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import modelo.geografico.Ciudad;
@@ -9,7 +10,6 @@ public class MenuBase{
 
     private static Scanner in;
 	public static void main(String args[]){
-    	
 
     	
     	in = new Scanner(System.in);
@@ -38,11 +38,8 @@ public class MenuBase{
                 break;
 	        case 3: 
 
-                CreadorDeCiudades a = new CreadorDeCiudades(4);
-                ciudadespartida = a.obtenerCiudades();
-                
-                    System.out.println(ciudadespartida[1].getNombre());
-               
+                CreadorDeCiudades a = new CreadorDeCiudades(4);     
+                break;               
 	        
 	        default: System.out.println("Eleccion Invalida.");
 	        
