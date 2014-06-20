@@ -38,7 +38,7 @@ public class MenuBase{
                 break;
 	        case 3: 
 
-                CreadorDeCiudades a = new CreadorDeCiudades(4);     
+                CreadorDeCiudades a = new CreadorDeCiudades();     
                 break;               
 	        
 	        default: System.out.println("Eleccion Invalida.");
