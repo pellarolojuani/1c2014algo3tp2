@@ -9,7 +9,7 @@ public class Tiempo {
 	private static int horas;
 	private static int horaSuenio;
 
-	private Tiempo(){}
+	public Tiempo(){}
 	
 	public static void aumentarHoras(int cantidadHoras){
 		

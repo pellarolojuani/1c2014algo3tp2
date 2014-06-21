@@ -1,30 +1,33 @@
-package modelo.personajes;
+ package modelo.personajes;
 
 import modelo.elementosDelJuego.*;
 import modelo.geografico.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Policia {
 	private Grado grado;
 	private Ciudad ciudadActual;
 	private Lugar lugarActual;
     private String nombre;
-    private double velocidadKmHora; 
+    private double velocidadKmHora;
+	private Scanner pedirnombre; 
 
-
-	public Policia(String nombre, Grado grado){
+ 	public Policia(String nombre, Grado grado, double velocidad){
 		this.grado=grado;
         this.nombre=nombre;
+        this.velocidadKmHora = velocidad;
 	}
 	
-	public Policia(String nombre){
+	public Policia(){
+		pedirnombre = new Scanner(System.in);
+		System.out.print("La interpol no tiene registrado su nombre, por favor ingreselo:");
+		this.nombre = pedirnombre.next();
 		//si no se le indica grado, por defecto es NOVATO
-		this.nombre = nombre;
 		this.grado = Grado.NOVATO;
 		this.velocidadKmHora = 900;
-		
 	}
 	
 	public void asignarCiudadActual(Ciudad unaCiudad){

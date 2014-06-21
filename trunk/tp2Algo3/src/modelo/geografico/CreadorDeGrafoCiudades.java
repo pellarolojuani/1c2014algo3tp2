@@ -7,8 +7,8 @@ import modelo.geografico.Grafo;
 public class CreadorDeGrafoCiudades{
 	private Grafo grafociudades;
 	
-	public CreadorDeGrafoCiudades(){
-		this.grafociudades = new Grafo();
+	public CreadorDeGrafoCiudades(int cantidadciudades){
+		this.grafociudades = new Grafo(cantidadciudades);
 		
 	grafociudades.agregarciudadvisitable(0, 1);
     grafociudades.agregarciudadvisitable(0, 2);

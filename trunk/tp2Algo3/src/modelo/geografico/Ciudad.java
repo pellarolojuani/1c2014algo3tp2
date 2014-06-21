@@ -19,7 +19,6 @@ public class Ciudad {
 	private String industria;
 	private String fauna;
 	private String idiomas;
-	//private String edificios
 	
     public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Ciudad> ciudadesvisitables, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
     	this.nombre = nombre;

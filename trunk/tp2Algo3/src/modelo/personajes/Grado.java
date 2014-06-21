@@ -1,9 +1,6 @@
 package modelo.personajes;
 
-/**
- * Created by chris on 06/06/2014.
- */
-public enum Grado { NOVATO,DETECTIVE, INVESTIGADOR,SARGENTO;
+public enum Grado { NOVATO,DETECTIVE,INVESTIGADOR,SARGENTO;
 
 	public Grado getNext(){
 		if ( this.ordinal() < Grado.values().length - 1 ){

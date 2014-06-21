@@ -3,21 +3,25 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
+
+import java.io.File;
 import java.io.IOException;
+
 import modelo.descripciones.Descripcion;
 import modelo.personajes.Sospechoso;
 
 import java.util.ArrayList;
 
 public class CreadorDeSospechosos {
-    private String f;
     private ArrayList<Sospechoso> sospechosos;
 
-    public CreadorDeSospechosos(String f) {
+    public CreadorDeSospechosos() {
         DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
         try {
+
+        	File xmlFile = new File("sospechosos.xml");  
             DocumentBuilder documentBuilder=documentBuilderFactory.newDocumentBuilder();
-            Document document=documentBuilder.parse(f);
+            Document document=documentBuilder.parse(xmlFile);
             Element element=document.getDocumentElement();
             NodeList sospechososList=element.getChildNodes();
             for (int i = 0; i < sospechososList.getLength(); i++) {
@@ -37,7 +41,7 @@ public class CreadorDeSospechosos {
         }
 
     }
-    public ArrayList<Sospechoso> obtenerListaDeSospechosos(){
+    public ArrayList<Sospechoso> obtenerSospechosos(){
         return sospechosos;
     }
     private Descripcion crearDescripcion(Element e){
