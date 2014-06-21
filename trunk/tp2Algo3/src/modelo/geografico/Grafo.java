@@ -9,7 +9,7 @@ public class Grafo {
 
     public Grafo() {
         //Los nombres de los nodos son enteros consecutivos que comienzan con 1 y terminan en 14 (14 ciudades). 
-    	int[] nodos = new int[12];
+    	int[] nodos = new int[14];
     	for (int i = 0; i < nodos.length; ++i) {
             nodos[i] = i;
          }

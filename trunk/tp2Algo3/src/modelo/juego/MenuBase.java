@@ -3,7 +3,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import modelo.geografico.Ciudad;
 import controlador.ControlXML.CreadorDeCiudades;
 
 public class MenuBase{
