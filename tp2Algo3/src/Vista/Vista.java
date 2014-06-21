@@ -9,6 +9,9 @@ public class Vista implements Observer {
 
 	private Frame frame;
 	private MenuBar menuBarra;
+	private Menu menu1, menu2, menu3;
+	MenuItem nuevo, guardar, salir;
+	
 
 	//Clase auxiliar para escuchar el evento de cerrado de la ventana
 	public static class CloseListener extends WindowAdapter
@@ -26,17 +29,30 @@ public class Vista implements Observer {
 		frame = new Frame("ALGOTHIEF GRUPO X"); //creamos el marco
 		frame.setSize(800,600);  //seteamos las dimensiones del marco
 		frame.setVisible(true);  //mostramos el marco
-		//agregamos el listener del evento de cerrado de la ventana		
-		frame.addWindowListener(new CloseListener());
+		frame.addWindowListener(new CloseListener()); //agregamos el listener del evento de cerrado de la ventana
 		
 		menuBarra = new MenuBar();
-		Menu menu1 = new Menu("Juego");
-		menu1.add( new MenuItem("Nuevo") );
-		menu1.add( new MenuItem("Guardar") );
+		menu1 = new Menu("Juego");
+		
+		nuevo = new MenuItem("Nuevo");
+		nuevo.addActionListener(null);
+		guardar = new MenuItem("Guardar");
+		guardar.addActionListener(null);
+		salir = new MenuItem("Salir");
+		salir.addActionListener(null);
+		
+		menu1.add(nuevo);
+		menu1.add(guardar);
 		menu1.addSeparator();
-		menu1.add( new MenuItem ("Salir"));
+		menu1.add(salir);
+		
+		menu2 = new Menu("Opciones");
+		
+		menu3 = new Menu("Acerca de");
 		
 		menuBarra.add(menu1);
+		menuBarra.add(menu2);
+		menuBarra.add(menu3);
 		
 		frame.setMenuBar(menuBarra);
 	}
