@@ -7,7 +7,7 @@ public class Tiempo {
 
 
 	private static int horas;
-	private static int horaSueño;
+	private static int horaSuenio;
 
 	private Tiempo(){}
 	
@@ -16,14 +16,14 @@ public class Tiempo {
 		horas += cantidadHoras;
 		
 		//LA CONDICION EXTRA ASEGURA QUE PUEDA DORMIR EN VIAJES NOCTURNOS LARGOS
-		if( horas >= horaSueño && (horas-horaSueño) < 8 )
+		if( horas >= horaSuenio && (horas-horaSuenio) < 8 )
 			{
 				//IMPRIMIR "DURMIENDO......"
 				horas += 8;
-				horaSueño += 24;
+				horaSuenio += 24;
 			}
-		else if( horas > horaSueño )
-			horaSueño += 24;
+		else if( horas > horaSuenio )
+			horaSuenio += 24;
 		
 	}
 	public static int getTiempo(){
@@ -39,7 +39,7 @@ public class Tiempo {
 	public static void iniciar() {
 
 		horas = 0;
-		horaSueño = 15;
+		horaSuenio = 15;
 		
 	}
 }
