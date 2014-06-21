@@ -37,8 +37,11 @@ public class Ciudad {
         this.Longitud = unalongitud;
     }
     
-    // No hace nada, borrar.
-    public Ciudad(){}
+    // NO BORRAR
+    public Ciudad(){
+    	this.lugares = new ArrayList<Lugar>();
+    	this.ciudadesvisitables = new ArrayList<Ciudad>();
+    }
 
     public ArrayList<Ciudad> obtenerCiudadesDestinoDisponibles() {
         return this.ciudadesvisitables;
@@ -73,5 +76,27 @@ public class Ciudad {
     public String getNombre(){
     	return this.nombre;
     }
+    
+    // NO BORRAR
+ 	public void setNombre(String nombreCiudad) {
+ 		this.nombre = nombreCiudad;
+ 		
+ 	}
+
+ 	public void agregarLugar(Lugar lugar) {
+
+ 		this.lugares.add(lugar);
+ 		
+ 	}
+
+ 	public void setLatitud(double latitud) {
+ 		this.Latitud = latitud;
+ 		
+ 	}
+
+ 	public void setLongitud(double longitud) {
+ 		this.Longitud = longitud;
+ 		
+ 	}
 }
 

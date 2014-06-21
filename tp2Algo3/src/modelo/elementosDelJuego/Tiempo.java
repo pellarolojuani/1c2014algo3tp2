@@ -4,21 +4,42 @@ package modelo.elementosDelJuego;
 // cuando emitimos una orden de arresto, etc.
 public class Tiempo {
 
-	int horas;
 
-	public Tiempo(){
-		this.horas = 0;
+
+	private static int horas;
+	private static int horaSueño;
+
+	private Tiempo(){}
+	
+	public static void aumentarHoras(int cantidadHoras){
+		
+		horas += cantidadHoras;
+		
+		//LA CONDICION EXTRA ASEGURA QUE PUEDA DORMIR EN VIAJES NOCTURNOS LARGOS
+		if( horas >= horaSueño && (horas-horaSueño) < 8 )
+			{
+				//IMPRIMIR "DURMIENDO......"
+				horas += 8;
+				horaSueño += 24;
+			}
+		else if( horas > horaSueño )
+			horaSueño += 24;
+		
 	}
-	public void aumentarHoras(int cantidadHoras){
-		this.horas += cantidadHoras;
-	}
-	public int getTiempo(){
-		return this.horas;
+	public static int getTiempo(){
+		
+		return horas;
 	}
 	public String tiempoComoSring(){
 		//deberiamos imprimir dia y hora segun el valor del atributo tiempo
 		String fecha = "";
 		//TODO
 		return fecha;
+	}
+	public static void iniciar() {
+
+		horas = 0;
+		horaSueño = 15;
+		
 	}
 }

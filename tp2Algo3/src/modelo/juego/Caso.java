@@ -21,6 +21,7 @@ public class Caso {
     private Tiempo tiempoActual;
     private Lugar ubicacionLadron;
     private RecorridoLadron recorridoLadron;
+	private Policia policia;
 
     public Caso(ArrayList<Ciudad> ciudades, Grado grado, ArrayList<ObjetoRobado> objetos, ArrayList<Sospechoso> sospechosos) {
         objetoRobado=new ObjetoRobado(Valor.COMUN);
@@ -31,7 +32,16 @@ public class Caso {
         //Segun el grado del policia tenemos que armar un recorrido de 4,5 o 7 paises.
         
     }
-
+    
+	public Caso(Policia poli, ObjetoRobado bolaDeOro) {
+		
+		Tiempo.iniciar();
+		
+		this.policia = poli;
+		
+		poli.asignarNuevoCasoEn(bolaDeOro.obtenerCiudadOrigen());
+	}
+	
     public Ciudad obtenerCiudadRobo(){
 		return this.ciudadDelRobo;
 	}
@@ -56,7 +66,7 @@ public class Caso {
     }
 
 	public int obtenerTiempoTranscurridoEnHs() {
-		return (this.tiempoFinal.getTiempo() - this.tiempoActual.getTiempo());
+		return (Tiempo.getTiempo());
 	}
 
 }
