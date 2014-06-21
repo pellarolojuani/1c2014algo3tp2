@@ -30,7 +30,7 @@ public class Tiempo {
 		
 		return horas;
 	}
-	public static String tiempoComoSring(){
+	public static String tiempoComoString(){
 				
 		int auxDia = (7+horas)/24;
 		int auxHora = (7+horas) % 24;
