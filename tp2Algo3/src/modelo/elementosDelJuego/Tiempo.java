@@ -30,11 +30,29 @@ public class Tiempo {
 		
 		return horas;
 	}
-	public String tiempoComoSring(){
-		//deberiamos imprimir dia y hora segun el valor del atributo tiempo
-		String fecha = "";
-		//TODO
-		return fecha;
+	public static String tiempoComoSring(){
+				
+		int auxDia = (7+horas)/24;
+		int auxHora = (7+horas) % 24;
+		
+		String tiempoString="";
+		
+		switch(auxDia){
+		
+		case 0 : tiempoString="Lunes ";break;
+		case 1 : tiempoString="Martes ";break;
+		case 2 : tiempoString="Miercoles ";break;
+		case 3 : tiempoString="Jueves " ;break;
+		case 4 : tiempoString="Viernes ";break;
+		case 5 : tiempoString="Sabado ";break;
+		case 6 : tiempoString="Domingo ";break;
+		}
+		
+		return tiempoString + Integer.toString(auxHora) + " Hs";
+		
+		
+		
+
 	}
 	public static void iniciar() {
 
