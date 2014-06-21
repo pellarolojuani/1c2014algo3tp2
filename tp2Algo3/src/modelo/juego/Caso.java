@@ -23,11 +23,9 @@ public class Caso {
     private RecorridoLadron recorridoLadron;
 	private Policia policia;
 
-    public Caso(ArrayList<Ciudad> ciudades, Grado grado, ArrayList<ObjetoRobado> objetos, ArrayList<Sospechoso> sospechosos) {
-        objetoRobado=new ObjetoRobado(Valor.COMUN);
-        ladron=sospechosos.get((int)(Math.random()*sospechosos.size()+0));//Elige un ladron al azar entre los sospechosos.
-        
-        
+    public Caso(ArrayList<Ciudad> ciudades, Grado grado, ArrayList<Sospechoso> sospechosos) {
+        this.objetoRobado = new ObjetoRobado(Valor.COMUN, ciudades.get(0));
+        this.ladron=sospechosos.get((int)(Math.random()*sospechosos.size()+0));//Elige un ladron al azar entre los sospechosos.
         
         //Segun el grado del policia tenemos que armar un recorrido de 4,5 o 7 paises.
         

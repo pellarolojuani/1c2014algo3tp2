@@ -175,11 +175,11 @@ public class Tests {
     public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() {
     //    Caso2(Masomenos): No lo atrapa porque se acabo el tiempo:
     //    	 - Empiezo en Buenos Aires.
-    //    	 - Busco una pista en la biblioteca, âFue a un paÃ­s asiÃ¡tico. TenÃ­a una horrible cicatrizâ€�.
+    //    	 - Busco una pista en la biblioteca, Fue a un pais asiatico. Tenia una horrible cicatriz.
     //    	 - Viajo, opciones: Hong Kong, Polonia, Lima.
     //    	 - Elijo Hong Kong
-    //    	 - Busco una pista en el banco, â€œConsultÃ³ por el tipo de cambio del yen.â€�.
-    //    	 - Busco una pista en el puerto, â€œFue a un paÃ­s con bandera blanca y roja. Llevaba una raquetaâ€�.
+    //    	 - Busco una pista en el banco, Consulta por el tipo de cambio del yen.
+    //    	 - Busco una pista en el puerto, Fue a un pais con bandera blanca y roja. Llevaba una raqueta.
     //    	 - Viajo, opciones: Tokio, Brasilia, Moscu, Buenos Aires.
     //    	 - Elijo Buenos Aires.
     //    	 - Busco pista en...

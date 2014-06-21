@@ -2,9 +2,11 @@ package modelo.juego;
 import modelo.elementosDelJuego.CuartelGeneral;
 import modelo.elementosDelJuego.ObjetoRobado;
 import modelo.elementosDelJuego.Tiempo;
+import modelo.elementosDelJuego.Valor;
 import modelo.geografico.Ciudad;
 import modelo.personajes.*;
 import controlador.ControlXML.CreadorDeCiudades;
+import controlador.ControlXML.CreadorDeSospechosos;
 
 import java.util.ArrayList;
 
@@ -13,28 +15,27 @@ public class Juego {
 
 	private Caso caso;
 	private Policia policia;
-    private ArrayList<ObjetoRobado> objetos;
-    private ArrayList<Ciudad> ciudades;
-    private ArrayList<Sospechoso> sospechosos;
+    private CreadorDeSospechosos sospechosos;
     private CuartelGeneral cuartelGeneral;
     private Tiempo tiempo; 
     private CreadorDeCiudades creadorciudades;
     
-    public Juego(ArrayList<ObjetoRobado> objetos, ArrayList<Sospechoso> sospechosos) {
-        this.objetos = objetos;
-        this.sospechosos = sospechosos;
+    //Creador del juego
+    public Juego() {
+        this.policia = new Policia();
+        this.sospechosos = new CreadorDeSospechosos();
         this.cuartelGeneral=new CuartelGeneral();
-        this.cuartelGeneral.cargarSospechosos(sospechosos);
+        this.cuartelGeneral.cargarSospechosos(sospechosos.obtenerSospechosos());
         this.tiempo = new Tiempo();
         this.creadorciudades = new CreadorDeCiudades();
-    }
-    public void asignarPolicia(Policia policia){
-        this.policia = policia;
+
         //asigno al policia la primera ciudad de la lista de ciudades.
-        this.policia.asignarCiudadActual(this.ciudades.get(0));
+        this.policia.asignarCiudadActual(this.creadorciudades.obtenerCiudades().get(0));
     }
-    public void crearCaso(){
-        caso = new Caso(ciudades,policia.obtenerGrado(),objetos,sospechosos);
+        
+    private void crearCaso(){
+
+        this.caso = new Caso(this.creadorciudades.obtenerCiudades(),policia.obtenerGrado(),this.sospechosos.obtenerSospechosos());
 	}
     public Caso obtenerCaso() {
         return caso;

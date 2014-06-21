@@ -7,10 +7,10 @@ public class Lugar {
 
 	Pista pista;
     private boolean visitado;
-    public String tipo;
+    public TipoEdificio tipo;
     private int numVisitas;
 
-    public Lugar(String tipo) {
+    public Lugar(TipoEdificio tipo) {
         this.tipo=tipo;
         this.visitado = false;
         this.numVisitas = 0;
@@ -32,7 +32,7 @@ public class Lugar {
         this.pista=pista;
     }
 
-    public String obtenerTipo() {
+    public TipoEdificio obtenerTipo() {
         return this.tipo;
     }
 	public int obtenerNumVisitas() {

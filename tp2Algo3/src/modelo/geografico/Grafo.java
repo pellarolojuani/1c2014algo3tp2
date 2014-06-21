@@ -7,9 +7,9 @@ public class Grafo {
     //Mapa de listas de adyacencia
     private Map<Integer,LinkedList<Integer>> ciudadeslista;
 
-    public Grafo() {
-        //Los nombres de los nodos son enteros consecutivos que comienzan con 1 y terminan en 14 (14 ciudades). 
-    	int[] nodos = new int[14];
+    public Grafo(int cantidadciudades) {
+        //Los nombres de los nodos son enteros consecutivos que comienzan con 0 y terminan en 13 (14 ciudades). 
+    	int[] nodos = new int[cantidadciudades];
     	for (int i = 0; i < nodos.length; ++i) {
             nodos[i] = i;
          }

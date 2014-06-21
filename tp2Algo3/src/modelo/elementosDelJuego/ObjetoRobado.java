@@ -7,12 +7,8 @@ public class ObjetoRobado {
     private Valor valor;
 	private Ciudad ciudadOrigen;
 
-    public ObjetoRobado(Valor valor) {
-        this.valor = valor;
-    }
-
-    public ObjetoRobado(Valor comun, Ciudad ciudadOrigen) {
-        this.valor = valor;
+    public ObjetoRobado(Valor valordelobjeto, Ciudad ciudadOrigen) {
+        this.valor = valordelobjeto;
         this.ciudadOrigen = ciudadOrigen;
 	}
 

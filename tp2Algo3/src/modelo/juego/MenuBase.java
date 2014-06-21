@@ -15,7 +15,6 @@ public class MenuBase{
     	
     	System.out.println("AlgoThieft");
     	System.out.println("1. Comenzar juego");
-    	System.out.println("3. CrearCiudades");
     	System.out.println("2. Salir");
     	
     	boolean quit = false;
@@ -28,16 +27,12 @@ public class MenuBase{
 			switch (opcion) {
 	        
 	        case 1: 
-	        	new Juego(null, null);
+	        	new Juego();
 	            break;
 	        
 	        case 2: 
                 quit = true;
                 break;
-	        case 3: 
-
-                CreadorDeCiudades a = new CreadorDeCiudades();     
-                break;               
 	        
 	        default: System.out.println("Eleccion Invalida.");
 	        
