@@ -30,7 +30,8 @@ public class Ciudad {
     	this.industria=industria;
     	this.fauna=fauna;
     	this.idiomas=idiomas;
-        this.ciudadesvisitables = ciudadesvisitables;
+    	ArrayList<Ciudad> ciudades = new ArrayList<Ciudad>();
+        this.ciudadesvisitables = ciudades;
         this.ciudadvisitadaladron = false;
         this.bandera = bandera;
         this.Latitud = unalatitud;
