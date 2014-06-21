@@ -11,6 +11,8 @@ public class Policia {
 	private Ciudad ciudadActual;
 	private Lugar lugarActual;
     private String nombre;
+    private double velocidadKmHora; 
+
 
 	public Policia(String nombre, Grado grado){
 		this.grado=grado;
@@ -21,24 +23,43 @@ public class Policia {
 		//si no se le indica grado, por defecto es NOVATO
 		this.nombre = nombre;
 		this.grado = Grado.NOVATO;
+		this.velocidadKmHora = 900;
+		
 	}
 	
 	public void asignarCiudadActual(Ciudad unaCiudad){
 		this.ciudadActual = unaCiudad;
 	}
 	
-	public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */{
-		TipoEdificio tipo = lugar.obtenerTipo();
-		ArrayList<Lugar> lugares = ciudadActual.obtenerLugaresDisponibles();
-		boolean esta = false;
-		for (Lugar unLugar: lugares){
-			if (unLugar.obtenerTipo() == tipo) esta = true;
+public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */{
+		
+		if( lugar.obtenerNumVisitas() == 0)
+		{
+			Tiempo.aumentarHoras(1);
+			lugar.aumentarNumVisitas();
 		}
-        if(esta) {
-            this.lugarActual = lugar;
-            lugar.visitar();
-        }
-        
+		else if(lugar.obtenerNumVisitas() == 1)
+			{
+			lugar.aumentarNumVisitas();
+			Tiempo.aumentarHoras(2);
+			}
+		else 
+			{
+			Tiempo.aumentarHoras(3);
+			lugar.aumentarNumVisitas();
+			}
+			
+//		TipoEdificio tipo = lugar.obtenerTipo();
+//		ArrayList<Lugar> lugares = ciudadActual.obtenerLugaresDisponibles();
+//		boolean esta = false;
+//		for (Lugar unLugar: lugares){
+//			if (unLugar.obtenerTipo() == tipo) esta = true;
+//		}
+//        if(esta) {
+//            this.lugarActual = lugar;
+//            lugar.visitar();
+//        }
+//        
        // else throw new NoSePuedeVisitarLugarExcepcion();
 	};
 	
@@ -47,14 +68,13 @@ public class Policia {
 	}
 	
 	public void viajarA(Ciudad destino){
-		ArrayList<Ciudad> ciudadesDisponibles = new ArrayList<Ciudad>();
-		ciudadesDisponibles = this.ciudadActual.obtenerCiudadesDestinoDisponibles();
-		for (Ciudad unaCiudad : ciudadesDisponibles){
-			if (unaCiudad.getNombre() == destino.getNombre()){
-				this.ciudadActual = destino;
-				return;
-			}
-		}
+		
+		double auxTiempoViajeHs = this.ciudadActual.distanciaA(destino) / this.velocidadKmHora;
+		this.ciudadActual = destino;
+		 
+		Tiempo.aumentarHoras( (int) Math.round(auxTiempoViajeHs) );
+
+		
 	};
 
     public void asignarNuevoCasoEn(Ciudad ciudad){
@@ -79,7 +99,5 @@ public class Policia {
 		return true;
 	};
 
-    public void dormir(Tiempo tiempo){
-    	tiempo.aumentarHoras(8);
-    }
+
 }
