@@ -2,6 +2,7 @@ package controlador.ControlXML;
 
 import modelo.geografico.Ciudad;
 import modelo.geografico.CreadorDeGrafoCiudades;
+import modelo.geografico.Grafo;
 import modelo.geografico.Lugar;
 import modelo.geografico.TipoEdificio;
 
@@ -80,6 +81,10 @@ public class CreadorDeCiudades {
     		}
     	}
     	
+    }
+    
+    public Grafo obtenergrafociudades(){
+    	return this.creadordegrafo.obtenergrafo();
     }
     
     public ArrayList<Ciudad> obtenerCiudades(){
