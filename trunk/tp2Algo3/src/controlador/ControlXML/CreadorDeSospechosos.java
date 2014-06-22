@@ -22,15 +22,13 @@ public class CreadorDeSospechosos {
         	File xmlFile = new File("sospechosos.xml");  
             DocumentBuilder documentBuilder=documentBuilderFactory.newDocumentBuilder();
             Document document=documentBuilder.parse(xmlFile);
-            Element element=document.getDocumentElement();
-            NodeList sospechososList=element.getChildNodes();
+            document.getDocumentElement().normalize();
+            NodeList sospechososList=document.getElementsByTagName("Sospechoso");
             for (int i = 0; i < sospechososList.getLength(); i++) {
-                if(sospechososList.item(0).getNodeType()==Node.ELEMENT_NODE){
                     Element e= (Element) sospechososList.item(i);
                     Descripcion d=crearDescripcion(e);
                     Sospechoso s=new Sospechoso(e.getAttribute("nombre"),d);
                     sospechosos.add(s);
-                }
             }
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
