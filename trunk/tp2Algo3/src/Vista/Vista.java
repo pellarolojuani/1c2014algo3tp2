@@ -1,12 +1,19 @@
-package Vista;
+/*package Vista;
 
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+
 import controlador.ControlMenu.*;
 
+import java.awt.Graphics;
+import java.awt.Image;
 
-public class Vista implements Observer {
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+
+public class Vista implements Observer{
 
 	private Frame frame;
 	private MenuBar menuBarra;
@@ -30,6 +37,7 @@ public class Vista implements Observer {
 		frame = new Frame("ALGOTHIEF GRUPO X"); //creamos el marco
 		frame.setSize(800,600);  //seteamos las dimensiones del marco
 		frame.setVisible(true);  //mostramos el marco
+		frame.setLocation(100, 50);
 		frame.addWindowListener(new CloseListener()); //agregamos el listener del evento de cerrado de la ventana
 		
 		menuBarra = new MenuBar();
@@ -63,4 +71,4 @@ public class Vista implements Observer {
 		
 	}
 	
-}
+}*/
