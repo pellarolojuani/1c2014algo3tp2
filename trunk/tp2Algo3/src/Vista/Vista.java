@@ -3,6 +3,7 @@ package Vista;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+import controlador.ControlMenu.*;
 
 
 public class Vista implements Observer {
@@ -23,7 +24,7 @@ public class Vista implements Observer {
 	
 	
 	//Constructor de la vista
-	public Vista(){
+	public Vista(Controlador control){
 		
 		//armado de la ventana
 		frame = new Frame("ALGOTHIEF GRUPO X"); //creamos el marco
@@ -35,11 +36,11 @@ public class Vista implements Observer {
 		menu1 = new Menu("Juego");
 		
 		nuevo = new MenuItem("Nuevo");
-		nuevo.addActionListener(null);
+		nuevo.addActionListener(control.getListenerNuevo());
 		guardar = new MenuItem("Guardar");
-		guardar.addActionListener(null);
+		guardar.addActionListener(control.getListenerGuardar());
 		salir = new MenuItem("Salir");
-		salir.addActionListener(null);
+		salir.addActionListener(control.getListenerSalir());
 		
 		menu1.add(nuevo);
 		menu1.add(guardar);
