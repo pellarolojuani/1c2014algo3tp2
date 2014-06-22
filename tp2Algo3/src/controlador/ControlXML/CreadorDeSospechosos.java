@@ -1,4 +1,5 @@
 package controlador.ControlXML;
+import modelo.descripciones.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -7,7 +8,6 @@ import javax.xml.parsers.*;
 import java.io.File;
 import java.io.IOException;
 
-import modelo.descripciones.Descripcion;
 import modelo.personajes.Sospechoso;
 
 import java.util.ArrayList;
@@ -45,12 +45,13 @@ public class CreadorDeSospechosos {
         return sospechosos;
     }
     private Descripcion crearDescripcion(Element e){
-        String sexo=e.getAttribute("sexo");
-        String hobby=e.getAttribute("hobby");
-        String pelo=e.getAttribute("pelo");
-        String senia=e.getAttribute("senia");
-        String vehiculo=e.getAttribute("vehiculo");
-        return new Descripcion(sexo,hobby,pelo,senia,vehiculo);
+
+        Sexo sexo= Sexo.valueOf(e.getAttribute("sexo"));
+        Hobby hobby=Hobby.valueOf(e.getAttribute("hobby"));
+        Pelo pelo=Pelo.valueOf(e.getAttribute("pelo"));
+        Senia senia=Senia.valueOf(e.getAttribute("senia"));
+        Vehiculo vehiculo=Vehiculo.valueOf(e.getAttribute("vehiculo"));
+        return new Descripcion(sexo, hobby, pelo, senia,vehiculo);
 
     }
 }

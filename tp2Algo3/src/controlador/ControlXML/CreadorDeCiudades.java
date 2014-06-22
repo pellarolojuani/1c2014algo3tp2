@@ -44,26 +44,9 @@ public class CreadorDeCiudades {
 
                	 	ArrayList<Lugar>lugares = new ArrayList<Lugar>();
                     for(int i1 = 0; i1 < listaedificios.length; i1++){
-                        if(listaedificios[i1].equals("AEROPUERTO")) {	
-                        	Lugar a = new Lugar(TipoEdificio.AEROPUERTO);
-                        	lugares.add(a);
-                        	};
-                        if(listaedificios[i1].equals("PUERTO")) {	
-                          	Lugar a = new Lugar(TipoEdificio.PUERTO);
-                        	lugares.add(a);
-                           	};
-                        if(listaedificios[i1].equals("BANCO")) {	
-                            Lugar a = new Lugar(TipoEdificio.BANCO);
-                        	lugares.add(a);
-                            };     	
-                        if(listaedificios[i1].equals("BOLSA")) {	
-                           	Lugar a = new Lugar(TipoEdificio.BOLSA);
-                        	lugares.add(a);
-                           	};
-                        if(listaedificios[i1].equals("BIBLIOTECA")) {	
-                            Lugar a = new Lugar(TipoEdificio.BIBLIOTECA);
-                        	lugares.add(a);
-                            };
+                        TipoEdificio tipo=TipoEdificio.valueOf(listaedificios[i1]);
+                        Lugar a=new Lugar(tipo);
+                        lugares.add(a);
 	                 }
 	                
 	                Ciudad s=new Ciudad(e.getAttribute("nombre"),e.getAttribute("bandera"),e.getAttribute("moneda"),e.getAttribute("lugaresdeinteres"),e.getAttribute("personaje"),e.getAttribute("industria"),e.getAttribute("fauna"),e.getAttribute("idiomas"),null,lugares,Double.parseDouble(e.getAttribute("Latitud")),Double.parseDouble(e.getAttribute("Longitud")));                 

@@ -1,50 +1,46 @@
 package modelo.descripciones;
 
 public class Descripcion {
-	
-	//declaracion de atributos
-	private String senia;
-	private String hobby;
-	private String pelo;
-	private String auto;
-	private String sexo;
-	
-	//declaracion de metodos:
-	
-	//constructor
-	public Descripcion(String unSexo, String unPelo, String unaSenia, String unAuto, String unHobby){
-		this.sexo = unSexo;
-		this.pelo = unPelo;
-		this.senia = unaSenia;
-		this.auto = unAuto;
-		this.hobby = unHobby;
-	}
-	
-	public String getSexo(){
-		return this.sexo;
-	}
-	
-	public String getAuto(){
-		return this.auto;
-	}
-	
-	public String getPelo(){
-		return this.pelo;
-	}
-	
-	public String getHobby(){
-		return this.hobby;
-	}
-	
-	public String getSenia(){
-		return this.senia;
-	}
-	
-	public boolean puedeSerIgualA(Descripcion unaDescripcion){
+
+	private Senia senia;
+	private Hobby hobby;
+	private Pelo pelo;
+	private Vehiculo vehiculo;
+	private Sexo sexo;
+
+    public Descripcion(Sexo sexo, Hobby hobby, Pelo pelo, Senia senia, Vehiculo vehiculo) {
+        this.senia = senia;
+        this.hobby = hobby;
+        this.pelo = pelo;
+        this.vehiculo = vehiculo;
+        this.sexo = sexo;
+    }
+
+    public Senia getSenia() {
+        return senia;
+    }
+
+    public Hobby getHobby() {
+        return hobby;
+    }
+
+    public Pelo getPelo() {
+        return pelo;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public boolean puedeSerIgualA(Descripcion unaDescripcion){
 		if ( (unaDescripcion.getSexo() != null) && (this.sexo == unaDescripcion.getSexo()) ){
 			return false;
 		}
-		if ( (unaDescripcion.getAuto() != null) && (this.auto == unaDescripcion.getAuto()) ){
+		if ( (unaDescripcion.getVehiculo() != null) && (this.vehiculo == unaDescripcion.getVehiculo()) ){
 			return false;
 		}
 		if ( (unaDescripcion.getHobby() != null) && (this.hobby == unaDescripcion.getHobby()) ){

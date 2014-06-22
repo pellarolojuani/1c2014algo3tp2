@@ -1,5 +1,5 @@
 package modelo.descripciones;
 
-public enum Auto {
+public enum Vehiculo {
 		DESCAPOTABLE, LIMUSINA, DEPORTIVO, MOTO
 }
