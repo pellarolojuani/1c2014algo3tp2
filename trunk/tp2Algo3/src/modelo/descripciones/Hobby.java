@@ -1,6 +1,6 @@
 package modelo.descripciones;
 
-public enum Hobbie { 
+public enum Hobby {
 		TENIS, MUSICA, ALPINISMO, PARACAIDISMO, NATACION, CROQUET 
 				   }
 		

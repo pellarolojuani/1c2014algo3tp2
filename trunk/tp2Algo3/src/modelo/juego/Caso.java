@@ -48,7 +48,7 @@ public class Caso {
 		return this.objetoRobado;
 	}
 	
-	public String obtenerSexoLadron(){
+	public Sexo obtenerSexoLadron(){
 		return this.ladron.obtenerDescripcion().getSexo();
 	}
 
