@@ -21,7 +21,14 @@ public class ObjetoRobado {
 	}
 
     public Valor obtenerValor() {
-        return valor;
+        return this.valor;
+    }
+    
+    public int obtenerCantidadciudades() {
+        if (this.valor == Valor.COMUN) return 4;
+        if (this.valor == Valor.VALIOSO) return 5;
+        if (this.valor == Valor.MUY_VALIOSO) return 7;
+		return 0;
     }
 
 	public Ciudad obtenerCiudadOrigen() {

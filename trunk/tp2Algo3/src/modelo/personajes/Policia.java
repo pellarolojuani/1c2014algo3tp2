@@ -15,12 +15,6 @@ public class Policia {
     private double velocidadKmHora;
 	private Scanner pedirnombre; 
 
- 	public Policia(String nombre, Grado grado, double velocidad){
-		this.grado=grado;
-        this.nombre=nombre;
-        this.velocidadKmHora = velocidad;
-	}
-	
 	public Policia(){
 		pedirnombre = new Scanner(System.in);
 		System.out.print("La interpol no tiene registrado su nombre, por favor ingreselo:");

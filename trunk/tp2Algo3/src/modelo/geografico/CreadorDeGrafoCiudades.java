@@ -53,4 +53,7 @@ public class CreadorDeGrafoCiudades{
 	public List<Integer> obtenerciudadesvisitables(int v) {
         return this.grafociudades.obtenerciudadesvisitables(v); 
 	}
+	public Grafo obtenergrafo(){
+		return this.grafociudades;
+	}
 }

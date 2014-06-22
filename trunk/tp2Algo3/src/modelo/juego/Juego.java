@@ -31,12 +31,11 @@ public class Juego {
 
         //asigno al policia la primera ciudad de la lista de ciudades.
         this.policia.asignarCiudadActual(this.creadorciudades.obtenerCiudades().get(0));
-    }
-        
-    private void crearCaso(){
 
-        this.caso = new Caso(this.creadorciudades.obtenerCiudades(),policia.obtenerGrado(),this.sospechosos.obtenerSospechosos());
+        //se crea el caso inicial, el constructor de juego solo crea el primer caso.	
+        this.caso = new Caso(this.creadorciudades.obtenerCiudades(),this.creadorciudades.obtenergrafociudades(),Valor.COMUN,this.policia,this.sospechosos.obtenerSospechosos());
 	}
+    
     public Caso obtenerCaso() {
         return caso;
     }

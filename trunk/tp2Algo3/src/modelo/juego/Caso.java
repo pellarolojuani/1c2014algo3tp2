@@ -23,12 +23,11 @@ public class Caso {
     private RecorridoLadron recorridoLadron;
 	private Policia policia;
 
-    public Caso(ArrayList<Ciudad> ciudades, Grado grado, ArrayList<Sospechoso> sospechosos) {
-        this.objetoRobado = new ObjetoRobado(Valor.COMUN, ciudades.get(0));
+    public Caso(ArrayList<Ciudad> ciudades, Grafo grafo, Valor valor, Policia policia, ArrayList<Sospechoso> sospechosos) {
+        this.objetoRobado = new ObjetoRobado(valor, ciudades.get(0));
+        this.policia = policia;
         this.ladron=sospechosos.get((int)(Math.random()*sospechosos.size()+0));//Elige un ladron al azar entre los sospechosos.
-        
-        //Segun el grado del policia tenemos que armar un recorrido de 4,5 o 7 paises.
-        
+        this.recorridoLadron = new RecorridoLadron(ciudades,objetoRobado.obtenerCantidadciudades(),grafo);
     }
     
 	public Caso(Policia poli, ObjetoRobado bolaDeOro) {
