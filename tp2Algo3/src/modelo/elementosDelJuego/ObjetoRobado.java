@@ -6,18 +6,18 @@ public class ObjetoRobado {
 
     private Valor valor;
 	private Ciudad ciudadOrigen;
+	private String descripcionObjeto;
 
-    public ObjetoRobado(Valor valordelobjeto, Ciudad ciudadOrigen) {
+    public ObjetoRobado(Valor valordelobjeto, Ciudad ciudadOrigen, String descripcion) {
         this.valor = valordelobjeto;
         this.ciudadOrigen = ciudadOrigen;
+        this.descripcionObjeto = descripcion;
 	}
 
 	public String contenidoComoString(){
-		//declaro variable para que no tire error el metodo
-		//COMPLETAR!!
-		String unContenido = new String();
-		
-		return unContenido;
+
+		return this.descripcionObjeto;
+	
 	}
 
     public Valor obtenerValor() {

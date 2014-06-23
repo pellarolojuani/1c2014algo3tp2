@@ -11,9 +11,12 @@ public class Tiempo {
 
 	public Tiempo(){}
 	
-	public static void aumentarHoras(int cantidadHoras){
+	public static void aumentarHoras(int cantidadHoras) {
 		
 		horas += cantidadHoras;
+		
+		if( horas > 154 )
+			throw new SeAcaboElTiempoDelCasoExcepcion();
 		
 		//LA CONDICION EXTRA ASEGURA QUE PUEDA DORMIR EN VIAJES NOCTURNOS LARGOS
 		if( horas >= horaSuenio && (horas-horaSuenio) < 8 )
