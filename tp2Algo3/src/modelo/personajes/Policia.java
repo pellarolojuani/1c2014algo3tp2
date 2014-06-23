@@ -17,6 +17,7 @@ public class Policia {
 
 	
 	public Policia(){
+		
 		pedirnombre = new Scanner(System.in);
 		System.out.print("La interpol no tiene registrado su nombre, por favor ingreselo:");
 		this.nombre = pedirnombre.next();

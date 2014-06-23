@@ -26,7 +26,7 @@ public class Juego {
         this.sospechosos = new CreadorDeSospechosos();
         this.cuartelGeneral=new CuartelGeneral();
         this.cuartelGeneral.cargarSospechosos(sospechosos.obtenerSospechosos());
-        this.tiempo = new Tiempo();
+        Tiempo.iniciar();
         this.creadorciudades = new CreadorDeCiudades();
 
         //asigno al policia la primera ciudad de la lista de ciudades.
