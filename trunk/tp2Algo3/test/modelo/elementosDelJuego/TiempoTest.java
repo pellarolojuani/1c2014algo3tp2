@@ -13,15 +13,6 @@ public class TiempoTest {
 		assertEquals(8,Tiempo.getTiempo());
 	}
 
-	@Test
-	public void testGetTiempo() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testTiempoComoString() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testIniciarIniciaLunesAlas7Hs() {
@@ -33,6 +24,16 @@ public class TiempoTest {
 	public void testIniciarPoneElTiempoEnHsCero() {
 		Tiempo.iniciar();
 		assertEquals(0, Tiempo.getTiempo() );
+	}
+	
+	@Test( expected = SeAcaboElTiempoDelCasoExcepcion.class)
+	public void testDespuesDelDomingo17HsSeArrojaExcepcionFinDelTiempoDelCaso() {
+		
+		Tiempo.iniciar();
+		Tiempo.aumentarHoras(158);
+		//assertEquals("Domingo 17 Hs", Tiempo.tiempoComoString());
+		
+		Tiempo.aumentarHoras(1);
 	}
 
 }
