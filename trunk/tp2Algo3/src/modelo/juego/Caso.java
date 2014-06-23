@@ -24,10 +24,12 @@ public class Caso {
 	private Policia policia;
 
     public Caso(ArrayList<Ciudad> ciudades, Grafo grafo, Valor valor, Policia policia, ArrayList<Sospechoso> sospechosos) {
-        this.objetoRobado = new ObjetoRobado(valor, ciudades.get(0));
+        
+    	// Agregar XML para objetosRobados
+    	this.objetoRobado = new ObjetoRobado(valor, ciudades.get(0),"Descripcion objeto");
         this.policia = policia;
         this.ladron=sospechosos.get((int)(Math.random()*sospechosos.size()+0));//Elige un ladron al azar entre los sospechosos.
-        this.recorridoLadron = new RecorridoLadron(ciudades,objetoRobado.obtenerCantidadciudades(),grafo);
+        this.recorridoLadron = new RecorridoLadron(ciudades,this.obtenerCantidadCiudades(valor),grafo);
     }
     
 	public Caso(Policia poli, ObjetoRobado bolaDeOro) {
@@ -37,8 +39,17 @@ public class Caso {
 		this.policia = poli;
 		
 		poli.asignarNuevoCasoEn(bolaDeOro.obtenerCiudadOrigen());
+		
+		
 	}
 	
+    public int obtenerCantidadCiudades(Valor valor ) {
+        if (valor == Valor.COMUN) return 4;
+        if (valor == Valor.VALIOSO) return 5;
+        if (valor == Valor.MUY_VALIOSO) return 7;
+		return 0;
+    }
+    
     public Ciudad obtenerCiudadRobo(){
 		return this.ciudadDelRobo;
 	}
