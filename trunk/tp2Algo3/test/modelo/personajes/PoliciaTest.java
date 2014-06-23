@@ -3,6 +3,7 @@ package modelo.personajes;
 import static org.junit.Assert.*;
 
 import org.easymock.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
 
 import modelo.geografico.*;
@@ -10,6 +11,15 @@ import modelo.geografico.*;
 
 public class PoliciaTest {
 
+	Policia unPoliNovato;
+	
+	@Before
+	public void setUp(){
+		
+		unPoliNovato = new Policia("Carlos");
+		
+	}
+	
 	@Test
 	public void testPoliciaEsCreadoNovato() {
 
@@ -21,12 +31,11 @@ public class PoliciaTest {
 	@Test
 	public void testPoliciaEsAsignadoAUnCasoEnUnaCiudad() {
 
-		Policia policia = new Policia("Nombre");
 		Ciudad ciudad = EasyMock.createMock(Ciudad.class);
 		
-		policia.asignarNuevoCasoEn(ciudad);
+		unPoliNovato.asignarNuevoCasoEn(ciudad);
 		
-		assertEquals(ciudad, policia.obtenerCiudadActual());
+		assertEquals(ciudad, unPoliNovato.obtenerCiudadActual());
 	}
 	
 //	@Test
@@ -44,14 +53,14 @@ public class PoliciaTest {
 //		unaCiudadActual.agregarLugar(unBanco);
 //		
 //		Policia unPolicia = new Policia("Perez");
-//		unPolicia.asignarCiudadActual(unaCiudadActual);
+//		unPoliNovato.asignarCiudadActual(unaCiudadActual);
 //		
-//		unPolicia.visitarLugar(new Lugar(TipoEdificio.BIBLIOTECA));
-//		assertEquals(unPolicia.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
+//		unPoliNovato.visitarLugar(new Lugar(TipoEdificio.BIBLIOTECA));
+//		assertEquals(unPoliNovato.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
 //		
-//		unPolicia.visitarLugar(new Lugar(TipoEdificio.BOLSA));
-//		assertNotEquals(unPolicia.getLugarActual().obtenerTipo(), TipoEdificio.BOLSA);
-//		assertEquals(unPolicia.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
+//		unPoliNovato.visitarLugar(new Lugar(TipoEdificio.BOLSA));
+//		assertNotEquals(unPoliNovato.getLugarActual().obtenerTipo(), TipoEdificio.BOLSA);
+//		assertEquals(unPoliNovato.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
 //	}
 
 //	@Test
@@ -68,9 +77,7 @@ public class PoliciaTest {
 	@Test
 	public void testObtenerGradoDevuelveElGradoDelPolicia() {
 		
-		Policia policia = new Policia("Jorge");
-		// Se crea novato
-		assertEquals(Grado.NOVATO, policia.obtenerGrado());
+		assertEquals(Grado.NOVATO, unPoliNovato.obtenerGrado());
 	}
 
 
@@ -78,54 +85,142 @@ public class PoliciaTest {
 	@Test
 	public void testPromoverGradoDeNovatoADetective(){
 		
-		Policia unPolicia = new Policia("Matute");
-		//Se crea novato
-		unPolicia.promoverGrado();
-		assertEquals (unPolicia.obtenerGrado(), Grado.DETECTIVE);
+		
+		unPoliNovato.promoverGrado();
+		assertEquals (unPoliNovato.obtenerGrado(), Grado.DETECTIVE);
 		
 	}
 	
 	@Test
 	public void testPromoverGradoDetectiveAInvestigador(){
 		
-		Policia unPolicia = new Policia("Matute");
-		//Se crea novato
-		unPolicia.promoverGrado();
-		unPolicia.promoverGrado();
-		assertEquals (unPolicia.obtenerGrado(), Grado.INVESTIGADOR);
+		
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+		assertEquals (unPoliNovato.obtenerGrado(), Grado.INVESTIGADOR);
 		
 	}
 	
 	@Test
 	public void testPromoverGradoInvestigadorASargento(){
 		
-		Policia unPolicia = new Policia("Matute");
-		//Se crea novato
-		unPolicia.promoverGrado();
-		unPolicia.promoverGrado();
-		unPolicia.promoverGrado();
 
-		assertEquals (unPolicia.obtenerGrado(), Grado.SARGENTO);
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+
+		assertEquals (unPoliNovato.obtenerGrado(), Grado.SARGENTO);
 		
 	}
 	
+	@Test
+	public void testPromoverAUnSargentoSigueDejandoAPoliciaComoSargento(){
+		
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+
+		assertEquals (unPoliNovato.obtenerGrado(), Grado.SARGENTO);
+		
+		unPoliNovato.promoverGrado();
+		
+		assertEquals (unPoliNovato.obtenerGrado(), Grado.SARGENTO);
+
+
+	}
 
 	@Test
 	public void testPoliciaViajaCambiaCiudadActual() {
 
-		Policia policia = new Policia("Nombre");
+		
 		Ciudad ciudad1 = EasyMock.createMock(Ciudad.class);
 		Ciudad ciudad2 = EasyMock.createMock(Ciudad.class);
 
 		
-		policia.asignarNuevoCasoEn(ciudad1);
-		assertEquals(policia.obtenerCiudadActual(), ciudad1);
+		unPoliNovato.asignarNuevoCasoEn(ciudad1);
+		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad1);
 		
-		policia.viajarA(ciudad2);
+		unPoliNovato.viajarA(ciudad2);
 		assertNotEquals(ciudad1, ciudad2);
-		assertEquals(policia.obtenerCiudadActual(), ciudad2);
+		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad2);
 		
 		
 	}
+	
+	@Test
+	public void testPoliciaViajaALaMismaCiudadNoCambiaCiudadActual() {
 
+		
+		Ciudad ciudad1 = EasyMock.createMock(Ciudad.class);
+		
+		unPoliNovato.asignarNuevoCasoEn(ciudad1);
+		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad1);
+		
+		unPoliNovato.viajarA(ciudad1);
+		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad1);
+		
+		
+	}
+	
+	@Test
+	public void testPoliciaNovatoViajaA900KmPorHora(){
+		
+		
+		assertEquals(Grado.NOVATO, unPoliNovato.obtenerGrado() );
+		assertEquals(900, unPoliNovato.obtenerVelocidadViaje() );
+		
+	}
+	
+	@Test
+	public void testPoliciaDetectiveViajaA1100KmPorHora(){
+		
+		unPoliNovato.promoverGrado();
+		
+		assertEquals(Grado.DETECTIVE, unPoliNovato.obtenerGrado() );
+		assertEquals(1100, unPoliNovato.obtenerVelocidadViaje() );
+		
+	}
+
+	@Test
+	public void testPoliciaInvestigadorViajaA1300KmPorHora(){
+		
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+
+		
+		assertEquals(Grado.INVESTIGADOR, unPoliNovato.obtenerGrado() );
+		assertEquals(1300, unPoliNovato.obtenerVelocidadViaje() );
+		
+	}
+	
+	@Test
+	public void testPoliciaSargentoViajaA1500KmPorHora(){
+		
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+
+		
+		assertEquals(Grado.SARGENTO, unPoliNovato.obtenerGrado() );
+		assertEquals(1500, unPoliNovato.obtenerVelocidadViaje() );
+		
+	}
+	
+	@Test
+	public void testPromoverGradoASargentoDejaALaVelocidadEn1500KmPorHora(){
+		
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+
+		
+		assertEquals(Grado.SARGENTO, unPoliNovato.obtenerGrado() );
+		assertEquals(1500, unPoliNovato.obtenerVelocidadViaje() );
+		
+		unPoliNovato.promoverGrado();
+		unPoliNovato.promoverGrado();
+		
+		assertEquals(1500, unPoliNovato.obtenerVelocidadViaje() );
+
+	}
 }
