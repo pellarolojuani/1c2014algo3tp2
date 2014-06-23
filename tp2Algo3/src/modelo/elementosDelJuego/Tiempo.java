@@ -1,9 +1,12 @@
 package modelo.elementosDelJuego;
 
-//Estaria bueno hacer que Tiempo sea unico (singleton), asi cuando viajamos podemos 'manejarlo' desde ahi,
-// cuando emitimos una orden de arresto, etc.
+
 public class Tiempo {
 
+	private static final int MAX_HS_PARA_CASO = 154;//Domingo 17hs contando desde el lunes a las 7 Hs
+	private static final int NUM_HS_PARA_DORMIR = 8;
+	private static final int HORA_COMIENZO_CASO = 7;//Comienza lunes 7 Hs
+	private static final int HORA_SUENIO = 22; //Quiero que duerma a las 22hs
 
 
 	private static int horas;
@@ -15,15 +18,15 @@ public class Tiempo {
 		
 		horas += cantidadHoras;
 		
-		if( horas > 154 )
+		if( horas > MAX_HS_PARA_CASO )
 			throw new SeAcaboElTiempoDelCasoExcepcion();
 		
 		//LA CONDICION EXTRA ASEGURA QUE PUEDA DORMIR EN VIAJES NOCTURNOS LARGOS
-		if( horas >= horaSuenio && (horas-horaSuenio) < 8 )
+		if( horas >= horaSuenio && (horas-horaSuenio) < NUM_HS_PARA_DORMIR )
 			{
 				//IMPRIMIR "DURMIENDO......"
-				horas += 8;
-				horaSuenio += 24;
+				horas += NUM_HS_PARA_DORMIR;
+				horaSuenio += 24; //Le va a dar suenio el dia siguiente
 			}
 		else if( horas > horaSuenio )
 			horaSuenio += 24;
@@ -34,9 +37,12 @@ public class Tiempo {
 		return horas;
 	}
 	public static String tiempoComoString(){
-				
-		int auxDia = (7+horas)/24;
-		int auxHora = (7+horas) % 24;
+		
+		// Como no empieza el lunes a las 0Hs, necesito sumarle la hora
+		// del comienzo del caso para que al dividir por 24 me de el dia.
+		// Igual para obtener la hora
+		int auxDia = (horas + HORA_COMIENZO_CASO)/24;
+		int auxHora = (horas + HORA_COMIENZO_CASO) % 24;
 		
 		String tiempoString="";
 		
@@ -60,7 +66,7 @@ public class Tiempo {
 	public static void iniciar() {
 
 		horas = 0;
-		horaSuenio = 15;
+		horaSuenio = HORA_SUENIO - HORA_COMIENZO_CASO ;
 		
 	}
 }

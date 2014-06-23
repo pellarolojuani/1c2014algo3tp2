@@ -12,7 +12,7 @@ public class Policia {
 	private Ciudad ciudadActual;
 	private Lugar lugarActual;
     private String nombre;
-    private double velocidadKmHora;
+    private int velocidadKmHora;
 	private Scanner pedirnombre; 
 
 	
@@ -94,6 +94,9 @@ public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */
 	// Promueve de grado al policia salvo que este sea de grado maximo
 	public void promoverGrado(){
 		this.grado = this.grado.getNext();
+		// Seteo la velocidad
+		if(this.velocidadKmHora < 1500)
+			this.velocidadKmHora += 200;
 	}
 	
 	public Ciudad obtenerCiudadActual(){
@@ -102,6 +105,11 @@ public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */
 	
 	public boolean debeDormir(){
 		return true;
+	}
+
+	public Object obtenerVelocidadViaje() {
+		
+		return this.velocidadKmHora;
 	};
 
 
