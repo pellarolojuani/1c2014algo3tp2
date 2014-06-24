@@ -9,6 +9,7 @@ import modelo.personajes.Sospechoso;
 public class PistaPuerto extends Pista {
 	
     public PistaPuerto(Ciudad ciudadSiguiente, Sospechoso ladron) {
-        pista = "";
+        pista="Vi a alguien sospechoso viajando a una ciudad que tiene la bandera "+ciudadSiguiente.obtenerBandera();
+        
     }
 }

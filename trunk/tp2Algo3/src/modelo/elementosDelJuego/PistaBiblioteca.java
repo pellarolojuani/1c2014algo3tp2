@@ -8,7 +8,8 @@ import modelo.personajes.Sospechoso;
  */
 public class PistaBiblioteca extends Pista {
 	
-    public PistaBiblioteca(Ciudad ciudadSiguiente, Sospechoso ladron) {
-        pista = "";
+    public PistaBiblioteca(Ciudad ciudadSiguiente, Sospechoso ladron)
+    {
+        pista="Vi a alguien sospechoso que fue a una ciudad donde se habla "+ ciudadSiguiente.obtenerIdioma();
     }
 }

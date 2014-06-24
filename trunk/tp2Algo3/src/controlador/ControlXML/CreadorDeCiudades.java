@@ -44,13 +44,15 @@ public class CreadorDeCiudades {
                     String[] listaedificios = e.getAttribute("edificios").split(",");
 
                	 	ArrayList<Lugar>lugares = new ArrayList<Lugar>();
+                Ciudad s=new Ciudad(e.getAttribute("nombre"),e.getAttribute("bandera"),e.getAttribute("moneda"),e.getAttribute("lugaresdeinteres"),e.getAttribute("personaje"),e.getAttribute("industria"),e.getAttribute("fauna"),e.getAttribute("idiomas"),null,lugares,Double.parseDouble(e.getAttribute("Latitud")),Double.parseDouble(e.getAttribute("Longitud")));
                     for(int i1 = 0; i1 < listaedificios.length; i1++){
                         TipoEdificio tipo=TipoEdificio.valueOf(listaedificios[i1]);
-                        Lugar a=new Lugar(tipo);
+                        Lugar a=new Lugar(tipo, s);
                         lugares.add(a);
 	                 }
 	                
-	                Ciudad s=new Ciudad(e.getAttribute("nombre"),e.getAttribute("bandera"),e.getAttribute("moneda"),e.getAttribute("lugaresdeinteres"),e.getAttribute("personaje"),e.getAttribute("industria"),e.getAttribute("fauna"),e.getAttribute("idiomas"),null,lugares,Double.parseDouble(e.getAttribute("Latitud")),Double.parseDouble(e.getAttribute("Longitud")));                 
+
+                    s.agregarLugares(lugares);
 	                ciudades.add(s);
                    
             }       

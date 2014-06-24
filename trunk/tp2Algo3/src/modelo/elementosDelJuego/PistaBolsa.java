@@ -9,6 +9,7 @@ import modelo.personajes.Sospechoso;
 public class PistaBolsa extends Pista {
 	
     public PistaBolsa(Ciudad ciudadSiguiente, Sospechoso ladron) {
-       pista = "";
+       pista="Vi a alguien sospechoso que fue a una ciudad cuya actividad mas importante es "+ciudadSiguiente.obtenerIndustria();
+
     }
 }
