@@ -38,6 +38,8 @@ public class Caso {
             System.out.println(ciudad.getNombre());
         }
         System.out.println("Fin del recorrido");
+
+
         this.ciudadDelRobo=recorridoLadron.obtenerCiudadDelRobo();
         ciudadesConPistas=new ArrayList<Ciudad>();
         plantarPistas(ciudadDelRobo);

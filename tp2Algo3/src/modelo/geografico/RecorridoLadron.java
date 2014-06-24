@@ -4,31 +4,26 @@ import java.util.*;
 
 public class RecorridoLadron {
     private ArrayList<Ciudad> recorrido;
-    private Random Generadoralazar;
+    private Random generadorAlAzar;
     private Lugar lugarFinal;
 
-    public RecorridoLadron(ArrayList<Ciudad> ciudades, int numciudadesarecorrer, Grafo grafo) {
+    public RecorridoLadron(ArrayList<Ciudad> ciudades, int numCiudadesARecorrer, Grafo grafo) {
 
         this.recorrido = new ArrayList<Ciudad>();
         this.recorrido.add(ciudades.get(0));
-
-        List<Integer> disponibles = new LinkedList<Integer>();
-        disponibles = grafo.obtenerciudadesvisitables(0);
-
-        int contador = 0;
-
-        do {
-            Generadoralazar = new Random();
-            int indice = Generadoralazar.nextInt(disponibles.size());
-            int numciudadsiguiente = (Integer) disponibles.get(indice);
-            this.recorrido.add(ciudades.get(numciudadsiguiente));
-            disponibles = grafo.obtenerciudadesvisitables(numciudadsiguiente);
-            contador++;
-
-        } while (contador < numciudadesarecorrer);
+        ArrayList<Ciudad> ciudadesDisponibles;
+        Ciudad proximaCiudad;
+        generadorAlAzar=new Random();
+        for (int i = 0; i < numCiudadesARecorrer; i++) {
+            ciudadesDisponibles=recorrido.get(i).obtenerCiudadesDestinoDisponibles();;
+            do{
+                //Elijo una ciudad al azar entre las disponibles. Si ya esta en el recorrido, busco otra.
+               proximaCiudad=ciudadesDisponibles.get(generadorAlAzar.nextInt(ciudadesDisponibles.size()));
+            }while(recorrido.contains(proximaCiudad));
+            recorrido.add(proximaCiudad);
+        }
         ArrayList<Lugar> lugares = recorrido.get(recorrido.size()-1).obtenerLugaresDisponibles();
         lugarFinal = lugares.get((int) Math.random() * lugares.size());
-
     }
 
     public Ciudad obtenerCiudadFinal() {
