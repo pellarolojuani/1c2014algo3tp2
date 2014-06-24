@@ -16,22 +16,21 @@ public class Juego implements Observer{
 
 	private Caso caso;
 	private Policia policia;
-    private CreadorDeSospechosos sospechosos;
+    private CreadorDeSospechosos creadorDeSospechosos;
     private CuartelGeneral cuartelGeneral;
-    private Tiempo tiempo; 
-    private CreadorDeCiudades creadorciudades;
+    private CreadorDeCiudades creadorDeCiudades;
     
     //Creador del juego
     public Juego() {
 
-        this.sospechosos = new CreadorDeSospechosos();
+        this.creadorDeSospechosos = new CreadorDeSospechosos();
         this.cuartelGeneral=new CuartelGeneral();
         this.policia = new Policia(this,cuartelGeneral);
-        this.cuartelGeneral.cargarSospechosos(sospechosos.obtenerSospechosos());
+        this.cuartelGeneral.cargarSospechosos(creadorDeSospechosos.obtenerSospechosos());
+        this.creadorDeCiudades = new CreadorDeCiudades();
+        this.policia.asignarNuevoCasoEn(this.creadorDeCiudades.obtenerCiudades().get(0));
+        this.caso = new Caso(this.creadorDeCiudades.obtenerCiudades(),this.creadorDeCiudades.obtenergrafociudades(),Valor.COMUN,this.policia,this.creadorDeSospechosos.obtenerSospechosos());
         Tiempo.iniciar();
-        this.creadorciudades = new CreadorDeCiudades();
-        this.policia.asignarNuevoCasoEn(this.creadorciudades.obtenerCiudades().get(0));
-        this.caso = new Caso(this.creadorciudades.obtenerCiudades(),this.creadorciudades.obtenergrafociudades(),Valor.COMUN,this.policia,this.sospechosos.obtenerSospechosos());
 	}
 
 
