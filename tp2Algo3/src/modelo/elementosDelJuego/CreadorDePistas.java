@@ -1,5 +1,7 @@
 package modelo.elementosDelJuego;
+
 import modelo.geografico.Ciudad;
+import modelo.geografico.Lugar;
 import modelo.geografico.TipoEdificio;
 import modelo.personajes.Sospechoso;
 
@@ -41,4 +43,9 @@ public class CreadorDePistas {
         return new PistaAeropuerto(ciudadSiguiente,ladron);
     }
 
+    public void plantarPistas(Ciudad ciudad) {
+        for(Lugar lugar: ciudad.obtenerLugaresDisponibles()){
+            lugar.plantarPista(crearNuevaPista(lugar.obtenerTipo()));
+        }
+    }
 }

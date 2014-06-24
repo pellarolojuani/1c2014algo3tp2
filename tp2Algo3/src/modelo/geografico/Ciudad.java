@@ -1,8 +1,6 @@
 package modelo.geografico;
 
-import modelo.descripciones.Descripcion;
-import java.util.*;
-import java.lang.Math;
+import java.util.ArrayList;
 
 public class Ciudad {
 
@@ -98,5 +96,25 @@ public class Ciudad {
  		this.Longitud = longitud;
  		
  	}
+
+    public void agregarLugares(ArrayList<Lugar> lugares) {
+        this.lugares=lugares;
+    }
+
+    public String obtenerMoneda() {
+        return moneda;
+    }
+
+    public String obtenerIdioma() {
+        return idiomas;
+    }
+
+    public String obtenerIndustria() {
+        return industria;
+    }
+
+    public String obtenerBandera() {
+        return bandera;
+    }
 }
 

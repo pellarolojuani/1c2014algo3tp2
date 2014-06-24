@@ -28,4 +28,8 @@ public class ObjetoRobado {
 	public Ciudad obtenerCiudadOrigen() {
 		return this.ciudadOrigen;
 	}
+
+    public String obtenerDescripcion() {
+        return descripcionObjeto;
+    }
 }

@@ -37,19 +37,19 @@ public class Descripcion {
     }
 
     public boolean puedeSerIgualA(Descripcion unaDescripcion){
-		if ( (unaDescripcion.getSexo() != null) && (this.sexo == unaDescripcion.getSexo()) ){
+		if ( (unaDescripcion.getSexo() != null) && (this.sexo != unaDescripcion.getSexo()) ){
 			return false;
 		}
-		if ( (unaDescripcion.getVehiculo() != null) && (this.vehiculo == unaDescripcion.getVehiculo()) ){
+		if ( (unaDescripcion.getVehiculo() != null) && (this.vehiculo != unaDescripcion.getVehiculo()) ){
 			return false;
 		}
-		if ( (unaDescripcion.getHobby() != null) && (this.hobby == unaDescripcion.getHobby()) ){
+		if ( (unaDescripcion.getHobby() != null) && (this.hobby != unaDescripcion.getHobby()) ){
 			return false;
 		}
-		if ( (unaDescripcion.getPelo() != null) && (this.pelo == unaDescripcion.getPelo()) ){
+		if ( (unaDescripcion.getPelo() != null) && (this.pelo != unaDescripcion.getPelo()) ){
 			return false;
 		}
-		if ( (unaDescripcion.getSenia() != null) && (this.senia == unaDescripcion.getSenia()) ){
+		if ( (unaDescripcion.getSenia() != null) && (this.senia != unaDescripcion.getSenia()) ){
 			return false;
 		}
 		return true;

@@ -1,19 +1,21 @@
 package modelo.geografico;
 
 import modelo.elementosDelJuego.Pista;
-import modelo.personajes.Sospechoso;
 
 public class Lugar {
 
 	Pista pista;
     private boolean visitado;
     public TipoEdificio tipo;
+    private Ciudad ciudad;
     private int numVisitas;
 
-    public Lugar(TipoEdificio tipo) {
+    public Lugar(TipoEdificio tipo, Ciudad ciudad) {
         this.tipo=tipo;
+        this.ciudad = ciudad;
         this.visitado = false;
         this.numVisitas = 0;
+        this.pista=new Pista();
     }
 
     public String obtenerPista(){
@@ -43,5 +45,8 @@ public class Lugar {
 		this.numVisitas += 1;
 		
 	}
-    
+
+    public Ciudad estaEnCiudad() {
+        return ciudad;
+    }
 }

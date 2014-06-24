@@ -1,23 +1,29 @@
  package modelo.personajes;
 
-import modelo.elementosDelJuego.*;
-import modelo.geografico.*;
+ import modelo.elementosDelJuego.CuartelGeneral;
+import modelo.elementosDelJuego.Tiempo;
+import modelo.geografico.Ciudad;
+import modelo.geografico.Lugar;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
-public class Policia {
-	private Grado grado;
+public class Policia extends Observable{
+    private Grado grado;
 	private Ciudad ciudadActual;
 	private Lugar lugarActual;
     private String nombre;
     private int velocidadKmHora;
-	private Scanner pedirnombre; 
+	private Scanner pedirnombre;
+    private int cantidadDeArrestos;
+    private CuartelGeneral cuartelGeneral;
+    private String ultimaPista;
 
-	
-	public Policia(){
-		
+
+    public Policia(Observer juego, CuartelGeneral cuartelGeneral){
+        this.cuartelGeneral=cuartelGeneral;
+        this.addObserver(juego);
 		pedirnombre = new Scanner(System.in);
 		System.out.print("La interpol no tiene registrado su nombre, por favor ingreselo:");
 		this.nombre = pedirnombre.next();
@@ -37,7 +43,7 @@ public class Policia {
 		this.ciudadActual = unaCiudad;
 	}
 	
-public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */{
+    public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */{
 		
 		if( lugar.obtenerNumVisitas() == 0)
 		{
@@ -54,20 +60,10 @@ public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */
 			Tiempo.aumentarHoras(3);
 			lugar.aumentarNumVisitas();
 			}
-			
-//		TipoEdificio tipo = lugar.obtenerTipo();
-//		ArrayList<Lugar> lugares = ciudadActual.obtenerLugaresDisponibles();
-//		boolean esta = false;
-//		for (Lugar unLugar: lugares){
-//			if (unLugar.obtenerTipo() == tipo) esta = true;
-//		}
-//        if(esta) {
-//            this.lugarActual = lugar;
-//            lugar.visitar();
-//        }
-//        
-       // else throw new NoSePuedeVisitarLugarExcepcion();
-	};
+        ultimaPista=lugar.obtenerPista();
+        setChanged();
+        notifyObservers(lugar); //Se notifica al juego de que el policia ha pedido pistas en un lugar de la ciudad de la que se encuentra.
+	}
 	
 	public Lugar getLugarActual(){
 		return this.lugarActual;
@@ -85,7 +81,6 @@ public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */
 
     public void asignarNuevoCasoEn(Ciudad ciudad){
         this.ciudadActual=ciudad;
-        //Esto lo manda a la ciudad del robo directamente, sin sacar tiempo
     }
 	
 	public Grado obtenerGrado(){
@@ -93,8 +88,8 @@ public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */
 	};
 		
 	// Promueve de grado al policia salvo que este sea de grado maximo
-	public void promoverGrado(){
-		this.grado = this.grado.getNext();
+	private void promoverGrado(){
+        this.grado = this.grado.getNext();
 		// Seteo la velocidad
 		if(this.velocidadKmHora < 1500)
 			this.velocidadKmHora += 200;
@@ -113,5 +108,15 @@ public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */
 		return this.velocidadKmHora;
 	};
 
+    public void emitirOrdenDeArrestoPara(Sospechoso sospechoso){
+        cuartelGeneral.emitirOrdenDeArrestoPara(sospechoso);
+    }
 
+    public String obtenerUltimaPista() {
+        return ultimaPista;
+    }
+
+    public CuartelGeneral obtenerCuartelGeneral() {
+        return cuartelGeneral;
+    }
 }
