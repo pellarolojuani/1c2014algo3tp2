@@ -47,15 +47,17 @@ public class VistaPrincipal extends JFrame implements Observer{
 		this.setName("ALGOTHIEF GRUPO X");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 700, 500);
-		VistaPrincipalImagen p = new VistaPrincipalImagen();
+		VistaPrincipalImagen p = new VistaPrincipalImagen("imagenesVista/presentacionCarmenSandiego.jpg");
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
 		
+		
+		
 		menuBarra = new MenuBar();
 		menu1 = new Menu("Juego");
 		nuevo = new MenuItem("Nuevo");
-		nuevo.addActionListener(control.getListenerNuevo());
+		nuevo.addActionListener(control.getListenerNuevo(this));
 		guardar = new MenuItem("Guardar");
 		guardar.addActionListener(control.getListenerGuardar(this));
 		salir = new MenuItem("Salir");
@@ -82,10 +84,25 @@ public class VistaPrincipal extends JFrame implements Observer{
 		
 		
 	}
+	
+	public void cambiarVista(String vista){
+		VistaPrincipalImagen p = new VistaPrincipalImagen(vista);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		p.setLayout(new BorderLayout(0, 0));
+		setContentPane(p);
+	}
+	
+	public void vistaCiudad(String unaCiudad){
+		String ubicacionCiudad = "imagenesVista/ciudades/" + unaCiudad + ".jpg";
+		VistaPrincipalImagen p = new VistaPrincipalImagen(ubicacionCiudad);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		p.setLayout(new BorderLayout(0, 0));
+		setContentPane(p);
+	}
 
 	private class EscuchaBotonCreditos implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			Frame frameCreditos = new Frame("Creditos");
+			JFrame frameCreditos = new JFrame("Creditos");
 			frameCreditos.setSize(400,300);  //seteamos las dimensiones del marco
 			frameCreditos.setLocationRelativeTo(rootPane);
 			frameCreditos.addWindowListener(new CloseFrameListener());

@@ -20,27 +20,26 @@
 	</target>
 
 	<target name="compilar.aplicacion" depends="setup">
-<!-- 		<javac srcdir="src" destdir="${build}" includeantruntime="false"></javac> -->
+		<javac srcdir="src" destdir="${build}" includeantruntime="false"></javac>
 	</target>
 
-<target name="compilar.tests" depends="compilar.aplicacion">
-		<javac srcdir="test" destdir="${build}/tests" includeantruntime="false">
-			<classpath refid="classpath" />
-		</javac>
-	</target>
+	<target name="compilar.tests" depends="compilar.aplicacion">
+			<javac srcdir="test" destdir="${build}/tests" includeantruntime="false">
+				<classpath refid="classpath" />
+			</javac>
+		</target>
 
 
-	<target name="ejecutar.tests" depends="compilar.tests">
-		<junit fork="yes" failureProperty="test.failure"  forkmode="once" showoutput="true" printsummary="on">
-			<!-- <classpath refid="classpath" /> -->
-			<classpath location="${build}" />
-			<classpath refid="classpath" />
-			<batchtest>
-				<fileset dir="${build}/tests" includes="**/*Test.class" />
-			</batchtest>
-		</junit>
-		<fail message="Pruebas fallidas" if="test.failure" />
-	</target>
-	
+		<target name="ejecutar.tests" depends="compilar.tests">
+			<junit fork="yes" failureProperty="test.failure"  forkmode="once" showoutput="true" printsummary="on">
+				<classpath refid="classpath" />
+				<classpath location="${build}" />
+				<classpath refid="classpath" />
+				<batchtest>
+					<fileset dir="${build}/tests" includes="**/*Test.class" />
+				</batchtest>
+			</junit>
+			<fail message="Pruebas fallidas" if="test.failure" />
+		</target>
 
 </project>

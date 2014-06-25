@@ -7,19 +7,16 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 
-public class VistaPrincipalImagen extends JPanel {
+public class VistaNuevoJuego extends JPanel {
 	
-	private String nombreVista;
-	
-	public VistaPrincipalImagen(String vista){
-		this.nombreVista = vista;
+	public VistaNuevoJuego(){
 		this.setSize(100, 100);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g){
 		Dimension tamanio = getSize();
-		ImageIcon imagenFondo = new ImageIcon(getClass().getResource(this.nombreVista));
+		ImageIcon imagenFondo = new ImageIcon(getClass().getResource("imagenesVista/juegoNuevo.jpg"));
 		g.drawImage(imagenFondo.getImage(),0,0,tamanio.width, tamanio.height, null);
 		setOpaque(false);
 		super.paintComponent(g);
