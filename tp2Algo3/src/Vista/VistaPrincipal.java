@@ -95,6 +95,7 @@ public class VistaPrincipal extends JFrame implements Observer{
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
+		setVisible(true);
 	}
 	
 	public void imprimirTexto(String texto){

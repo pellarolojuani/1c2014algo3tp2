@@ -27,6 +27,7 @@ public class MenuBase{
 		this.vista = new VistaPrincipal(this);
 		vista.setVisible(true);
 	}
+	
 
     public void nuevoJuego(){
     	
