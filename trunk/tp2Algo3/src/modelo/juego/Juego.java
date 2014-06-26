@@ -38,7 +38,7 @@ public class Juego implements Observer{
         return caso;
     }
 
-    @Override
+  
     public void update(Observable o, Object arg) {
         Lugar lugar= (Lugar) arg;
         if(o==this.policia){

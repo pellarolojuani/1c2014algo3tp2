@@ -3,6 +3,7 @@ package Vista;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Menu;
 import java.awt.MenuBar;
@@ -10,6 +11,7 @@ import java.awt.MenuItem;
 
 import javax.swing.border.EmptyBorder;
 
+import modelo.juego.MenuBase;
 import controlador.ControlMenu.Controlador;
 
 import java.awt.*;
@@ -21,6 +23,7 @@ public class VistaPrincipal extends JFrame implements Observer{
 	private MenuBar menuBarra;
 	private Menu menu1, menu2, menu3;
 	MenuItem nuevo, guardar, salir, creditos;
+
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -47,13 +50,12 @@ public class VistaPrincipal extends JFrame implements Observer{
 		this.setName("ALGOTHIEF GRUPO X");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 700, 500);
+		
 		VistaPrincipalImagen p = new VistaPrincipalImagen("imagenesVista/presentacionCarmenSandiego.jpg");
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
-		
-		
-		
+
 		menuBarra = new MenuBar();
 		menu1 = new Menu("Juego");
 		nuevo = new MenuItem("Nuevo");
@@ -86,10 +88,22 @@ public class VistaPrincipal extends JFrame implements Observer{
 	}
 	
 	public void cambiarVista(String vista){
-		VistaPrincipalImagen p = new VistaPrincipalImagen(vista);
+		VistaPrincipalConConsola p = new VistaPrincipalConConsola(vista);
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
+	}
+	
+	public void imprimirTexto(String texto){
+		JLabel label = new JLabel();
+		Dimension dimension = new Dimension();
+		dimension.height = 100;
+		dimension.width = getSize().width;
+		label.setSize(dimension);
+		label.setText(texto);
+		this.add("South", label);
+		this.setVisible(true);
+		
 	}
 	
 	public void vistaCiudad(String unaCiudad){

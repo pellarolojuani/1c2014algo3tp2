@@ -10,16 +10,23 @@ import modelo.personajes.Sospechoso;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import Vista.VistaPrincipal;
 
 public class MenuBase{
 
     private static Scanner in;
     private static Policia policia;
     private static Juego juego;
+   
 
     public static void main(String args[]){
-
     	
+    	VistaPrincipal vista = new VistaPrincipal();
+		vista.setVisible(true);
+
     	in = new Scanner(System.in);
     	
     	System.out.println("AlgoThieft");
