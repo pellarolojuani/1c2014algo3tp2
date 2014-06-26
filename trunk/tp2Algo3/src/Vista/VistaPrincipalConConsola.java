@@ -4,9 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Panel;
 
 import javax.swing.ImageIcon;
 
@@ -30,7 +32,26 @@ public class VistaPrincipalConConsola extends JPanel {
 		super.paintComponent(g);
 		this.setVisible(true);
 
+		ImageIcon imagenConsola = new ImageIcon(getClass().getResource("imagenesVista/consola.jpg"));
+		g.drawImage(imagenConsola.getImage(),0,tamanio.height - 100,tamanio.width, 100, null);
+		super.paintComponent(g);
+		this.setVisible(true);
 		
+
+	}
+	
+	public void addBottonPanel(String boton1, String boton2, String boton3){
+		
+		Panel p1 = new Panel(); 
+		Button primerBoton = new Button(boton1);
+		Button segundoBoton = new Button(boton2);
+		Button tercerBoton = new Button(boton2);
+		
+		p1.add(primerBoton); 
+		p1.add(segundoBoton); 
+		p1.add(tercerBoton); 
+		
+		add("South", p1);
 	}
 	
 	public void imprimirTexto(String texto){
