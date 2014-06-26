@@ -20,13 +20,18 @@ public class MenuBase{
     private static Scanner in;
     private static Policia policia;
     private static Juego juego;
-   
-
-    public static void main(String args[]){
-    	
-    	VistaPrincipal vista = new VistaPrincipal();
+ 
+    private VistaPrincipal vista;
+	
+	public MenuBase(){
+		this.vista = new VistaPrincipal(this);
 		vista.setVisible(true);
+	}
 
+    public void nuevoJuego(){
+    	
+    	this.vista.cambiarVista("imagenesVista/juegoNuevo.jpg");
+    	
     	in = new Scanner(System.in);
     	
     	System.out.println("AlgoThieft");

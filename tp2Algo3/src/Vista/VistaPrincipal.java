@@ -23,7 +23,8 @@ public class VistaPrincipal extends JFrame implements Observer{
 	private MenuBar menuBarra;
 	private Menu menu1, menu2, menu3;
 	MenuItem nuevo, guardar, salir, creditos;
-
+	
+	MenuBase menuBase;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -43,7 +44,9 @@ public class VistaPrincipal extends JFrame implements Observer{
 		}
 	}
 
-	public VistaPrincipal(){
+	public VistaPrincipal(MenuBase unMenuBase){
+		
+		this.menuBase = unMenuBase;
 		
 		Controlador control = new Controlador();
 		
@@ -55,11 +58,11 @@ public class VistaPrincipal extends JFrame implements Observer{
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
-
+		
 		menuBarra = new MenuBar();
 		menu1 = new Menu("Juego");
 		nuevo = new MenuItem("Nuevo");
-		nuevo.addActionListener(control.getListenerNuevo(this));
+		nuevo.addActionListener(control.getListenerNuevo(this, this.menuBase));
 		guardar = new MenuItem("Guardar");
 		guardar.addActionListener(control.getListenerGuardar(this));
 		salir = new MenuItem("Salir");

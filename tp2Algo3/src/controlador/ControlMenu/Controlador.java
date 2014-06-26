@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 
 import Vista.VistaPrincipal;
 import modelo.*;
+import modelo.juego.MenuBase;
 
 public class Controlador {
 	
@@ -13,37 +14,26 @@ public class Controlador {
 		
 	}
 	
-	private class EscucharTecla implements KeyListener{
-		
-		private VistaPrincipal vista;
-		
-		public EscucharTecla(VistaPrincipal vista){
-			this.vista = vista;
-		}
-
-		public void keyPressed(KeyEvent e) {
-			//if (e.getKeyChar() == KeyEvent.VK_A) return;
-		}
-		public void keyReleased(KeyEvent e) {}
-		public void keyTyped(KeyEvent e) {}
-		
-	}
 	
 	private class EscuchaBotonNuevo implements ActionListener{
 		private VistaPrincipal vista;
+		private MenuBase menuBase;
 		
 		public void actionPerformed(ActionEvent e){
-			this.vista.cambiarVista("imagenesVista/juegoNuevo.jpg");
+			//this.vista.cambiarVista("imagenesVista/juegoNuevo.jpg");
 			System.out.println("El juego se crea");
+			this.menuBase.nuevoJuego();
+			
 		}
-		public EscuchaBotonNuevo(VistaPrincipal unaVista){
+		public EscuchaBotonNuevo(VistaPrincipal unaVista, MenuBase unMenuBase){
+			this.menuBase = unMenuBase;
 			this.vista = unaVista;
 		}
 	}
 
 	
-	public ActionListener getListenerNuevo(VistaPrincipal unaVista) {
-		return new EscuchaBotonNuevo(unaVista);
+	public ActionListener getListenerNuevo(VistaPrincipal unaVista, MenuBase unMenuBase) {
+		return new EscuchaBotonNuevo(unaVista, unMenuBase);
 	}
 	//-------------------------------------------------------------
 	private class EscuchaBotonGuardar implements ActionListener{
