@@ -6,44 +6,23 @@ import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
 
 import java.util.Observable;
-import java.util.Observer;
-import java.util.Scanner;
 
 public class Policia extends Observable{
     private Grado grado;
 	private Ciudad ciudadActual;
-	private Lugar lugarActual;
     private String nombre;
     private int velocidadKmHora;
-	private Scanner pedirnombre;
-    private int cantidadDeArrestos;
-    private CuartelGeneral cuartelGeneral;
     private String ultimaPista;
+    private int nroArrestos;
 
 
-    public Policia(Observer juego, CuartelGeneral cuartelGeneral){
-        this.cuartelGeneral=cuartelGeneral;
-        this.addObserver(juego);
-		pedirnombre = new Scanner(System.in);
-		System.out.print("La interpol no tiene registrado su nombre, por favor ingreselo:");
-		this.nombre = pedirnombre.next();
-		//si no se le indica grado, por defecto es NOVATO
-		this.grado = Grado.NOVATO;
-		this.velocidadKmHora = 900;
+    public Policia(){
+		nombre="unNombre";
+		grado = Grado.NOVATO;
+		velocidadKmHora=grado.obtenerVelocidad();
 	}
 	
-	public Policia(String nombre) {
-		
-		this.nombre = nombre;
-		this.grado = Grado.NOVATO;
-		this.velocidadKmHora = 900;
-	}
-
-	public void asignarCiudadActual(Ciudad unaCiudad){
-		this.ciudadActual = unaCiudad;
-	}
-	
-    public void visitarLugar(Lugar lugar) /*throws NoSePuedeVisitarLugarExcepcion */{
+    public void visitarLugar(Lugar lugar){
 		
 		if( lugar.obtenerNumVisitas() == 0)
 		{
@@ -61,12 +40,7 @@ public class Policia extends Observable{
 			lugar.aumentarNumVisitas();
 			}
         ultimaPista=lugar.obtenerPista();
-        setChanged();
-        notifyObservers(lugar); //Se notifica al juego de que el policia ha pedido pistas en un lugar de la ciudad de la que se encuentra.
-	}
-	
-	public Lugar getLugarActual(){
-		return this.lugarActual;
+        CuartelGeneral.getInstance().notificarVisitaA(lugar);
 	}
 	
 	public void viajarA(Ciudad destino){
@@ -86,9 +60,8 @@ public class Policia extends Observable{
 	public Grado obtenerGrado(){
 		return this.grado;
 	};
-		
-	// Promueve de grado al policia salvo que este sea de grado maximo
-	private void promoverGrado(){
+
+	public void promoverGrado(){
         this.grado = this.grado.getNext();
 		// Seteo la velocidad
 		if(this.velocidadKmHora < 1500)
@@ -104,19 +77,22 @@ public class Policia extends Observable{
 	}
 
 	public Object obtenerVelocidadViaje() {
-		
 		return this.velocidadKmHora;
 	};
 
     public void emitirOrdenDeArrestoPara(Sospechoso sospechoso){
-        cuartelGeneral.emitirOrdenDeArrestoPara(sospechoso);
+        CuartelGeneral.getInstance().emitirOrdenDeArrestoPara(sospechoso);
     }
 
     public String obtenerUltimaPista() {
         return ultimaPista;
     }
 
-    public CuartelGeneral obtenerCuartelGeneral() {
-        return cuartelGeneral;
+    public void arrestarLadron() {
+        nroArrestos++;
+    }
+
+    public int obtenerNroArrestos(){
+        return nroArrestos;
     }
 }

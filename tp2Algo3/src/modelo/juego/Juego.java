@@ -17,20 +17,17 @@ public class Juego implements Observer{
 	private Caso caso;
 	private Policia policia;
     private CreadorDeSospechosos creadorDeSospechosos;
-    private CuartelGeneral cuartelGeneral;
     private CreadorDeCiudades creadorDeCiudades;
     
     //Creador del juego
-    public Juego() {
+    public Juego(){
 
         this.creadorDeSospechosos = new CreadorDeSospechosos();
-        this.cuartelGeneral=new CuartelGeneral();
-        this.policia = new Policia(this,cuartelGeneral);
-        this.cuartelGeneral.cargarSospechosos(creadorDeSospechosos.obtenerSospechosos());
-        this.creadorDeCiudades = new CreadorDeCiudades();
-        this.policia.asignarNuevoCasoEn(this.creadorDeCiudades.obtenerCiudades().get(0));
-        this.caso = new Caso(this.creadorDeCiudades.obtenerCiudades(),this.creadorDeCiudades.obtenergrafociudades(),Valor.COMUN,this.policia,this.creadorDeSospechosos.obtenerSospechosos());
-        Tiempo.iniciar();
+        this.policia = new Policia();
+        CuartelGeneral.getInstance().asignarAJuego(this);
+        CuartelGeneral.getInstance().cargarSospechosos(creadorDeSospechosos.obtenerSospechosos());
+        CuartelGeneral.getInstance().incorporarPolicia(policia);
+        crearNuevoCaso();
 	}
 
 
@@ -41,16 +38,27 @@ public class Juego implements Observer{
   
     public void update(Observable o, Object arg) {
         Lugar lugar= (Lugar) arg;
-        if(o==this.policia){
-            //El policia ha pedido pistas, entonces verificar que la ciudad actual esta en el recorrido del ladron.
-            if(caso.ciudadTienePistas(lugar.estaEnCiudad())){
-                if (caso.ladronEstaEnLugar(lugar) && cuartelGeneral.fueEmitidaOrdenPara(caso.obtenerLadron())){
-                    //Avisarle al policia que arresto al sospechoso correcto.
-                    cuartelGeneral.notificarDeArrestoAPolicia();
+        if(o==CuartelGeneral.getInstance()){
+            if(caso.ladronEstaEnCiudad(lugar.estaEnCiudad())){
+                //Si esta en la ciudad del robo
+                if (caso.ladronEstaEnLugar(lugar)){
+                    if (CuartelGeneral.getInstance().fueEmitidaOrdenPara(caso.obtenerLadron())) {
+                        System.out.println("---EL LADRON HA SIDO ARRESTADO!---");
+                        CuartelGeneral.getInstance().notificarDeArrestoAPolicia();
+                        crearNuevoCaso();
+                    }
+                    else System.out.println("---EL LADRON SE ESCAPO POR NO TENER LA ORDEN DE ARRESTO!---");
                 }
-                caso.plantarPistasEnCiudadSiguienteA(lugar.estaEnCiudad());
             }
+            else caso.plantarPistasEnCiudadSiguienteA(lugar.estaEnCiudad());
         }
+    }
+
+    private void crearNuevoCaso() {
+        this.creadorDeCiudades = new CreadorDeCiudades();
+        this.policia.asignarNuevoCasoEn(this.creadorDeCiudades.obtenerCiudades().get(0));
+        this.caso = new Caso(this.creadorDeCiudades.obtenerCiudades(), Valor.COMUN,this.policia,this.creadorDeSospechosos.obtenerSospechosos());
+        Tiempo.iniciar();
     }
 
     public Policia obtenerPolicia() {

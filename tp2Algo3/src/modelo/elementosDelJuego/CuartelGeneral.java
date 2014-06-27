@@ -1,27 +1,35 @@
 package modelo.elementosDelJuego;
 
 import modelo.descripciones.Descripcion;
+import modelo.geografico.Lugar;
+import modelo.juego.Juego;
 import modelo.personajes.Policia;
 import modelo.personajes.Sospechoso;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 //El cuartel general tambien tendria que ser unico
-public class CuartelGeneral {
-    private ArrayList<Sospechoso> sospechosos;
-    private OrdenDeArresto orden;
-    private Policia policia;
+public class CuartelGeneral extends Observable {
+    private static ArrayList<Sospechoso> sospechosos;
+    private static OrdenDeArresto orden;
+    private static Policia policia;
+    private static CuartelGeneral instance;
 
-    public CuartelGeneral() {
-        this.sospechosos = new ArrayList<Sospechoso>();
+    private CuartelGeneral(){
     }
 
-    public void cargarSospechosos(ArrayList<Sospechoso> sospechosos) {
-        this.sospechosos=sospechosos;
+    public void asignarAJuego(Juego unJuego){
+        addObserver(unJuego);
     }
-    
-    public void cargarSospechoso(Sospechoso unSospechoso){
-    	this.sospechosos.add(unSospechoso);
+
+    public static CuartelGeneral getInstance(){
+        if(instance==null)instance=new CuartelGeneral();
+        return instance;
+    }
+
+    public void cargarSospechosos(ArrayList<Sospechoso> sospechososList) {
+        sospechosos=sospechososList;
     }
 
     public ArrayList<Sospechoso> buscarSospechoso(Descripcion otraDescripcion) {
@@ -32,24 +40,10 @@ public class CuartelGeneral {
         }
         return s;
     }
-    
-    public boolean sospechosoEsUnico(Descripcion unaDescripcion){
-    	int cantidadDeMatches = 0;
-    	for (int i=0; i<sospechosos.size()-1; i++){
-    		if ( sospechosos.get(i).describeLoMismo(unaDescripcion) ){
-    			cantidadDeMatches++;
-    		}
-    	}
-    	
-    	if ( cantidadDeMatches == 1 ){
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
-    }
 
     public void notificarDeArrestoAPolicia() {
+        policia.arrestarLadron();
+        if(policia.obtenerNroArrestos()==policia.obtenerGrado().arrestosParaPromover())policia.promoverGrado();
     }
 
     public boolean fueEmitidaOrdenPara(Sospechoso ladron) {
@@ -61,7 +55,12 @@ public class CuartelGeneral {
         orden=new OrdenDeArresto(sospechoso);
     }
 
-    public void incorporarPolicia(Policia policia) {
-        this.policia=policia;
+    public void incorporarPolicia(Policia unPolicia) {
+        policia=unPolicia;
+    }
+
+    public void notificarVisitaA(Lugar lugar) {
+        setChanged();
+        notifyObservers(lugar);
     }
 }

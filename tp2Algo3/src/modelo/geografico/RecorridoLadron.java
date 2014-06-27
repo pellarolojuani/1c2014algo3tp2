@@ -7,7 +7,7 @@ public class RecorridoLadron {
     private Random generadorAlAzar;
     private Lugar lugarFinal;
 
-    public RecorridoLadron(ArrayList<Ciudad> ciudades, int numCiudadesARecorrer, Grafo grafo) {
+    public RecorridoLadron(ArrayList<Ciudad> ciudades, int numCiudadesARecorrer) {
 
         this.recorrido = new ArrayList<Ciudad>();
         this.recorrido.add(ciudades.get(0));
@@ -24,6 +24,7 @@ public class RecorridoLadron {
         }
         ArrayList<Lugar> lugares = recorrido.get(recorrido.size()-1).obtenerLugaresDisponibles();
         lugarFinal = lugares.get((int) Math.random() * lugares.size());
+        System.out.println("EL LUGAR FINAL ES:   "+lugarFinal.obtenerTipo());
     }
 
     public Ciudad obtenerCiudadFinal() {

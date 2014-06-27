@@ -9,6 +9,7 @@ import modelo.personajes.Sospechoso;
 public class PistaBanco extends Pista {
 
     public PistaBanco(Ciudad ciudadSiguiente, Sospechoso ladron) {
-        pista="vi a alguien sospechoso que fue a una ciudad donde la moneda es "+ ciudadSiguiente.obtenerMoneda();
+        if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
+        else pista="vi a alguien sospechoso que fue a una ciudad donde la moneda es "+ ciudadSiguiente.obtenerMoneda();
     }
 }

@@ -9,7 +9,8 @@ import modelo.personajes.Sospechoso;
 public class PistaBolsa extends Pista {
 	
     public PistaBolsa(Ciudad ciudadSiguiente, Sospechoso ladron) {
-       pista="Vi a alguien sospechoso que fue a una ciudad cuya actividad mas importante es "+ciudadSiguiente.obtenerIndustria();
+        if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
+       else pista="Vi a alguien sospechoso que fue a una ciudad cuya actividad mas importante es "+ciudadSiguiente.obtenerIndustria();
 
     }
 }
