@@ -1,5 +1,8 @@
 package modelo.juego;
 
+import Vista.Vista;
+import Vista.VistaPrincipal;
+import Vista.VistaPrincipalConConsola;
 import modelo.descripciones.*;
 import modelo.elementosDelJuego.CuartelGeneral;
 import modelo.elementosDelJuego.Tiempo;
@@ -10,10 +13,6 @@ import modelo.personajes.Sospechoso;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.awt.*;
-
-import javax.swing.JFrame;
-import Vista.*;
 
 public class MenuBase{
 
@@ -40,40 +39,38 @@ public class MenuBase{
     	vista = cambiarVista();
     	vista.setVisible(true);
 
-    	
-    	in = new Scanner(System.in);
-    	
-    	System.out.println("AlgoThieft");
-    	System.out.println("1. Comenzar juego");
-    	System.out.println("2. Salir");
-    	
-    	boolean quit = false;
+
+        in = new Scanner(System.in);
+
+        System.out.println("AlgoThieft");
+        System.out.println("1. Comenzar juego");
+        System.out.println("2. Salir");
+
+        boolean quit = false;
         int opcion;
         do {
-	        	
-	        System.out.println("Por favor elija una de las opciones");
-	        opcion = in.nextInt();
-			switch (opcion) {
-	        
-	        case 1: 
-	        	juego = new Juego();
-                policia=juego.obtenerPolicia();
-                System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
-                menuPrincipal();
+
+            System.out.println("Por favor elija una de las opciones");
+            opcion = in.nextInt();
+            switch (opcion) {
+
+                case 1:
+                    juego = new Juego();
+                    policia=juego.obtenerPolicia();
+                    System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
+                    menuPrincipal();
 
 
-	        
-	        case 2: 
-                quit = true;
-                break;
-	        
-	        default: System.out.println("Eleccion Invalida.");
-	        
-	        }
-	    } while (!quit); 
+
+                case 2:
+                    quit = true;
+                    break;
+
+                default: System.out.println("Eleccion Invalida.");
+
+            }
+        } while (!quit);
         System.out.println("goodbye Gadget!!");
-        //System.exit(0);
-      
     }
     public static void menuPrincipal(){
         System.out.println("Usted se encuentra en: "+policia.obtenerCiudadActual().getNombre());
@@ -186,7 +183,7 @@ public class MenuBase{
         i=1;
 
         ops.clear();
-        CuartelGeneral cuartelGeneral=policia.obtenerCuartelGeneral();
+        CuartelGeneral cuartelGeneral=CuartelGeneral.getInstance();
         System.out.println(sexo);
         System.out.println(hobby);
         System.out.println(pelo);
@@ -203,5 +200,6 @@ public class MenuBase{
         }
         menuPrincipal();
     }
+
 
 }
