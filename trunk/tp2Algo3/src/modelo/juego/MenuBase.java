@@ -10,10 +10,10 @@ import modelo.personajes.Sospechoso;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.awt.BorderLayout;
+import java.awt.*;
 
 import javax.swing.JFrame;
-import Vista.VistaPrincipal;
+import Vista.*;
 
 public class MenuBase{
 
@@ -21,17 +21,25 @@ public class MenuBase{
     private static Policia policia;
     private static Juego juego;
  
-    private VistaPrincipal vista;
+    private Vista vista;
 	
 	public MenuBase(){
 		this.vista = new VistaPrincipal(this);
 		vista.setVisible(true);
 	}
 	
+	public Vista cambiarVista(){
+		VistaPrincipalConConsola p = new VistaPrincipalConConsola(this);
+		vista.setVisible(false);
+		vista.dispose();
+		return p;
+	}
 
     public void nuevoJuego(){
     	
-    	this.vista.cambiarVista("imagenesVista/juegoNuevo.jpg");
+    	vista = cambiarVista();
+    	vista.setVisible(true);
+
     	
     	in = new Scanner(System.in);
     	
@@ -64,7 +72,8 @@ public class MenuBase{
 	        }
 	    } while (!quit); 
         System.out.println("goodbye Gadget!!");
-        
+        //System.exit(0);
+      
     }
     public static void menuPrincipal(){
         System.out.println("Usted se encuentra en: "+policia.obtenerCiudadActual().getNombre());

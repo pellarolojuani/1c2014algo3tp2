@@ -11,8 +11,8 @@ public class VistaPrincipalImagen extends JPanel {
 	
 	private String nombreVista;
 	
-	public VistaPrincipalImagen(String vista){
-		this.nombreVista = vista;
+	public VistaPrincipalImagen(String vistaName){
+		this.nombreVista = vistaName;
 		this.setSize(100, 100);
 	}
 	

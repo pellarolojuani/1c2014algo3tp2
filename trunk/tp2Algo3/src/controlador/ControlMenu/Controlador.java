@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 import javax.swing.JLabel;
 
-import Vista.VistaPrincipal;
+import Vista.Vista;
 import modelo.*;
 import modelo.juego.MenuBase;
 
@@ -16,30 +16,29 @@ public class Controlador {
 	
 	
 	private class EscuchaBotonNuevo implements ActionListener{
-		private VistaPrincipal vista;
+		private Vista vista;
 		private MenuBase menuBase;
 		
 		public void actionPerformed(ActionEvent e){
-			//this.vista.cambiarVista("imagenesVista/juegoNuevo.jpg");
 			System.out.println("El juego se crea");
-			this.menuBase.nuevoJuego();
+			menuBase = vista.getMenuBase();
+			menuBase.nuevoJuego();
 			
 		}
-		public EscuchaBotonNuevo(VistaPrincipal unaVista, MenuBase unMenuBase){
-			this.menuBase = unMenuBase;
+		public EscuchaBotonNuevo(Vista unaVista){
 			this.vista = unaVista;
 		}
 	}
 
 	
-	public ActionListener getListenerNuevo(VistaPrincipal unaVista, MenuBase unMenuBase) {
-		return new EscuchaBotonNuevo(unaVista, unMenuBase);
+	public ActionListener getListenerNuevo(Vista unaVista) {
+		return new EscuchaBotonNuevo(unaVista);
 	}
 	//-------------------------------------------------------------
 	private class EscuchaBotonGuardar implements ActionListener{
-		private VistaPrincipal vista;
+		private Vista vista;
 		
-		public EscuchaBotonGuardar(VistaPrincipal unaVista){
+		public EscuchaBotonGuardar(Vista unaVista){
 			this.vista = unaVista;
 		}
 		
@@ -57,7 +56,7 @@ public class Controlador {
 		}
 	}
 
-	public ActionListener getListenerGuardar(VistaPrincipal unaVista) {
+	public ActionListener getListenerGuardar(Vista unaVista) {
 		return new EscuchaBotonGuardar(unaVista);
 		}
 	
