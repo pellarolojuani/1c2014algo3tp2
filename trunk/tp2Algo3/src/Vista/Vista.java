@@ -147,10 +147,6 @@ public class Vista extends JFrame implements Observer{
 		
 	}
 	
-	public void printText(String texto){
-		this.add(new javax.swing.JScrollPane(new javax.swing.JTextArea(texto,50,100)));
-		
-	}
 	
 }
 

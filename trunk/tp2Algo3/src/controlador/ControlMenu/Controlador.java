@@ -25,8 +25,7 @@ public class Controlador {
 		
 		public void actionPerformed(ActionEvent e){
 			System.out.println("El juego se crea");
-			menuBase.setOpcion(1);
-			
+			menuBase.setOpcionMenuBase(1);
 		}
 		public EscuchaBotonNuevo(){
 		}
@@ -77,7 +76,7 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//VIAJAR
 			System.out.println("Viajando...");
-			menuBase.setOpcion(1);
+			menuBase.setOpcionMenuPrincipal(1);
 		}
 	}
 	
@@ -90,7 +89,7 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//PISTAS
 			System.out.println("Dando Pistas...");
-			menuBase.setOpcion(2);
+			menuBase.setOpcionMenuPrincipal(2);
 		}
 	}
 	
@@ -102,6 +101,7 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//ORDEN ARRESTO
 			System.out.println("Generando Orden de Arresto...");
+			menuBase.setOpcionMenuPrincipal(3);
 		}
 	}
 	

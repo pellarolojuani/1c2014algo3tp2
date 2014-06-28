@@ -19,7 +19,7 @@ public class MenuBase{
     private static Scanner in;
     private static Policia policia;
     private static Juego juego;
-    private int opcion;
+    private int opcionMenuBase, opcionMenuPrincipal;
  
     private Vista vista;
 	
@@ -32,12 +32,28 @@ public class MenuBase{
 		VistaPrincipalConConsola p = new VistaPrincipalConConsola(this);
 		vista.setVisible(false);
 		vista = p;
+		vista.setVisible(true);
 	}
 
 	public void cambiarAVistaViajar(){
 		VistaViajar p = new VistaViajar(this);
 		vista.setVisible(false);
 		vista = p;
+		vista.setVisible(true);
+	}
+	
+	public void cambiarAVistaPistas(){
+		VistaPistas p = new VistaPistas(this);
+		vista.setVisible(false);
+		vista = p;
+		vista.setVisible(true);
+	}
+	
+	public void cambiarAVistaOrdenArresto(){
+		VistaOrdenArresto p = new VistaOrdenArresto(this);
+		vista.setVisible(false);
+		vista = p;
+		vista.setVisible(true);
 	}
 	
     public void nuevoJuego(){
@@ -50,18 +66,17 @@ public class MenuBase{
         System.out.println("3. Cargar Juego");
         boolean quit = false;
         
+        System.out.println("Por favor elija una de las opciones");
+        
         do {
-
-            System.out.println("Por favor elija una de las opciones");
-            opcion = in.nextInt();
-            switch (opcion) {
+        	opcionMenuBase = in.nextInt();
+            switch (opcionMenuBase) {
 
                 case 1:
                     juego = new Juego();
                     policia=juego.obtenerPolicia();
                     System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
                     cambiarAVistaPrincipalConsola();
-                	vista.setVisible(true);
                     menuPrincipal();
 
 
@@ -76,33 +91,36 @@ public class MenuBase{
                     policia=juego.obtenerPolicia();
                     System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
                     cambiarAVistaPrincipalConsola();
-                	vista.setVisible(true);
                     menuPrincipal();
 
 
-                default: System.out.println("Eleccion Invalida.");
+                //default: System.out.println("Eleccion Invalida.");
 
             }
         } while (!quit);
         System.out.println("goodbye Gadget!!");
     }
-    public static void menuPrincipal(){
-
+    public void menuPrincipal(){
+    	
         System.out.println("Usted se encuentra en: "+policia.obtenerCiudadActual().getNombre());
         System.out.println(Tiempo.tiempoComoString());
         System.out.println("1. Viajar a otra ciudad");
         System.out.println("2. Visitar un lugar");
         System.out.println("3. Emitir orden de arresto");
         System.out.println("4. Guardar");
-        int opcion = in.nextInt();
-        switch(opcion){
+        opcionMenuPrincipal = in.nextInt();
+        
+        switch(opcionMenuPrincipal){
             case 1:
+            	cambiarAVistaViajar();
                 menuViajar();
                 break;
             case 2:
+            	cambiarAVistaPistas();
                 menuVisitar();
                 break;
             case 3:
+            	cambiarAVistaOrdenArresto();
                 menuOrdenDeArresto();
                 break;
             case 4:
@@ -114,7 +132,7 @@ public class MenuBase{
         }
     }
 
-    public static void menuViajar(){
+    public void menuViajar(){
         int opcion;
         ArrayList<Ciudad> ciudadesDisponibles=policia.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles();
         for(Ciudad ciudad: ciudadesDisponibles){
@@ -124,7 +142,7 @@ public class MenuBase{
         policia.viajarA(ciudadesDisponibles.get(opcion-1));
         menuPrincipal();
     }
-    public static void menuVisitar(){
+    public void menuVisitar(){
         int opcion;
         ArrayList<Lugar> lugaresDisponibles=policia.obtenerCiudadActual().obtenerLugaresDisponibles();
         for(Lugar lugar: lugaresDisponibles){
@@ -136,7 +154,7 @@ public class MenuBase{
         System.out.println(pista);
         menuPrincipal();
     }
-    public static void menuOrdenDeArresto(){
+    public void menuOrdenDeArresto(){
         Sexo sexo;
         Senia senia;
         Pelo pelo;
@@ -154,7 +172,8 @@ public class MenuBase{
             i++;
         }
         System.out.println(i+". Desconocido");
-        n=in.nextInt();sexo=n<i?Sexo.valueOf(ops.get(n-1)):null;
+        n=in.nextInt();
+        sexo=n<i?Sexo.valueOf(ops.get(n-1)):null;
         i=1;
 
         System.out.println("Hobby:");
@@ -165,7 +184,8 @@ public class MenuBase{
             i++;
         }
         System.out.println(i+". Desconocido");
-        n=in.nextInt();hobby=n<i?Hobby.valueOf(ops.get(n-1)):null;
+        n=in.nextInt();
+        hobby=n<i?Hobby.valueOf(ops.get(n-1)):null;
         i=1;
 
         System.out.println("Pelo:");
@@ -220,8 +240,12 @@ public class MenuBase{
         menuPrincipal();
     }
     
-    public void setOpcion(int valorOpcion){
-    	opcion = valorOpcion;
+    public void setOpcionMenuBase(int valorOpcion){
+    	opcionMenuBase = valorOpcion;
+    }
+    
+    public void setOpcionMenuPrincipal(int valorOpcion){
+    	opcionMenuPrincipal = valorOpcion;
     }
     
     public String obtenerCiudadActual(){
