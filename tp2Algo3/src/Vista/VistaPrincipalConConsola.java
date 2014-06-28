@@ -21,7 +21,7 @@ public class VistaPrincipalConConsola extends Vista implements Observer{
 	
 	public VistaPrincipalConConsola(MenuBase unMenuBase){
 		super (unMenuBase);
-		this.setImagen("imagenesVista/mapa.jpg");
+		this.setImagen("imagenesVista/juegoNuevo.jpg");
 		
 		label = new Label("Usted se encuentra en: "+control.getMenuBase().obtenerCiudadActual());
 		add("North", label);
@@ -63,18 +63,5 @@ public class VistaPrincipalConConsola extends Vista implements Observer{
 
 	}
 */	
-
 	
-	public void imprimirTexto(String texto){
-		JLabel label = new JLabel();
-		Dimension dimension = new Dimension();
-		dimension.height = 100;
-		dimension.width = getSize().width;
-		label.setSize(dimension);
-		label.setText(texto);
-		this.add("South", label);
-		this.setVisible(true);
-		
-	}
-
 }
