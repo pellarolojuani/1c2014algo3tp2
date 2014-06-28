@@ -8,8 +8,7 @@ public class ObjetoRobado {
 	private Ciudad ciudadOrigen;
 	private String descripcionObjeto;
 
-    public ObjetoRobado(Valor valordelobjeto, Ciudad ciudadOrigen, String descripcion) {
-        this.valor = valordelobjeto;
+    public ObjetoRobado(Ciudad ciudadOrigen, String descripcion) {
         this.ciudadOrigen = ciudadOrigen;
         this.descripcionObjeto = descripcion;
 	}
@@ -19,10 +18,6 @@ public class ObjetoRobado {
 		return this.descripcionObjeto;
 	
 	}
-
-    public Valor obtenerValor() {
-        return this.valor;
-    }
     
 
 	public Ciudad obtenerCiudadOrigen() {

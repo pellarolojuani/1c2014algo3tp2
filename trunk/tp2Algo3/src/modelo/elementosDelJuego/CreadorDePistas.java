@@ -15,6 +15,8 @@ public class CreadorDePistas {
         this.ladron = ladron;
     }
 
+    public CreadorDePistas(){this.ciudadSiguiente=null;this.ladron=null;}
+
     public Pista crearNuevaPista(TipoEdificio tipo){
         if(tipo==TipoEdificio.AEROPUERTO)return crearPistaAeropuerto();
         if(tipo==TipoEdificio.PUERTO)return crearPistaPuerto();
@@ -46,6 +48,12 @@ public class CreadorDePistas {
     public void plantarPistas(Ciudad ciudad) {
         for(Lugar lugar: ciudad.obtenerLugaresDisponibles()){
             lugar.plantarPista(crearNuevaPista(lugar.obtenerTipo()));
+        }
+    }
+
+    public void reiniciarPistasEn(Ciudad ciudad) {
+        for(Lugar lugar: ciudad.obtenerLugaresDisponibles()){
+            lugar.plantarPista(new Pista());
         }
     }
 }

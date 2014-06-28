@@ -5,6 +5,8 @@ import modelo.geografico.Lugar;
 import modelo.juego.Juego;
 import modelo.personajes.Policia;
 import modelo.personajes.Sospechoso;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -62,5 +64,11 @@ public class CuartelGeneral extends Observable {
     public void notificarVisitaA(Lugar lugar) {
         setChanged();
         notifyObservers(lugar);
+    }
+    public Element serializar(Document doc){
+        Element elementoCuartel=doc.createElement("CuartelGeneral");
+        if(orden==null) elementoCuartel.setAttribute("orden","");
+        else elementoCuartel.setAttribute("orden",orden.obtenerSospechoso().getNombre());
+        return elementoCuartel;
     }
 }

@@ -4,6 +4,8 @@
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.Observable;
 
@@ -94,5 +96,25 @@ public class Policia extends Observable{
 
     public int obtenerNroArrestos(){
         return nroArrestos;
+    }
+
+    public Element serializar(Document doc) {
+        Element elementoPolicia=doc.createElement("Policia");
+        elementoPolicia.setAttribute("nombre",nombre);
+        elementoPolicia.setAttribute("grado",grado.name());
+        elementoPolicia.setAttribute("nroArrestos",Integer.toString(nroArrestos));
+        elementoPolicia.setAttribute("ciudadActual",ciudadActual.getNombre());
+        return elementoPolicia;
+    }
+
+    public Policia(String nombre, Grado grado, int nroArrestos,Ciudad ciudadActual){
+        this.nroArrestos=nroArrestos;
+        this.nombre=nombre;
+        this.grado=grado;
+        this.ciudadActual=ciudadActual;
+        System.out.println("El poli es:"+nombre);
+        System.out.println("El poli arresto:"+nroArrestos);
+        System.out.println("El poli es de grado:"+grado);
+        System.out.println("El poli esta en:"+ciudadActual.getNombre());
     }
 }

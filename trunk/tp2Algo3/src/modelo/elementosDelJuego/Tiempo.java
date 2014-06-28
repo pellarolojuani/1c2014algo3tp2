@@ -1,6 +1,9 @@
 package modelo.elementosDelJuego;
 
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 public class Tiempo {
 
 	private static final int MAX_HS_PARA_CASO = 154;//Domingo 17hs contando desde el lunes a las 7 Hs
@@ -58,10 +61,6 @@ public class Tiempo {
 		}
 		
 		return tiempoString + Integer.toString(auxHora) + " Hs";
-		
-		
-		
-
 	}
 	public static void iniciar() {
 
@@ -69,4 +68,11 @@ public class Tiempo {
 		horaSuenio = HORA_SUENIO - HORA_COMIENZO_CASO ;
 		
 	}
+
+    public static Element serializar(Document doc) {
+        Element elementoTiempo=doc.createElement("Tiempo");
+        elementoTiempo.setAttribute("horas",Integer.toString(horas));
+        elementoTiempo.setAttribute("horaSuenio",Integer.toString(horaSuenio));
+        return elementoTiempo;
+    }
 }
