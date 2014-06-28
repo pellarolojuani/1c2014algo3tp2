@@ -55,10 +55,6 @@ public class RecorridoLadron {
         return this.recorrido;
     }
 
-    public boolean contiene(Ciudad ciudad) {
-        return recorrido.contains(ciudad);
-    }
-
     public Lugar obtenerLugarFinal() {
         return lugarFinal;
     }

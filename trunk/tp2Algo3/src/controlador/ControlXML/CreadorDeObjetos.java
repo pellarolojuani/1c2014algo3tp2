@@ -18,8 +18,9 @@ import java.util.ArrayList;
  * Created by chris on 11/06/2014.
  */
 public class CreadorDeObjetos {
+
     private ArrayList<ObjetoRobado> objetos;
-    //Lo creamos con el XML de objetos.
+
     public CreadorDeObjetos(ArrayList<Ciudad> ciudades){
         objetos=new ArrayList<ObjetoRobado>();
         DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
@@ -53,7 +54,6 @@ public class CreadorDeObjetos {
         }
         return null;
     }
-
 
     public ArrayList<ObjetoRobado> obtenerListaDeObjetos(){
         return objetos;

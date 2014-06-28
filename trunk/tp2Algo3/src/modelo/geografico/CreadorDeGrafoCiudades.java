@@ -2,8 +2,6 @@ package modelo.geografico;
 
 import java.util.List;
 
-import modelo.geografico.Grafo;
-
 public class CreadorDeGrafoCiudades{
 	private Grafo grafociudades;
 	
@@ -53,6 +51,7 @@ public class CreadorDeGrafoCiudades{
 	public List<Integer> obtenerciudadesvisitables(int v) {
         return this.grafociudades.obtenerciudadesvisitables(v); 
 	}
+
 	public Grafo obtenergrafo(){
 		return this.grafociudades;
 	}

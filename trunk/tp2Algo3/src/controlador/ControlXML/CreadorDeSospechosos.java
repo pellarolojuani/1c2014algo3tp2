@@ -44,9 +44,11 @@ public class CreadorDeSospechosos {
         }
 
     }
+
     public ArrayList<Sospechoso> obtenerSospechosos(){
         return sospechosos;
     }
+
     private Descripcion crearDescripcion(Element e){
 
         Sexo sexo= Sexo.valueOf(e.getAttribute("sexo").toUpperCase());
