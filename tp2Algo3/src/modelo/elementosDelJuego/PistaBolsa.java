@@ -9,8 +9,23 @@ import modelo.personajes.Sospechoso;
 public class PistaBolsa extends Pista {
 	
     public PistaBolsa(Ciudad ciudadSiguiente, Sospechoso ladron) {
-        if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
-       else pista="Vi a alguien sospechoso que fue a una ciudad cuya actividad mas importante es "+ciudadSiguiente.obtenerIndustria();
+    	
+    	super("XML");
 
+        if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
+        
+        else pista = this.auxTextoPistaCiudad(ciudadSiguiente) + this.auxTextoPistaLadron(ladron);
+        
     }
-}
+
+        // Voy a querer manejar la dificultad de las pistas complejizando los siguientes métodos
+    	private String auxTextoPistaCiudad(Ciudad ciudad){
+    		
+    		return this.textoMoneda + ciudad.obtenerMoneda();
+    	}
+    	
+    	private String auxTextoPistaLadron(Sospechoso ladron){
+    		
+    		return this.textoHobby + ladron.hobbyComoString();
+    	}
+    }

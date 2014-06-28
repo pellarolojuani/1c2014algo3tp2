@@ -4,7 +4,7 @@ import modelo.elementosDelJuego.Pista;
 
 public class Lugar {
 
-	Pista pista;
+	private Pista pista;
     private boolean visitado;
     public TipoEdificio tipo;
     private Ciudad ciudad;
@@ -18,8 +18,15 @@ public class Lugar {
         this.pista=new Pista();
     }
 
-    public String obtenerPista(){
-        return pista.contenidoComoString();
+    public Lugar(TipoEdificio tipo) {
+        this.tipo=tipo;
+        this.numVisitas = 0;
+        this.pista=new Pista();
+	}
+
+	public String obtenerPista(){
+		
+        return this.pista.contenidoComoString();
 	}
 
     public void visitar(){
@@ -30,8 +37,10 @@ public class Lugar {
 		return visitado;
 	}
 
-    public void plantarPista(Pista pista){
-        this.pista=pista;
+    public void plantarPista(Pista pista_){
+    	
+        this.pista = pista_;
+        
     }
 
     public TipoEdificio obtenerTipo() {
