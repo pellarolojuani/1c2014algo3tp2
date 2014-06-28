@@ -3,6 +3,8 @@ package modelo.juego;
 import Vista.Vista;
 import Vista.VistaPrincipal;
 import Vista.VistaPrincipalConConsola;
+import controlador.ControlXML.CargadorXML;
+import controlador.ControlXML.GuardadorXML;
 import modelo.descripciones.*;
 import modelo.elementosDelJuego.CuartelGeneral;
 import modelo.elementosDelJuego.Tiempo;
@@ -45,7 +47,7 @@ public class MenuBase{
         System.out.println("AlgoThieft");
         System.out.println("1. Comenzar juego");
         System.out.println("2. Salir");
-
+        System.out.println("3. Cargar Juego");
         boolean quit = false;
         int opcion;
         do {
@@ -66,6 +68,14 @@ public class MenuBase{
                     quit = true;
                     break;
 
+                case 3:
+                    CargadorXML cargadorXML=new CargadorXML();
+                    juego=cargadorXML.cargar();
+                    policia=juego.obtenerPolicia();
+                    System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
+                    menuPrincipal();
+
+
                 default: System.out.println("Eleccion Invalida.");
 
             }
@@ -78,18 +88,22 @@ public class MenuBase{
         System.out.println("1. Viajar a otra ciudad");
         System.out.println("2. Visitar un lugar");
         System.out.println("3. Emitir orden de arresto");
+        System.out.println("4. Guardar");
         int opcion = in.nextInt();
         switch(opcion){
             case 1:
                 menuViajar();
                 break;
             case 2:
-
                 menuVisitar();
                 break;
             case 3:
-
                 menuOrdenDeArresto();
+                break;
+            case 4:
+                GuardadorXML guardadorXML=new GuardadorXML(juego);
+                guardadorXML.guardar();
+                System.out.println("El juego ha sido guardado");
                 break;
             default: System.out.println("Eleccion Invalida.");
         }

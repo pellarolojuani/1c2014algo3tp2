@@ -1,5 +1,8 @@
 package modelo.geografico;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.util.ArrayList;
 
 public class Ciudad {
@@ -34,6 +37,7 @@ public class Ciudad {
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
     }
+
     
     // NO BORRAR
     public Ciudad(){
@@ -115,6 +119,32 @@ public class Ciudad {
 
     public String obtenerBandera() {
         return bandera;
+    }
+
+    public Element serializar(Document doc) {
+        Element elementoCiudad=doc.createElement("Ciudad");
+        elementoCiudad.setAttribute("nombre",nombre);
+        String ciudadesDestino="";
+        for (int i = 0; i < ciudadesvisitables.size()-1; i++) {
+            ciudadesDestino=ciudadesDestino+ciudadesvisitables.get(i).getNombre()+",";
+        }
+        ciudadesDestino=ciudadesDestino+ciudadesvisitables.get(ciudadesvisitables.size()-1).getNombre();
+        elementoCiudad.setAttribute("ciudadesDestino",ciudadesDestino);
+        return elementoCiudad;
+    }
+
+    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
+        this.nombre = nombre;
+        this.lugares = lugares;
+        this.moneda = unamoneda;
+        this.lugaresdeinteres=lugaresdeinteres;
+        this.personaje=personaje;
+        this.industria=industria;
+        this.fauna=fauna;
+        this.idiomas=idiomas;
+        this.bandera = bandera;
+        this.Latitud = unalatitud;
+        this.Longitud = unalongitud;
     }
 }
 

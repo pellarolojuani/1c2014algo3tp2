@@ -8,51 +8,63 @@ import modelo.elementosDelJuego.Valor;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
 import modelo.geografico.RecorridoLadron;
-import modelo.personajes.Policia;
+import modelo.personajes.Grado;
 import modelo.personajes.Sospechoso;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.ArrayList;
 
 public class Caso {
 
 	private Ciudad ciudadDelRobo;
-	private Ciudad ciudadActual;
 	private ObjetoRobado objetoRobado;
+    private Valor valorObjeto;
 	private Sospechoso ladron;
-    private Tiempo tiempoFinal;
-    private Tiempo tiempoInicial;
-    private Tiempo tiempoActual;
-    private Lugar ubicacionLadron;
     private RecorridoLadron recorridoLadron;
-    private ArrayList<Ciudad>ciudadesConPistas;
-	private Policia policia;
 
-    public Caso(ArrayList<Ciudad> ciudades, Valor valor, Policia policia, ArrayList<Sospechoso> sospechosos) {
-    	this.objetoRobado = new ObjetoRobado(valor, ciudades.get(0),"Descripcion objeto");
-        this.policia = policia;
-        this.ladron= elegirLadron(sospechosos);
+    public Caso(ArrayList<Ciudad> ciudades, ArrayList<ObjetoRobado> objetos, Grado gradoPolicia, ArrayList<Sospechoso> sospechosos) {
+        elegirObjeto(objetos,gradoPolicia);
+        elegirLadron(sospechosos);
+        crearRecorrido();
         System.out.println("El ladron es: "+ladron.getNombre());
-        this.recorridoLadron = new RecorridoLadron(ciudades,this.obtenerCantidadCiudades(valor));
         System.out.println("El recorrido del ladron es:");
         for(Ciudad ciudad: recorridoLadron.obtenerCiudades()){
             System.out.println(ciudad.getNombre());
         }
         System.out.println("Fin del recorrido");
         this.ciudadDelRobo=recorridoLadron.obtenerCiudadDelRobo();
-        ciudadesConPistas=new ArrayList<Ciudad>();
-        plantarPistas(ciudadDelRobo);
+        reiniciarPistas(ciudades);
+        plantarPistas();
     }
 
-    private Sospechoso elegirLadron(ArrayList<Sospechoso> sospechosos) {
-        //Elige un ladron al azar entre los sospechosos.
-        return sospechosos.get((int)(Math.random()*sospechosos.size()+0));
+
+    private void crearRecorrido(){
+        int nroCiudades=4;
+        if(valorObjeto==Valor.VALIOSO)nroCiudades=5;
+        if(valorObjeto==Valor.MUY_VALIOSO)nroCiudades=7;
+        recorridoLadron=new RecorridoLadron(ciudadDelRobo,nroCiudades);
     }
-	
-    public int obtenerCantidadCiudades(Valor valor ) {
-        if (valor == Valor.COMUN) return 4;
-        if (valor == Valor.VALIOSO) return 5;
-        if (valor == Valor.MUY_VALIOSO) return 7;
-		return 0;
+
+    private void reiniciarPistas(ArrayList<Ciudad> ciudades) {
+        CreadorDePistas creadorDePistas=new CreadorDePistas();
+        for(Ciudad ciudad: ciudades){
+            creadorDePistas.reiniciarPistasEn(ciudad);
+        }
+    }
+
+    private void elegirObjeto(ArrayList<ObjetoRobado> objetos, Grado gradoPolicia){
+        //Elegimos el valor del objeto de acuerdo al grado del policia.
+        valorObjeto=Valor.COMUN;
+        if(gradoPolicia==Grado.INVESTIGADOR)valorObjeto=Valor.VALIOSO;
+        else if(gradoPolicia==Grado.SARGENTO)valorObjeto=Valor.MUY_VALIOSO;
+        objetoRobado=objetos.get((int)(Math.random()*objetos.size()));
+        ciudadDelRobo=objetoRobado.obtenerCiudadOrigen();
+    }
+
+    private void elegirLadron(ArrayList<Sospechoso> sospechosos) {
+        //Elige un ladron al azar entre los sospechosos.
+        ladron = sospechosos.get((int)(Math.random()*sospechosos.size()+0));
     }
     
     public Ciudad obtenerCiudadRobo(){
@@ -67,28 +79,17 @@ public class Caso {
 		return this.ladron.obtenerDescripcion().getSexo();
 	}
 
-    private void plantarPistas(Ciudad ciudad) {
-        // Planta las pistas sobre la ciudad siguiente en la ciudad
+    private void plantarPistas() {
+        for(Ciudad ciudad: recorridoLadron.obtenerCiudades()){
             Ciudad ciudadSiguiente = recorridoLadron.obtenerCiudadSiguiente(ciudad);
             CreadorDePistas creadorDePistas = new CreadorDePistas(ciudadSiguiente, ladron);
             creadorDePistas.plantarPistas(ciudad);
-            ciudadesConPistas.add(ciudad);
+        }
     }
 
 	public int obtenerTiempoTranscurridoEnHs() {
 		return (Tiempo.getTiempo());
 	}
-
-    public boolean ciudadTienePistas(Ciudad arg) {
-        //Devuelve true si la ciudad recibida ya tiene pistas sobre el caso.
-        return ciudadesConPistas.contains(arg);
-    }
-
-    public void plantarPistasEnCiudadSiguienteA(Ciudad ciudad) {
-        //Planta las pistas que correspondan en la ciudad siguiente a la recibida.
-        Ciudad ciudadSiguiente=recorridoLadron.obtenerCiudadSiguiente(ciudad);
-        if(!ciudadTienePistas(ciudadSiguiente))plantarPistas(ciudadSiguiente);
-    }
 
     public boolean ladronEstaEnLugar(Lugar lugar) {
         return recorridoLadron.obtenerLugarFinal()==lugar;
@@ -104,5 +105,22 @@ public class Caso {
 
     public boolean ladronEstaEnCiudad(Ciudad ciudad) {
         return recorridoLadron.obtenerCiudadFinal()==ciudad;
+    }
+
+    public Element serializar(Document doc){
+        Element elementoCaso=doc.createElement("Caso");
+        elementoCaso.setAttribute("ladron",ladron.getNombre());
+        elementoCaso.setAttribute("objetoRobado",objetoRobado.obtenerDescripcion());
+        elementoCaso.setAttribute("valorObjeto",valorObjeto.name());
+        elementoCaso.appendChild(recorridoLadron.serializar(doc));
+        return elementoCaso;
+    }
+
+    public Caso(RecorridoLadron recorridoLadron,ObjetoRobado objetoRobado, Valor valorObjeto,Sospechoso ladron){
+        this.recorridoLadron=recorridoLadron;
+        this.ciudadDelRobo=recorridoLadron.obtenerCiudadDelRobo();
+        this.objetoRobado=objetoRobado;
+        this.valorObjeto=valorObjeto;
+        this.ladron=ladron;
     }
 }
