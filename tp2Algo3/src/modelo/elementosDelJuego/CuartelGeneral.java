@@ -13,6 +13,7 @@ import java.util.Observable;
 
 //El cuartel general tambien tendria que ser unico
 public class CuartelGeneral extends Observable {
+
     private static ArrayList<Sospechoso> sospechosos;
     private static OrdenDeArresto orden;
     private static Policia policia;
@@ -65,6 +66,7 @@ public class CuartelGeneral extends Observable {
         setChanged();
         notifyObservers(lugar);
     }
+
     public Element serializar(Document doc){
         Element elementoCuartel=doc.createElement("CuartelGeneral");
         if(orden==null) elementoCuartel.setAttribute("orden","");

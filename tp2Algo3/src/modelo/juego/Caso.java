@@ -3,7 +3,6 @@ package modelo.juego;
 import modelo.descripciones.Sexo;
 import modelo.elementosDelJuego.CreadorDePistas;
 import modelo.elementosDelJuego.ObjetoRobado;
-import modelo.elementosDelJuego.Tiempo;
 import modelo.elementosDelJuego.Valor;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
@@ -38,7 +37,6 @@ public class Caso {
         plantarPistas();
     }
 
-
     private void crearRecorrido(){
         int nroCiudades=4;
         if(valorObjeto==Valor.VALIOSO)nroCiudades=5;
@@ -70,11 +68,7 @@ public class Caso {
     public Ciudad obtenerCiudadRobo(){
 		return this.ciudadDelRobo;
 	}
-	
-	public ObjetoRobado obtenerObjetoRobado(){
-		return this.objetoRobado;
-	}
-	
+
 	public Sexo obtenerSexoLadron(){
 		return this.ladron.obtenerDescripcion().getSexo();
 	}
@@ -87,10 +81,6 @@ public class Caso {
         }
     }
 
-	public int obtenerTiempoTranscurridoEnHs() {
-		return (Tiempo.getTiempo());
-	}
-
     public boolean ladronEstaEnLugar(Lugar lugar) {
         return recorridoLadron.obtenerLugarFinal()==lugar;
     }
@@ -101,10 +91,6 @@ public class Caso {
 
     public String obtenerDescripcionDelRobo() {
         return "Atencion! Se ha registrado el robo de "+objetoRobado.obtenerDescripcion()+" en la ciudad "+ciudadDelRobo.getNombre()+".Testigos afirman que el ladron es de sexo "+obtenerSexoLadron();
-    }
-
-    public boolean ladronEstaEnCiudad(Ciudad ciudad) {
-        return recorridoLadron.obtenerCiudadFinal()==ciudad;
     }
 
     public Element serializar(Document doc){

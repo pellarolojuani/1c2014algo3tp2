@@ -4,7 +4,6 @@ import modelo.geografico.Ciudad;
 
 public class ObjetoRobado {
 
-    private Valor valor;
 	private Ciudad ciudadOrigen;
 	private String descripcionObjeto;
 
@@ -12,13 +11,6 @@ public class ObjetoRobado {
         this.ciudadOrigen = ciudadOrigen;
         this.descripcionObjeto = descripcion;
 	}
-
-	public String contenidoComoString(){
-
-		return this.descripcionObjeto;
-	
-	}
-    
 
 	public Ciudad obtenerCiudadOrigen() {
 		return this.ciudadOrigen;

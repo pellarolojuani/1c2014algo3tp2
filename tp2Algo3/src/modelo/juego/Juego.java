@@ -32,7 +32,7 @@ public class Juego implements Observer{
     public Juego(){
         creadorDeSospechosos = new CreadorDeSospechosos();
         creadorDeCiudades = new CreadorDeCiudades();
-        ciudades=creadorDeCiudades.obtenerCiudades();
+        ciudades=creadorDeCiudades.obtenerCiudadesConVisitables();
         sospechosos=creadorDeSospechosos.obtenerSospechosos();
         creadorDeObjetos=new CreadorDeObjetos(ciudades);
         objetos=creadorDeObjetos.obtenerListaDeObjetos();

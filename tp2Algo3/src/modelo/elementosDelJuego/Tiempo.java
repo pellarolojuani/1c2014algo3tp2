@@ -35,10 +35,7 @@ public class Tiempo {
 			horaSuenio += 24;
 		
 	}
-	public static int getTiempo(){
-		
-		return horas;
-	}
+
 	public static String tiempoComoString(){
 		
 		// Como no empieza el lunes a las 0Hs, necesito sumarle la hora
@@ -62,6 +59,7 @@ public class Tiempo {
 		
 		return tiempoString + Integer.toString(auxHora) + " Hs";
 	}
+
 	public static void iniciar() {
 
 		horas = 0;
