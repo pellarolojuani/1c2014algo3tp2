@@ -11,26 +11,34 @@ import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 
 import modelo.juego.MenuBase;
+import modelo.personajes.Policia;
 
 public class VistaPrincipalConConsola extends Vista implements Observer{
 	
 	private Panel panel;
-	
+	private Label label;
 
 	
 	public VistaPrincipalConConsola(MenuBase unMenuBase){
 		super (unMenuBase);
 		this.setImagen("imagenesVista/mapa.jpg");
 		
+		label = new Label("Usted se encuentra en: "+control.getMenuBase().obtenerCiudadActual());
+		add("North", label);
+		label.setAlignment(Label.CENTER);
+		label.setVisible(true);
 		
 		panel = new Panel(); 
-		Button primerBoton = new Button("Viajar a otra Ciudad");
-		Button segundoBoton = new Button("Visitar un Lugar");
-		Button tercerBoton = new Button("Emitir Orden de Arresto");
+		Button botonViajar = new Button("Viajar a otra Ciudad");
+		botonViajar.addActionListener(control.getListenerViajar());
+		Button botonPistas = new Button("Visitar un Lugar");
+		botonPistas.addActionListener(control.getListenerPistas());
+		Button botonOrdenArresto = new Button("Emitir Orden de Arresto");
+		botonOrdenArresto.addActionListener(control.getListenerOrdenArresto());
 		
-		panel.add(primerBoton); 
-		panel.add(segundoBoton); 
-		panel.add(tercerBoton); 
+		panel.add(botonViajar); 
+		panel.add(botonPistas); 
+		panel.add(botonOrdenArresto); 
 		
 		add("South", panel);
 		panel.setVisible(true);

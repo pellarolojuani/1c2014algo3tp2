@@ -1,8 +1,6 @@
 package modelo.juego;
 
-import Vista.Vista;
-import Vista.VistaPrincipal;
-import Vista.VistaPrincipalConConsola;
+import Vista.*;
 import controlador.ControlXML.CargadorXML;
 import controlador.ControlXML.GuardadorXML;
 import modelo.descripciones.*;
@@ -21,6 +19,7 @@ public class MenuBase{
     private static Scanner in;
     private static Policia policia;
     private static Juego juego;
+    private int opcion;
  
     private Vista vista;
 	
@@ -29,19 +28,20 @@ public class MenuBase{
 		vista.setVisible(true);
 	}
 	
-	public Vista cambiarVista(){
+	public void cambiarAVistaPrincipalConsola(){
 		VistaPrincipalConConsola p = new VistaPrincipalConConsola(this);
 		vista.setVisible(false);
-		vista.dispose();
-		return p;
+		vista = p;
 	}
 
+	public void cambiarAVistaViajar(){
+		VistaViajar p = new VistaViajar(this);
+		vista.setVisible(false);
+		vista = p;
+	}
+	
     public void nuevoJuego(){
     	
-    	vista = cambiarVista();
-    	vista.setVisible(true);
-
-
         in = new Scanner(System.in);
 
         System.out.println("AlgoThieft");
@@ -49,7 +49,7 @@ public class MenuBase{
         System.out.println("2. Salir");
         System.out.println("3. Cargar Juego");
         boolean quit = false;
-        int opcion;
+        
         do {
 
             System.out.println("Por favor elija una de las opciones");
@@ -60,6 +60,8 @@ public class MenuBase{
                     juego = new Juego();
                     policia=juego.obtenerPolicia();
                     System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
+                    cambiarAVistaPrincipalConsola();
+                	vista.setVisible(true);
                     menuPrincipal();
 
 
@@ -73,6 +75,8 @@ public class MenuBase{
                     juego=cargadorXML.cargar();
                     policia=juego.obtenerPolicia();
                     System.out.println(juego.obtenerCaso().obtenerDescripcionDelRobo());
+                    cambiarAVistaPrincipalConsola();
+                	vista.setVisible(true);
                     menuPrincipal();
 
 
@@ -83,6 +87,7 @@ public class MenuBase{
         System.out.println("goodbye Gadget!!");
     }
     public static void menuPrincipal(){
+
         System.out.println("Usted se encuentra en: "+policia.obtenerCiudadActual().getNombre());
         System.out.println(Tiempo.tiempoComoString());
         System.out.println("1. Viajar a otra ciudad");
@@ -213,6 +218,14 @@ public class MenuBase{
             System.out.println("Emitida la orden de arresto para "+sospechosos.get(0).getNombre());
         }
         menuPrincipal();
+    }
+    
+    public void setOpcion(int valorOpcion){
+    	opcion = valorOpcion;
+    }
+    
+    public String obtenerCiudadActual(){
+    	return policia.obtenerCiudadActual().getNombre();
     }
 
 

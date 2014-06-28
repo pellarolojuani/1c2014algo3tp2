@@ -17,8 +17,8 @@ public class Vista extends JFrame implements Observer{
 	private MenuBar menuBarra;
 	private Menu menu1, menu2, menu3;
 	private MenuItem nuevo, guardar, salir, creditos;
-	private MenuBase menuBase;
 	protected VistaPrincipalImagen imagen;
+	protected Controlador control;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -45,9 +45,7 @@ public class Vista extends JFrame implements Observer{
 	
 	public Vista(MenuBase unMenuBase){
 		
-		this.menuBase = unMenuBase;
-		
-		Controlador control = new Controlador();
+		control = new Controlador(unMenuBase);
 		
 		this.setName("ALGOTHIEF GRUPO X");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +54,7 @@ public class Vista extends JFrame implements Observer{
 		menuBarra = new MenuBar();
 		menu1 = new Menu("Juego");
 		nuevo = new MenuItem("Nuevo");
-		nuevo.addActionListener(control.getListenerNuevo(this));
+		nuevo.addActionListener(control.getListenerNuevo());
 		guardar = new MenuItem("Guardar");
 		guardar.addActionListener(control.getListenerGuardar(this));
 		salir = new MenuItem("Salir");
@@ -89,10 +87,6 @@ public class Vista extends JFrame implements Observer{
 		imagen.setBorder(new EmptyBorder(5, 5, 5, 5));
 		imagen.setLayout(new BorderLayout(0, 0));
 		setContentPane(imagen);
-	}
-	
-	public MenuBase getMenuBase(){
-		return menuBase;
 	}
 	
 	
