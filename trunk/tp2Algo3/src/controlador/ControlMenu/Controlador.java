@@ -10,29 +10,31 @@ import modelo.juego.MenuBase;
 
 public class Controlador {
 	
-	public Controlador(){
-		
+	private MenuBase menuBase;
+	
+	public Controlador(MenuBase unMenuBase){
+		menuBase = unMenuBase;
+	}
+	
+	public MenuBase getMenuBase(){
+		return menuBase;
 	}
 	
 	
 	private class EscuchaBotonNuevo implements ActionListener{
-		private Vista vista;
-		private MenuBase menuBase;
 		
 		public void actionPerformed(ActionEvent e){
 			System.out.println("El juego se crea");
-			menuBase = vista.getMenuBase();
-			menuBase.nuevoJuego();
+			menuBase.setOpcion(1);
 			
 		}
-		public EscuchaBotonNuevo(Vista unaVista){
-			this.vista = unaVista;
+		public EscuchaBotonNuevo(){
 		}
 	}
 
 	
-	public ActionListener getListenerNuevo(Vista unaVista) {
-		return new EscuchaBotonNuevo(unaVista);
+	public ActionListener getListenerNuevo() {
+		return new EscuchaBotonNuevo();
 	}
 	//-------------------------------------------------------------
 	private class EscuchaBotonGuardar implements ActionListener{
@@ -71,5 +73,39 @@ public class Controlador {
 	}
 	
 	
+	private class EscuchaBotonViajar implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			//VIAJAR
+			System.out.println("Viajando...");
+			menuBase.setOpcion(1);
+		}
+	}
 	
+	public ActionListener getListenerViajar() {
+		return new EscuchaBotonViajar();
+	}	
+	
+	
+	private class EscuchaBotonPistas implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			//PISTAS
+			System.out.println("Dando Pistas...");
+			menuBase.setOpcion(2);
+		}
+	}
+	
+	public ActionListener getListenerPistas() {
+		return new EscuchaBotonPistas();
+	}	
+	
+	private class EscuchaBotonOrdenArresto implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			//ORDEN ARRESTO
+			System.out.println("Generando Orden de Arresto...");
+		}
+	}
+	
+	public ActionListener getListenerOrdenArresto() {
+		return new EscuchaBotonOrdenArresto();
+	}
 }
