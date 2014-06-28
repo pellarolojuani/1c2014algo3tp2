@@ -1,6 +1,8 @@
 package modelo.personajes;
 
 import modelo.descripciones.Descripcion;
+import modelo.descripciones.Hobby;
+import modelo.descripciones.Senia;
 
 /**
  * Created by chris on 06/06/2014.
@@ -28,4 +30,19 @@ public class Sospechoso {
     public String getNombre(){
        return nombre;
     }
+
+	public String seniaComoString() {
+		
+		return this.obtenerDescripcion().getSenia().toString();
+	}
+
+	public String hobbyComoString() {
+		return this.obtenerDescripcion().getHobby().toString();
+
+	}
+
+	public String peloComoString() {
+		return this.obtenerDescripcion().getPelo().toString();
+
+	}
 }

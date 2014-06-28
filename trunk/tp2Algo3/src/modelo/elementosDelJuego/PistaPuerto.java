@@ -9,8 +9,24 @@ import modelo.personajes.Sospechoso;
 public class PistaPuerto extends Pista {
 	
     public PistaPuerto(Ciudad ciudadSiguiente, Sospechoso ladron) {
+    	
+    	super("XML");
+
         if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
-        else pista="Vi a alguien sospechoso viajando a una ciudad que tiene la bandera "+ciudadSiguiente.obtenerBandera();
+
+        else pista = this.auxTextoPistaCiudad(ciudadSiguiente) + this.auxTextoPistaLadron(ladron);
         
     }
-}
+
+        // Voy a querer manejar la dificultad de las pistas complejizando los siguientes métodos
+        // Voy a usar probabilidad
+    	private String auxTextoPistaCiudad(Ciudad ciudad){
+    		
+    		return this.textoBanderaAeropuerto + ciudad.obtenerBandera();
+    	}
+    	
+    	private String auxTextoPistaLadron(Sospechoso ladron){
+    		
+    		return this.textoSenia + ladron.seniaComoString();
+    	}
+    }
