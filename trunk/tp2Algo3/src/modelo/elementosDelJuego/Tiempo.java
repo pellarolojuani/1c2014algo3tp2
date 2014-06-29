@@ -73,4 +73,9 @@ public class Tiempo {
         elementoTiempo.setAttribute("horaSuenio",Integer.toString(horaSuenio));
         return elementoTiempo;
     }
+
+	public static Object obtenerTiempoEnHs() {
+		
+		return horas;
+	}
 }
