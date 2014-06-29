@@ -33,7 +33,7 @@ public class CreadorDeSospechosos {
                     Descripcion d=crearDescripcion(e);
 
                     Sospechoso s=new Sospechoso(e.getAttribute("nombre"),d);
-                    sospechosos.add(s);
+                    this.sospechosos.add(s);
             }
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class CreadorDeSospechosos {
     }
 
     public ArrayList<Sospechoso> obtenerSospechosos(){
-        return sospechosos;
+        return this.sospechosos;
     }
 
     private Descripcion crearDescripcion(Element e){
