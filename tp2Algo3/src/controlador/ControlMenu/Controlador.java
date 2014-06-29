@@ -25,7 +25,8 @@ public class Controlador {
 		
 		public void actionPerformed(ActionEvent e){
 			System.out.println("El juego se crea");
-			menuBase.setOpcionMenuBase(1);
+			//menuBase.setOpcionMenuBase(1);
+			menuBase.nuevoJuego();
 		}
 		public EscuchaBotonNuevo(){
 		}
@@ -76,7 +77,7 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//VIAJAR
 			System.out.println("Viajando...");
-			menuBase.setOpcionMenuPrincipal(1);
+			menuBase.menuViajar();
 		}
 	}
 	
@@ -107,5 +108,15 @@ public class Controlador {
 	
 	public ActionListener getListenerOrdenArresto() {
 		return new EscuchaBotonOrdenArresto();
+	}
+	
+	private class EscuchaBotonComenzarInvestigacion implements ActionListener{
+
+		public void actionPerformed(ActionEvent arg0) {
+			menuBase.menuPrincipal();
+		}
+	}
+	public ActionListener getListenerComenzarInvestigacion(){
+		return new EscuchaBotonComenzarInvestigacion();
 	}
 }

@@ -22,6 +22,17 @@ public class MenuBase{
     private int opcionMenuBase, opcionMenuPrincipal;
  
     private Vista vista;
+    
+    public Vista getVista(){
+    	return this.vista;
+    }
+    public Juego getJuego(){
+    	return this.juego;
+    }
+    
+    public Policia getPolicia(){
+    	return this.policia;
+    }
 	
 	public MenuBase(){
 		this.vista = new VistaPrincipal(this);
@@ -58,8 +69,11 @@ public class MenuBase{
 	
     public void nuevoJuego(){
     	
+       juego = new Juego();
+       policia=juego.obtenerPolicia();
+       vista.VistaJuegoNuevo(this);
+/*
         in = new Scanner(System.in);
-
         System.out.println("AlgoThieft");
         System.out.println("1. Comenzar juego");
         System.out.println("2. Salir");
@@ -99,9 +113,13 @@ public class MenuBase{
             }
         } while (!quit);
         System.out.println("goodbye Gadget!!");
+       */
     }
     public void menuPrincipal(){
     	
+    	vista.vistaCiudad(policia.obtenerCiudadActual().getNombre());
+    	
+    	/*
         System.out.println("Usted se encuentra en: "+policia.obtenerCiudadActual().getNombre());
         System.out.println(Tiempo.tiempoComoString());
         System.out.println("1. Viajar a otra ciudad");
@@ -129,19 +147,22 @@ public class MenuBase{
                 System.out.println("El juego ha sido guardado");
                 break;
             default: System.out.println("Eleccion Invalida.");
-        }
+        }*/
     }
 
     public void menuViajar(){
         int opcion;
         ArrayList<Ciudad> ciudadesDisponibles=policia.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles();
-        for(Ciudad ciudad: ciudadesDisponibles){
+        vista.vistaViajar(ciudadesDisponibles);
+        /*for(Ciudad ciudad: ciudadesDisponibles){
             System.out.println((ciudadesDisponibles.indexOf(ciudad)+1)+". "+ciudad.getNombre());
         }
         opcion = in.nextInt();
         policia.viajarA(ciudadesDisponibles.get(opcion-1));
-        menuPrincipal();
+        menuPrincipal();*/
     }
+    
+    
     public void menuVisitar(){
         int opcion;
         ArrayList<Lugar> lugaresDisponibles=policia.obtenerCiudadActual().obtenerLugaresDisponibles();
