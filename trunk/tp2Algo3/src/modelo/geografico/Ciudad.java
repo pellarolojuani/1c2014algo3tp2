@@ -146,5 +146,10 @@ public class Ciudad {
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
     }
+
+
+	public String obtenerPuntosInteres() {
+		return this.lugaresdeinteres;
+	}
 }
 
