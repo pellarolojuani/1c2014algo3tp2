@@ -35,7 +35,7 @@ public class CreadorDeCiudades {
     	
     }
 
-    public ArrayList<Ciudad> obtenerCiudadesSinVisitables(){
+    public CreadorDeCiudades(){
         DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
         try {
             File xmlFile = new File("ciudades.xml");
@@ -60,8 +60,6 @@ public class CreadorDeCiudades {
                     Lugar a=new Lugar(tipo, s);
                     lugares.add(a);
                 }
-
-
                 s.agregarLugares(lugares);
                 ciudades.add(s);
 
@@ -78,7 +76,6 @@ public class CreadorDeCiudades {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ciudades;
     }
 
     public ArrayList<Ciudad> obtenerCiudadesConVisitables() {
@@ -86,5 +83,9 @@ public class CreadorDeCiudades {
         this.creadordegrafo = new CreadorDeGrafoCiudades(this.ciudades.size());
         this.setearciudadesvisitables(this.ciudades);
         return ciudades;
+    }
+    
+    public ArrayList<Ciudad> obtenerCiudadesSinVisitables(){
+    return this.ciudades;
     }
 }
