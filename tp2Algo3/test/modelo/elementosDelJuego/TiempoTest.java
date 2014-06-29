@@ -9,7 +9,7 @@ public class TiempoTest {
 	@Test
 	public void testIniciarPoneElTiempoEnCeroHs() {
 		Tiempo.iniciar();
-		assertEquals(0, Tiempo.getTiempo() );
+		assertEquals(0, Tiempo.obtenerTiempoEnHs() );
 	}
 	
 	@Test
@@ -22,7 +22,7 @@ public class TiempoTest {
 	public void testAumentarHorasAumentarElContadorDeHs() {
 		Tiempo.iniciar();
 		Tiempo.aumentarHoras(8);
-		assertEquals(8,Tiempo.getTiempo());
+		assertEquals(8,Tiempo.obtenerTiempoEnHs());
 	}
 	
 	@Test
@@ -30,10 +30,10 @@ public class TiempoTest {
 		
 		Tiempo.iniciar();
 		Tiempo.aumentarHoras(8);
-		assertEquals(8,Tiempo.getTiempo());
+		assertEquals(8,Tiempo.obtenerTiempoEnHs());
 		
 		Tiempo.aumentarHoras(0);
-		assertEquals(8,Tiempo.getTiempo());
+		assertEquals(8,Tiempo.obtenerTiempoEnHs());
 
 	}
 
