@@ -10,7 +10,7 @@ public class PistaBolsa extends Pista {
 	
     public PistaBolsa(Ciudad ciudadSiguiente, Sospechoso ladron) {
     	
-    	super("XML");
+    	super(ladron);
 
         if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
         
