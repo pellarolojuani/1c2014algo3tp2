@@ -1,11 +1,11 @@
 package modelo.juego;
 
-public class main {
+public class Main {
 
-    public static void main(String[] args){
-    	
+	public static void main(String[] args) {
     	MenuBase menu = new MenuBase();
 		menu.nuevoJuego();
-    }
+
+	}
 
 }
