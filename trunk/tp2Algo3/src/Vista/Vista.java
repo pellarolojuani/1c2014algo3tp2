@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
+import modelo.geografico.Lugar;
 import modelo.geografico.TipoEdificio;
 import modelo.juego.MenuBase;
 import controlador.ControlMenu.Controlador;
@@ -53,7 +54,7 @@ public class Vista extends JFrame implements Observer{
 		
 		this.setName("ALGOTHIEF GRUPO X");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(150, 150, 700, 500);
+		setBounds(100, 100, 700, 500);
 		
 		menuBarra = new MenuBar();
 		menu1 = new Menu("Juego");
@@ -129,9 +130,9 @@ public class Vista extends JFrame implements Observer{
 		setContentPane(imagen);
 	}
 	
-	public void vistaCiudad(String unaCiudad){
+	public void vistaCiudad(MenuBase unMenuBase, Ciudad unaCiudad){
 		
-		String ubicacionCiudad = "imagenesVista/ciudades/" + unaCiudad.toLowerCase() + ".jpg";
+		String ubicacionCiudad = "imagenesVista/ciudades/" + unaCiudad.getNombre().toLowerCase() + ".jpg";
 		VistaPrincipalImagen p = new VistaPrincipalImagen(ubicacionCiudad);
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
@@ -141,19 +142,18 @@ public class Vista extends JFrame implements Observer{
 		String horario = "<html><font color = " + comilla + "white" + comilla + "size = 4>" + 
 						 Tiempo.tiempoComoString()+ 
 						 "</font>" + "<br><br><font color = " + comilla + "white" + comilla + "size = 3>" +
-						 "Usted se encuentra en: " + unaCiudad + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</font></html>";
+						 "Usted se encuentra en: " + unaCiudad.getNombre() + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</font></html>";
 		
 		JLabel panelTiempo = new JLabel();
 		panelTiempo.setText(horario);
 		add("East", panelTiempo);
-		
-		
-		
+
 		JButton botonViajar = new JButton();
 		botonViajar.setText("Viajar a otra ciudad");
 		botonViajar.addActionListener(control.getListenerViajar());
 		JButton botonVisitarLugar = new JButton();
 		botonVisitarLugar.setText("Visitar lugar");
+		botonVisitarLugar.addActionListener(control.getListenerVisitarLugar(unMenuBase, this, unaCiudad.obtenerLugaresDisponibles()));
 		JButton botonEmitirOrdenArresto = new JButton();
 		botonEmitirOrdenArresto.setText("Emitir orden de arresto");
 		JPanel panelBotones = new JPanel();
@@ -166,7 +166,48 @@ public class Vista extends JFrame implements Observer{
 		this.setVisible(true);
 	}
 	
+public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
+		
+		String ubicacionCiudad = "imagenesVista/lugares/" + unLugar.obtenerTipo().toString().toLowerCase() + ".jpg";
+		VistaPrincipalImagen p = new VistaPrincipalImagen(ubicacionCiudad);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		p.setLayout(new BorderLayout(0, 0));
+		setContentPane(p);
 	
+		JButton botonVolver = new JButton();
+		botonVolver.setText("Volver");
+		botonVolver.addActionListener(control.getListenerVolver());
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.add(botonVolver);
+		
+		add("South", panelBotones);
+		
+		this.setVisible(true);
+        
+       /* String texto =  "<html><font color = " + comilla + "white" + comilla + "size = 5><br><br>&nbsp&nbsp&nbsp " + 
+        				 pista + "</font><html>";
+        JLabel panelPista = new JLabel();
+		panelPista.setText(texto);
+		panelPista.setBounds(50, 50, 300, 300);
+		add("North", panelPista);
+		
+		this.setVisible(true);*/
+		
+		JFrame frameCreditos = new JFrame("Pista");
+		frameCreditos.setSize(350,200);  //seteamos las dimensiones del marco
+		frameCreditos.setLocation(50, 50);
+		frameCreditos.setLocationRelativeTo(rootPane);
+		frameCreditos.addWindowListener(new CloseFrameListener());
+		JLabel label = new JLabel();
+		label.setSize(frameCreditos.getSize());
+		
+		String texto =  "<html><font color = " + comilla + "black" + comilla + "size = 3><br><br>" + 
+				 pista + "</font><html>";
+		label.setText(texto);
+		frameCreditos.add("North", label);
+		frameCreditos.setVisible(true);  //mostramos el marco
+	}
 
 	
 	public void vistaViajar(ArrayList<Ciudad> ciudadesDisponibles){

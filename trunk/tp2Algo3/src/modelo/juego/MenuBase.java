@@ -9,6 +9,7 @@ import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
+import modelo.geografico.TipoEdificio;
 import modelo.personajes.Policia;
 import modelo.personajes.Sospechoso;
 
@@ -118,7 +119,7 @@ public class MenuBase{
     }
     public void menuPrincipal(){
     	
-    	vista.vistaCiudad(policia.obtenerCiudadActual().getNombre());
+    	vista.vistaCiudad(this, policia.obtenerCiudadActual());
     	
     	/*
         System.out.println("Usted se encuentra en: "+policia.obtenerCiudadActual().getNombre());
@@ -177,11 +178,12 @@ public class MenuBase{
         for(Lugar lugar: lugaresDisponibles){
             System.out.println((lugaresDisponibles.indexOf(lugar)+1)+". "+lugar.obtenerTipo());
         }
-        opcion=in.nextInt();
+        
+        /*opcion=in.nextInt();
         policia.visitarLugar(lugaresDisponibles.get(opcion-1));
         String pista = policia.obtenerUltimaPista();
         System.out.println(pista);
-        menuPrincipal();
+        menuPrincipal();*/
     }
     
     public void menuOrdenDeArresto(){
