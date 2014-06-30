@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Pistas>
-<Pista  textoSeniaCojera = "Era evidente su "  textoSeniaCicatrizTatuaje = "Se notaba su " textoSeniaAnillo = "Llevaba un lindo " textoSeniaJoyas = "Llevaba relucientes "
-		textoPelo = "Tenia el pelo "
-		textoHobby = "Pregunto las ultimas noticias sobre " 
-		textoVehiculo = "Pregunto donde podia estacionar su "
+<Pista  textoSeniaCicatrizTatuaje = ". Se notaba su " textoSeniaAnillo = ". Llevaba un lindo " textoSeniaJoyas = ". Llevaba relucientes "
+		textoPelo = ". Tenia el pelo "
+		textoHobby = ". Pregunto las ultimas noticias sobre " 
+		textoVehiculo = ". Pregunto donde podia estacionar su "
 		textoAeropuertoBandera = "Tomo un avion que tenia el ala adornada con una bandera "
 		textoIdioma = "Pidio un diccionario de "
 		textoPuertoBandera = "Tomo un barco que llevaba una bandera "

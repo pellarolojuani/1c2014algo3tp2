@@ -10,7 +10,7 @@ public class PistaBanco extends Pista {
 
     public PistaBanco(Ciudad ciudadSiguiente, Sospechoso ladron) {
     	
-    	super("XML");//Puede ser cualquier string, lo hice sólo para no pisar el constructor por defecto
+    	super(ladron);//Puede ser cualquier string, lo hice sólo para no pisar el constructor por defecto
     	
         if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
         

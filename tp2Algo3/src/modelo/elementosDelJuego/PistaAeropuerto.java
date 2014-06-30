@@ -9,7 +9,7 @@ import modelo.personajes.Sospechoso;
 public class PistaAeropuerto extends Pista {
 	
     public PistaAeropuerto(Ciudad ciudadSiguiente, Sospechoso ladron) {
-    	super("XML");
+    	super(ladron);
         if(ciudadSiguiente==null){ this.pista = "El ladron esta cerca!";}
         
         else pista = this.auxTextoPistaCiudad(ciudadSiguiente) + this.auxTextoPistaLadron(ladron);

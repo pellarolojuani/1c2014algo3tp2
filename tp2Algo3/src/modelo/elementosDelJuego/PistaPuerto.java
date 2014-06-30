@@ -10,7 +10,7 @@ public class PistaPuerto extends Pista {
 	
     public PistaPuerto(Ciudad ciudadSiguiente, Sospechoso ladron) {
     	
-    	super("XML");
+    	super(ladron);
 
         if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
 
@@ -22,7 +22,7 @@ public class PistaPuerto extends Pista {
         // Voy a usar probabilidad
     	private String auxTextoPistaCiudad(Ciudad ciudad){
     		
-    		return this.textoBanderaAeropuerto + ciudad.obtenerBandera();
+    		return this.textoBanderaPuerto + ciudad.obtenerBandera();
     	}
     	
     	private String auxTextoPistaLadron(Sospechoso ladron){
