@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
+import modelo.geografico.TipoEdificio;
 import modelo.juego.MenuBase;
 import controlador.ControlMenu.Controlador;
 
@@ -165,6 +166,9 @@ public class Vista extends JFrame implements Observer{
 		this.setVisible(true);
 	}
 	
+	
+
+	
 	public void vistaViajar(ArrayList<Ciudad> ciudadesDisponibles){
 		
 		this.setImagen("imagenesVista/mapa.jpg");
@@ -180,9 +184,16 @@ public class Vista extends JFrame implements Observer{
 			panel.add(unBoton);
 			i++;
 		}
-		
+
 		add("South", panel);
 		panel.setVisible(true);
+		this.setVisible(true);
+		
+		String texto = "<html><font size = 4>Elija ciudad entre las disponibles:</font></html>";
+
+		JLabel panelTexto = new JLabel();
+		panelTexto.setText(texto);
+		add("North", panelTexto);
 		this.setVisible(true);
 	}
 

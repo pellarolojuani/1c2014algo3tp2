@@ -154,6 +154,7 @@ public class MenuBase{
         int opcion;
         ArrayList<Ciudad> ciudadesDisponibles=policia.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles();
         vista.vistaViajar(ciudadesDisponibles);
+        
         /*for(Ciudad ciudad: ciudadesDisponibles){
             System.out.println((ciudadesDisponibles.indexOf(ciudad)+1)+". "+ciudad.getNombre());
         }
@@ -175,6 +176,7 @@ public class MenuBase{
         System.out.println(pista);
         menuPrincipal();
     }
+    
     public void menuOrdenDeArresto(){
         Sexo sexo;
         Senia senia;
