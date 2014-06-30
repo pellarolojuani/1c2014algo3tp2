@@ -1,11 +1,13 @@
 package controlador.ControlMenu;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 import Vista.Vista;
 import modelo.*;
+import modelo.geografico.Ciudad;
 import modelo.juego.MenuBase;
 
 public class Controlador {
@@ -85,6 +87,24 @@ public class Controlador {
 		return new EscuchaBotonViajar();
 	}	
 	
+	private class EscuchaBotonViajarACiudad implements ActionListener{
+		private ArrayList<Ciudad> ciudadesDisponibles;
+		int pos;
+		
+		public EscuchaBotonViajarACiudad(int posicion, ArrayList<Ciudad> ciudades){
+			this.ciudadesDisponibles = ciudades;
+			this.pos = posicion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			menuBase.getPolicia().viajarA(ciudadesDisponibles.get(this.pos));
+			menuBase.menuPrincipal();
+		}
+	}
+	
+	public ActionListener getListenerViajarACiudad(int pos, ArrayList<Ciudad> ciudadesDisponibles){
+		return new EscuchaBotonViajarACiudad(pos, ciudadesDisponibles);
+	}
 	
 	private class EscuchaBotonPistas implements ActionListener{
 		public void actionPerformed(ActionEvent e){

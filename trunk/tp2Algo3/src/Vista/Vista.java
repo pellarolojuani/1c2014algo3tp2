@@ -171,9 +171,14 @@ public class Vista extends JFrame implements Observer{
 		this.setVisible(true);
 		
 		JPanel panel = new JPanel(); 
+		int i = 0;
 		
 		for (Ciudad unaCiudad: ciudadesDisponibles){
-			panel.add(new Button(unaCiudad.getNombre()));
+			String nombre = unaCiudad.getNombre();
+			Button unBoton = new Button(nombre);
+			unBoton.addActionListener(control.getListenerViajarACiudad(i, ciudadesDisponibles));
+			panel.add(unBoton);
+			i++;
 		}
 		
 		add("South", panel);
