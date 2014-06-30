@@ -1,9 +1,11 @@
  package modelo.personajes;
 
  import modelo.elementosDelJuego.CuartelGeneral;
+import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -49,11 +51,8 @@ public class Policia extends Observable{
 		
 		double auxTiempoViajeHs = this.ciudadActual.distanciaA(destino) / this.velocidadKmHora;
 		this.ciudadActual = destino;
-		 
 		Tiempo.aumentarHoras( (int) Math.round(auxTiempoViajeHs) );
-
-		
-	};
+};
 
     public void asignarNuevoCasoEn(Ciudad ciudad){
         this.ciudadActual=ciudad;

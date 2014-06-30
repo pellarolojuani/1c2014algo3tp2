@@ -2,10 +2,10 @@ package modelo.juego;
 
 public class main {
 
-    public static void main(String args[]){
+    public static void main(String[] args){
     	
     	MenuBase menu = new MenuBase();
-		//menu.nuevoJuego();
+		menu.nuevoJuego();
     }
 
 }

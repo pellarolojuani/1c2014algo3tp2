@@ -5,6 +5,7 @@ import controlador.ControlXML.CargadorXML;
 import controlador.ControlXML.GuardadorXML;
 import modelo.descripciones.*;
 import modelo.elementosDelJuego.CuartelGeneral;
+import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
@@ -151,17 +152,23 @@ public class MenuBase{
     }
 
     public void menuViajar(){
-        int opcion;
+        //int opcion;
         ArrayList<Ciudad> ciudadesDisponibles=policia.obtenerCiudadActual().obtenerCiudadesDestinoDisponibles();
+        try{
         vista.vistaViajar(ciudadesDisponibles);
-        
+        }
+        catch(SeAcaboElTiempoDelCasoExcepcion e){
+    			System.out.println(e.AvisoAlJugador());
+    	}
+        	
+        }
         /*for(Ciudad ciudad: ciudadesDisponibles){
             System.out.println((ciudadesDisponibles.indexOf(ciudad)+1)+". "+ciudad.getNombre());
         }
         opcion = in.nextInt();
         policia.viajarA(ciudadesDisponibles.get(opcion-1));
         menuPrincipal();*/
-    }
+    
     
     
     public void menuVisitar(){
