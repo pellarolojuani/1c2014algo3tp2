@@ -130,6 +130,9 @@ public class Ciudad {
         }
         ciudadesDestino=ciudadesDestino+ciudadesvisitables.get(ciudadesvisitables.size()-1).getNombre();
         elementoCiudad.setAttribute("ciudadesDestino",ciudadesDestino);
+        for(Lugar l: lugares){
+            elementoCiudad.appendChild(l.serializar(doc));
+        }
         return elementoCiudad;
     }
 
@@ -151,5 +154,12 @@ public class Ciudad {
 	public String obtenerPuntosInteres() {
 		return this.lugaresdeinteres;
 	}
+
+    public Lugar obtenerLugar(TipoEdificio tipoEdificio) {
+        for(Lugar l: lugares){
+            if(l.obtenerTipo()==tipoEdificio)return l;
+        }
+        return null;
+    }
 }
 

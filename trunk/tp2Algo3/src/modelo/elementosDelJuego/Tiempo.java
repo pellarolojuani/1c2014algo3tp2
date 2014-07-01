@@ -78,4 +78,9 @@ public class Tiempo {
 		
 		return horas;
 	}
+
+    public static void iniciarEn(int horas_, int horaSuenio_) {
+       horas =horas_;
+       horaSuenio=horaSuenio_;
+    }
 }
