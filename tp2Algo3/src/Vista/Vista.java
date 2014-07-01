@@ -10,6 +10,7 @@ import modelo.geografico.Lugar;
 import modelo.geografico.TipoEdificio;
 import modelo.juego.MenuBase;
 import controlador.ControlMenu.Controlador;
+import modelo.descripciones.*;
 
 import java.awt.*;
 import java.util.*;
@@ -235,6 +236,90 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		JLabel panelTexto = new JLabel();
 		panelTexto.setText(texto);
 		add("North", panelTexto);
+		this.setVisible(true);
+	}
+	
+	public void vistaOrdenDeArresto(){
+		Sexo sexo = null;
+		Hobby hobby = null;
+		Senia senia = null;
+		Pelo pelo = null;
+		Vehiculo vehiculo = null;		
+		
+		this.setImagen("imagenesVista/ordenDeArresto.jpg");
+		this.setVisible(true);
+		
+		JPanel sexoPanel = new JPanel();
+		JLabel sexoLabel = new JLabel("Sexo:");
+		sexoPanel.add(sexoLabel);
+		for (Sexo s: Sexo.values()){
+			JButton botonAux = new JButton(s.toString());
+			botonAux.addActionListener(control.getListenerSeteadorSexo(sexo, s));
+			sexoPanel.add(botonAux);
+		}
+		
+		JPanel hobbyPanel = new JPanel();
+		JLabel hobbyLabel = new JLabel("Hobby:");
+		hobbyPanel.add(hobbyLabel);
+		for (Hobby h: Hobby.values()){
+			JButton botonAux = new JButton(h.toString());
+			botonAux.addActionListener(control.getListenerSeteadorHobby(hobby, h));
+			hobbyPanel.add(botonAux);
+		}
+		
+		JPanel peloPanel = new JPanel();
+		JLabel peloLabel = new JLabel("Pelo:");
+		peloPanel.add(peloLabel);
+		for (Pelo p: Pelo.values()){
+			JButton botonAux = new JButton(p.toString());
+			botonAux.addActionListener(control.getListenerSeteadorPelo(pelo, p));
+			peloPanel.add(botonAux);
+		}
+		
+		JPanel seniaPanel = new JPanel();
+		JLabel seniaLabel = new JLabel("Seña:");
+		seniaPanel.add(seniaLabel);
+		for (Senia s: Senia.values()){
+			JButton botonAux = new JButton(s.toString());
+			botonAux.addActionListener(control.getListenerSeteadorSenia(senia, s));
+			seniaPanel.add(botonAux);
+		}
+		
+		JPanel vehiculoPanel = new JPanel();
+		JLabel vehiculoLabel = new JLabel("Vehiculo:");
+		vehiculoPanel.add(vehiculoLabel);
+		for (Vehiculo v: Vehiculo.values()){
+			JButton botonAux = new JButton(v.toString());
+			botonAux.addActionListener(control.getListenerSeteadorVehiculo(vehiculo, v));
+			vehiculoPanel.add(botonAux);
+		}
+		
+		JButton botonEmitir = new JButton("Emitir Orden");
+		botonEmitir.addActionListener(control.getListenerEmitirOrden(new Descripcion(sexo,hobby,pelo,senia,vehiculo)));
+		JButton botonVolverPrincipal = new JButton("Volver");
+		botonVolverPrincipal.addActionListener(control.getListenerVolverPrincipal());
+		
+		String texto = "<html><font size = 10><font color = 'yellow'>Caracteristicas del Sospechoso:</font></html>";
+		JLabel panelTexto = new JLabel();
+		panelTexto.setText(texto);
+		add("North", panelTexto);
+		
+		setLayout(new FlowLayout());
+		
+		add(sexoPanel);
+		sexoPanel.setVisible(true);
+		add(hobbyPanel);
+		hobbyPanel.setVisible(true);
+		add(peloPanel);
+		peloPanel.setVisible(true);
+		add(seniaPanel);
+		seniaPanel.setVisible(true);
+		add(vehiculoPanel);
+		vehiculoPanel.setVisible(true);
+		add("South", botonEmitir);
+		add("South", botonVolverPrincipal);
+		
+		
 		this.setVisible(true);
 	}
 
