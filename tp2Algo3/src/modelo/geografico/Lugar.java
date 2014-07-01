@@ -1,11 +1,12 @@
 package modelo.geografico;
 
 import modelo.elementosDelJuego.Pista;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class Lugar {
 
 	private Pista pista;
-    private boolean visitado;
     public TipoEdificio tipo;
     private Ciudad ciudad;
     private int numVisitas;
@@ -13,7 +14,6 @@ public class Lugar {
     public Lugar(TipoEdificio tipo, Ciudad ciudad) {
         this.tipo=tipo;
         this.ciudad = ciudad;
-        this.visitado = false;
         this.numVisitas = 0;
         this.pista=new Pista();
     }
@@ -30,12 +30,9 @@ public class Lugar {
 	}
 
     public void visitar(){
-    	this.visitado=true;
+
     }
 
-	public boolean fueVisitado(){
-		return visitado;
-	}
 
     public void plantarPista(Pista pista_){
     	
@@ -57,5 +54,17 @@ public class Lugar {
 
     public Ciudad estaEnCiudad() {
         return ciudad;
+    }
+
+    public void setVisitas(int nroVisitas){
+        this.numVisitas=nroVisitas;
+    }
+
+    public Element serializar(Document doc) {
+        Element elementoLugar=doc.createElement("Lugar");
+        elementoLugar.setAttribute("tipo",tipo.name());
+        elementoLugar.setAttribute("numVisitas",Integer.toString(numVisitas));
+        elementoLugar.setAttribute("pista",pista.contenidoComoString());
+        return elementoLugar;
     }
 }

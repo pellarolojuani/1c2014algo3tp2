@@ -93,5 +93,7 @@ public class Juego implements Observer{
         this.ciudades=ciudades;
         this.caso=caso;
         this.policia=policia;
+        CuartelGeneral.getInstance().asignarAJuego(this);
+        CuartelGeneral.getInstance().incorporarPolicia(policia);
     }
 }

@@ -1,21 +1,17 @@
 package modelo.elementosDelJuego;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import modelo.descripciones.Descripcion;
 import modelo.descripciones.Senia;
 import modelo.personajes.Sospechoso;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
 
 public class Pista {
 
@@ -34,6 +30,10 @@ public class Pista {
 	protected String textoBanderaAeropuerto;
 	protected String textoBanderaPuerto;
 	protected String textoMoneda;
+
+    public Pista(String pista){
+        this.pista=pista;
+    }
 
 	public Pista() {
 		this.pista = "Lo siento, no he visto a nadie sospechoso.";

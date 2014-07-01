@@ -1,8 +1,8 @@
 package controlador.ControlXML;
 
-import modelo.elementosDelJuego.ObjetoRobado;
-import modelo.elementosDelJuego.Valor;
+import modelo.elementosDelJuego.*;
 import modelo.geografico.Ciudad;
+import modelo.geografico.Lugar;
 import modelo.geografico.RecorridoLadron;
 import modelo.geografico.TipoEdificio;
 import modelo.juego.Caso;
@@ -44,6 +44,7 @@ public class CargadorXML {
             document.getDocumentElement().normalize();
 
             cargarCiudadesVisitables(document,ciudadesMap);
+            cargarLugaresVisitados(document,ciudadesMap);
 
             Policia policia=cargarPolicia(document, ciudadesMap);
 
@@ -52,11 +53,15 @@ public class CargadorXML {
 
             RecorridoLadron recorridoLadron=cargarRecorridoLadron(document, ciudadesMap);
 
+            //Para todas las ciudades que esten en el recorrido, guardar las pistas, si es
+
             CreadorDeSospechosos creadorDeSospechosos = new CreadorDeSospechosos();
             ArrayList<Sospechoso> sospechosos = creadorDeSospechosos.obtenerSospechosos();
 
             Caso caso=cargarCaso(document,sospechosos,objetos,recorridoLadron);
 
+            cargarCuartelGeneral(document,sospechosos);
+            cargarTiempo(document);
             juego = new Juego(sospechosos, objetos, ciudades, caso, policia);
 
         } catch (ParserConfigurationException e) {
@@ -68,6 +73,42 @@ public class CargadorXML {
         }
         return juego;
 
+    }
+
+    private void cargarTiempo(Document doc){
+        Element elementoTiempo= (Element) doc.getElementsByTagName("Tiempo").item(0);
+        int horaSuenio=Integer.parseInt(elementoTiempo.getAttribute("horaSuenio"));
+        int horas=Integer.parseInt(elementoTiempo.getAttribute("horas"));
+        Tiempo.iniciarEn(horas, horaSuenio);
+    }
+
+    private void cargarCuartelGeneral(Document document, ArrayList<Sospechoso> sospechosos){
+        Element elementoCuartel= (Element) document.getElementsByTagName("CuartelGeneral").item(0);
+        String orden=elementoCuartel.getAttribute("orden");
+        for (Sospechoso s: sospechosos){
+            if (s.getNombre().equals(orden)){
+                CuartelGeneral.getInstance().emitirOrdenDeArrestoPara(s);
+                return;
+            }
+        }
+    }
+
+    private void cargarLugaresVisitados(Document document, Map<String, Ciudad> ciudadesMap) {
+        NodeList ciudadesList = document.getElementsByTagName("Ciudad");
+        for (int i = 0; i < ciudadesList.getLength(); i++) {
+            //Para cada ciudad
+            Element c = (Element) ciudadesList.item(i);
+            Ciudad ciudad=ciudadesMap.get(c.getAttribute("nombre"));
+            NodeList lugaresList=c.getChildNodes();
+            for (int j = 0; j < lugaresList.getLength(); j++) {
+                //Para cada lugar de la ciudad, cargamos el nro de visitas, y la pista.
+                Element lugar=(Element)lugaresList.item(j);
+                TipoEdificio tipo=TipoEdificio.valueOf(lugar.getAttribute("tipo"));
+                Lugar l=ciudad.obtenerLugar(tipo);
+                l.setVisitas(Integer.parseInt(lugar.getAttribute("numVisitas")));
+                l.plantarPista(new Pista(lugar.getAttribute("pista")));
+            }
+        }
     }
 
     private void cargarCiudadesVisitables(Document doc, Map<String,Ciudad> ciudadesMap){
