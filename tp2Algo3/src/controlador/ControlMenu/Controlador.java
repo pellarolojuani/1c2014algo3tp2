@@ -119,16 +119,17 @@ public class Controlador {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-	        try{
+			try{
 	        	menuBase.getPolicia().viajarA(ciudadesDisponibles.get(this.pos));
+	        	menuBase.menuPrincipal();
+		        vista.setVisible(true);
 	           }
 	            catch(SeAcaboElTiempoDelCasoExcepcion i){
 	        		System.out.println(i.AvisoAlJugador());
 	        		vista.vistaGameOver();
 	            	vista.setVisible(true);
-	        	}
-	        menuBase.menuPrincipal();
-	        vista.setVisible(true);
+	            }
+	        
 
 		}
 	}
@@ -259,7 +260,7 @@ public class Controlador {
 			}
 			
 			if(sospechosos.size()==0){
-	            texto += "<br><br>No se encontró ningún sospechoso que concuerde con la descripción seleccionada";
+	            texto += "<br><br>No se encontro ningun sospechoso que concuerde con la descripcion seleccionada";
 	        }
 			if(sospechosos.size()==1){
 	            menuBase.getPolicia().emitirOrdenDeArrestoPara(sospechosos.get(0));
