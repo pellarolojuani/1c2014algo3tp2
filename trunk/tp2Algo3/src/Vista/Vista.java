@@ -45,7 +45,8 @@ public class Vista extends JFrame implements Observer{
 	}
 	
 	
-	public Vista(){
+	public Vista(String fondo){
+		super(fondo);
 		
 	}
 	
@@ -178,7 +179,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 	
 		JButton botonVolver = new JButton();
 		botonVolver.setText("Volver");
-		botonVolver.addActionListener(control.getListenerVolver());
+		botonVolver.addActionListener(control.getListenerComenzarInvestigacion());
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonVolver);
@@ -186,17 +187,9 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		add("South", panelBotones);
 		
 		this.setVisible(true);
-        
-       /* String texto =  "<html><font color = " + comilla + "white" + comilla + "size = 5><br><br>&nbsp&nbsp&nbsp " + 
-        				 pista + "</font><html>";
-        JLabel panelPista = new JLabel();
-		panelPista.setText(texto);
-		panelPista.setBounds(50, 50, 300, 300);
-		add("North", panelPista);
 		
-		this.setVisible(true);*/
-		
-		JFrame frameCreditos = new JFrame("Pista");
+		Vista frameCreditos = new Vista("Pista");
+		frameCreditos.setImagen("imagenesVista/pistas.jpg");
 		frameCreditos.setSize(350,200);  //seteamos las dimensiones del marco
 		frameCreditos.setLocation(50, 50);
 		frameCreditos.setLocationRelativeTo(rootPane);
@@ -204,7 +197,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		JLabel label = new JLabel();
 		label.setSize(frameCreditos.getSize());
 		
-		String texto =  "<html><font color = " + comilla + "black" + comilla + "size = 3><br><br>" + 
+		String texto =  "<html><font color = " + comilla + "black" + comilla + "size = 3>" + 
 				 pista + "</font><html>";
 		label.setText(texto);
 		frameCreditos.add("North", label);
