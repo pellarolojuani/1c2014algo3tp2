@@ -129,8 +129,6 @@ public class Controlador {
 	        		vista.vistaGameOver();
 	            	vista.setVisible(true);
 	            }
-	        
-
 		}
 	}
 	
@@ -198,10 +196,16 @@ public class Controlador {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			Lugar unLugar = lugares.get(posicion);
-			menuBase.getPolicia().visitarLugar(unLugar);
-			String pista = menuBase.getPolicia().obtenerUltimaPista();
-			vista.vistaLugar(menu, unLugar, pista);
+			try{
+				Lugar unLugar = lugares.get(posicion);
+				menuBase.getPolicia().visitarLugar(unLugar);
+				String pista = menuBase.getPolicia().obtenerUltimaPista();
+				vista.vistaLugar(menu, unLugar, pista);
+			} catch(SeAcaboElTiempoDelCasoExcepcion i){
+        		System.out.println(i.AvisoAlJugador());
+        		vista.vistaGameOver();
+            	vista.setVisible(true);
+			}
 		}
 		
 		public ActionListener getListenerLugar(MenuBase unMenuBase, int pos, ArrayList<Lugar> lugares, Vista unaVista){
@@ -353,14 +357,29 @@ public class Controlador {
 	}
 
 	private class EscucharBotonVolver implements ActionListener{
+		private Vista vista;
+		private Vista pista;
+		
+		public EscucharBotonVolver(Vista unaVista, Vista unaPista){
+			this.vista = unaVista;
+			this.pista = unaPista;
+		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			menuBase.menuPrincipal();
+			try {
+				if (this.pista != null) this.pista.setVisible(false);
+				menuBase.menuPrincipal();
+			}
+			catch(SeAcaboElTiempoDelCasoExcepcion i){
+        		System.out.println(i.AvisoAlJugador());
+        		vista.vistaGameOver();
+            	vista.setVisible(true);
+            }
 		}
-		
 	}
-	public ActionListener getListenerVolver(){
-		return new EscucharBotonVolver();
+
+	public ActionListener getListenerVolver(Vista unaVista, Vista unaPista){
+		return new EscucharBotonVolver(unaVista, unaPista);
 	}
 }
 

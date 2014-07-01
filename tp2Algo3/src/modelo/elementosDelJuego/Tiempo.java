@@ -78,6 +78,10 @@ public class Tiempo {
 		
 		return horas;
 	}
+	
+	public static int getTiempoEnHs(){
+		return horas;
+	}
 
     public static void iniciarEn(int horas_, int horaSuenio_) {
        horas =horas_;
