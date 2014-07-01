@@ -259,7 +259,7 @@ public class Controlador {
 			}
 			
 			if(sospechosos.size()==0){
-	            texto.concat("<br><br>No se encontro ningun sospechoso que concuerde con la decripcion seleccionada");
+	            texto += "<br><br>No se encontró ningún sospechoso que concuerde con la descripción seleccionada";
 	        }
 			if(sospechosos.size()==1){
 	            menuBase.getPolicia().emitirOrdenDeArrestoPara(sospechosos.get(0));
