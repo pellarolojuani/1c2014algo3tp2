@@ -22,9 +22,20 @@ import modelo.juego.MenuBase;
 public class Controlador {
 	
 	private MenuBase menuBase;
+	private Sexo sexoElegido;
+	private Hobby hobbyElegido;
+	private Pelo peloElegido;
+	private Senia seniaElegida;
+	private Vehiculo vehiculoElegido;
 	
 	public Controlador(MenuBase unMenuBase){
 		menuBase = unMenuBase;
+		menuBase = unMenuBase;
+		sexoElegido = null;
+		hobbyElegido = null;
+		peloElegido = null;
+		seniaElegida = null;
+		vehiculoElegido = null;
 	}
 	
 	public MenuBase getMenuBase(){
@@ -202,6 +213,11 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//ORDEN ARRESTO
 			System.out.println("Generando Orden de Arresto...");
+			sexoElegido = null;
+			hobbyElegido = null;
+			peloElegido = null;
+			seniaElegida = null;
+			vehiculoElegido = null;
 			menuBase.menuOrdenDeArresto();
 		}
 	}
@@ -222,25 +238,24 @@ public class Controlador {
 	
 	private class EscuchaBotonEmitirOrden implements ActionListener{
 		private ArrayList<Sospechoso> sospechosos;
-		private Descripcion descripcion;
-		
-		public EscuchaBotonEmitirOrden(Descripcion unaDescripcion){
-			this.descripcion = unaDescripcion;
-		}
 		
 		public void actionPerformed(ActionEvent arg0) {
 			CuartelGeneral cuartelGeneral = CuartelGeneral.getInstance();
-			sospechosos = cuartelGeneral.buscarSospechoso(descripcion);
+			sospechosos = cuartelGeneral.buscarSospechoso(new Descripcion(sexoElegido, hobbyElegido, peloElegido, seniaElegida, vehiculoElegido));
 			
 			JFrame sospechososVentana = new JFrame();
 			sospechososVentana.setDefaultCloseOperation(sospechososVentana.DISPOSE_ON_CLOSE);
-			sospechososVentana.setSize(350, 350);
+			sospechososVentana.setSize(350, 400);
 			JLabel mensajeLabel = new JLabel();
 			mensajeLabel.setSize(sospechososVentana.getSize());
-			String texto = "<html><body>Coincidencias:<br>";
+			String texto = "<html><body><font size = 6>Coincidencias:<br>";
+			int i = 1;
 			for (Sospechoso s: sospechosos){
-				texto.concat("<br>");
-				texto.concat(s.getNombre());
+				texto += "<br>";
+				texto += i;
+				texto += ". ";
+				texto += s.getNombre();
+				i++;
 			}
 			
 			if(sospechosos.size()==0){
@@ -251,109 +266,89 @@ public class Controlador {
 	            texto.concat("<br><br>Emitida la orden de arresto para "+sospechosos.get(0).getNombre());
 	        }
 			
-			texto.concat("</body></html>");
+			texto += "</body></html>";
 			mensajeLabel.setText(texto);
 			sospechososVentana.add("North",mensajeLabel);
 			sospechososVentana.setVisible(true);
 		}
 	}
-	public ActionListener getListenerEmitirOrden(Descripcion unaDescripcion){
-		return new EscuchaBotonEmitirOrden(unaDescripcion);
+	public ActionListener getListenerEmitirOrden(){
+		return new EscuchaBotonEmitirOrden();
 	}
-	
-	private class EscuchaBotonVolverPrincipal implements ActionListener{
-
-		public void actionPerformed(ActionEvent arg0) {
-			menuBase.menuPrincipal();
-		}
-	}
-	public ActionListener getListenerVolverPrincipal(){
-		return new EscuchaBotonVolverPrincipal();
-	}
-	
+		
 	private class EscuchaBotonSeteadorSexo implements ActionListener{
-		private Sexo sexoElegido;
 		private Sexo sexoOpcion;
 		
-		public EscuchaBotonSeteadorSexo(Sexo sexoElegido, Sexo sexoOpcion){
-			this.sexoElegido = sexoElegido;
+		public EscuchaBotonSeteadorSexo(Sexo sexoOpcion){
 			this.sexoOpcion = sexoOpcion;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			this.sexoElegido = this.sexoOpcion;
+			sexoElegido = this.sexoOpcion;
 		}
 	}
-	public ActionListener getListenerSeteadorSexo(Sexo sexoElegido, Sexo sexoOpcion){
-		return new EscuchaBotonSeteadorSexo(sexoElegido, sexoOpcion);
+	public ActionListener getListenerSeteadorSexo(Sexo sexoOpcion){
+		return new EscuchaBotonSeteadorSexo(sexoOpcion);
 	}
 	
 	private class EscuchaBotonSeteadorHobby implements ActionListener{
-		private Hobby hobbyElegido;
 		private Hobby hobbyOpcion;
 		
-		public EscuchaBotonSeteadorHobby(Hobby hobbyElegido, Hobby hobbyOpcion){
-			this.hobbyElegido = hobbyElegido;
+		public EscuchaBotonSeteadorHobby(Hobby hobbyOpcion){
 			this.hobbyOpcion = hobbyOpcion;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			this.hobbyElegido = this.hobbyOpcion;
+			hobbyElegido = this.hobbyOpcion;
 		}
 	}
-	public ActionListener getListenerSeteadorHobby(Hobby hobbyElegido, Hobby hobbyOpcion){
-		return new EscuchaBotonSeteadorHobby(hobbyElegido, hobbyOpcion);
+	public ActionListener getListenerSeteadorHobby(Hobby hobbyOpcion){
+		return new EscuchaBotonSeteadorHobby(hobbyOpcion);
 	}
 	
 	private class EscuchaBotonSeteadorPelo implements ActionListener{
-		private Pelo peloElegido;
 		private Pelo peloOpcion;
 		
-		public EscuchaBotonSeteadorPelo(Pelo peloElegido, Pelo peloOpcion){
-			this.peloElegido = peloElegido;
+		public EscuchaBotonSeteadorPelo(Pelo peloOpcion){
 			this.peloOpcion = peloOpcion;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			this.peloElegido = this.peloOpcion;
+			peloElegido = this.peloOpcion;
 		}
 	}
-	public ActionListener getListenerSeteadorPelo(Pelo peloElegido, Pelo peloOpcion){
-		return new EscuchaBotonSeteadorPelo(peloElegido, peloOpcion);
+	public ActionListener getListenerSeteadorPelo(Pelo peloOpcion){
+		return new EscuchaBotonSeteadorPelo(peloOpcion);
 	}
 	
 	private class EscuchaBotonSeteadorSenia implements ActionListener{
-		private Senia seniaElegido;
 		private Senia seniaOpcion;
 		
-		public EscuchaBotonSeteadorSenia(Senia seniaElegido, Senia seniaOpcion){
-			this.seniaElegido = seniaElegido;
+		public EscuchaBotonSeteadorSenia(Senia seniaOpcion){
 			this.seniaOpcion = seniaOpcion;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			this.seniaElegido = this.seniaOpcion;
+			seniaElegida = this.seniaOpcion;
 		}
 	}
-	public ActionListener getListenerSeteadorSenia(Senia seniaElegido, Senia seniaOpcion){
-		return new EscuchaBotonSeteadorSenia(seniaElegido, seniaOpcion);
+	public ActionListener getListenerSeteadorSenia(Senia seniaOpcion){
+		return new EscuchaBotonSeteadorSenia(seniaOpcion);
 	}
 	
 	private class EscuchaBotonSeteadorVehiculo implements ActionListener{
-		private Vehiculo vehiculoElegido;
 		private Vehiculo vehiculoOpcion;
 		
-		public EscuchaBotonSeteadorVehiculo(Vehiculo vehiculoElegido, Vehiculo vehiculoOpcion){
-			this.vehiculoElegido = vehiculoElegido;
+		public EscuchaBotonSeteadorVehiculo(Vehiculo vehiculoOpcion){
 			this.vehiculoOpcion = vehiculoOpcion;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			this.vehiculoElegido = this.vehiculoOpcion;
+			vehiculoElegido = this.vehiculoOpcion;
 		}
 	}
-	public ActionListener getListenerSeteadorVehiculo(Vehiculo vehiculoElegido, Vehiculo vehiculoOpcion){
-		return new EscuchaBotonSeteadorVehiculo(vehiculoElegido, vehiculoOpcion);
+	public ActionListener getListenerSeteadorVehiculo(Vehiculo vehiculoOpcion){
+		return new EscuchaBotonSeteadorVehiculo(vehiculoOpcion);
 	}
 
 	private class EscucharBotonVolver implements ActionListener{
