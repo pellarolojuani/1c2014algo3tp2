@@ -1,3 +1,17 @@
 <Objetos>
-<Objeto ciudad="Buenos Aires" descripcion="Diamante"></Objeto>
+    <Objeto descripcion="Tabla Babilónica" ciudad="Bagdad"></Objeto>
+    <Objeto descripcion="Cruz Con Joyas Constantina" ciudad="Estambul"></Objeto>
+    <Objeto descripcion="Joyas De La Corona" ciudad="Londres"></Objeto>
+    <Objeto descripcion="Alfombra Voladora" ciudad="Bagdad"></Objeto>
+    <Objeto descripcion="Buda De Oro" ciudad="Bangkok"></Objeto>
+    <Objeto descripcion="Máscara De Oro Inca" ciudad="Lima"></Objeto>
+    <Objeto descripcion="Manuscrito Islámico" ciudad="Bamako"></Objeto>
+    <Objeto descripcion="Máscara Del Faraón Tutankamón" ciudad="El Cairo"></Objeto>
+    <Objeto descripcion="Máscara De Priam" ciudad="Atenas"></Objeto>
+    <Objeto descripcion="Alfarería Del Imperio De Mali" ciudad="Bamako"></Objeto>
+    <Objeto descripcion="Colección Real De Cuarzo" ciudad="Katmandu"></Objeto>
+    <Objeto descripcion="Rubí De Serendip" ciudad="Colombo"></Objeto>
+    <Objeto descripcion="Llama De Plata" ciudad="Lima"></Objeto>
+    <Objeto descripcion="Esfera De Oro Sólido" ciudad="Buenos Aires"></Objeto>
+    <Objeto descripcion="Headdress Del Rey Watusi" ciudad="Kigali"></Objeto>
 </Objetos>
