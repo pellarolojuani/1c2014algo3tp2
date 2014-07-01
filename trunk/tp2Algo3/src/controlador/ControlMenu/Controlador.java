@@ -146,7 +146,7 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//PISTAS
 			System.out.println("Dando Pistas...");
-			menuBase.setOpcionMenuPrincipal(2);
+			menuBase.menuVisitar();
 		}
 	}
 	
