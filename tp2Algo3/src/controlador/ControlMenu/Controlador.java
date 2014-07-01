@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
+import controlador.ControlXML.CargadorXML;
+import controlador.ControlXML.GuardadorXML;
 import Vista.Vista;
 import modelo.*;
 import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
@@ -17,6 +19,7 @@ import modelo.geografico.Lugar;
 import modelo.personajes.Sospechoso;
 import modelo.descripciones.*;
 import modelo.elementosDelJuego.CuartelGeneral;
+import modelo.juego.Juego;
 import modelo.juego.MenuBase;
 
 public class Controlador {
@@ -27,6 +30,8 @@ public class Controlador {
 	private Pelo peloElegido;
 	private Senia seniaElegida;
 	private Vehiculo vehiculoElegido;
+	
+	private char comilla = (char)34;
 	
 	public Controlador(MenuBase unMenuBase){
 		menuBase = unMenuBase;
@@ -67,14 +72,15 @@ public class Controlador {
 		}
 		
 		public void actionPerformed(ActionEvent e){
-			// ACA DEBERIAMOS HACER EL GUARDAR;
+			GuardadorXML guardadorXML=new GuardadorXML(menuBase.getJuego());
+            guardadorXML.guardar();
 			
 			JLabel label = new JLabel();
 			label.setSize(this.vista.getSize());
-			String texto = "<html><body>Partida Guardada"+
+			String texto = "<html><body color = " + comilla + "red" + comilla + " size = 4>Partida Guardada"+
 					"</body></html>";
 			label.setText(texto);
-			this.vista.add("South", label);
+			this.vista.add("North", label);
 			this.vista.setVisible(true);  //mostramos el marco
 			System.out.println("El juego se guarda");
 		}
@@ -380,6 +386,26 @@ public class Controlador {
 
 	public ActionListener getListenerVolver(Vista unaVista, Vista unaPista){
 		return new EscucharBotonVolver(unaVista, unaPista);
+	}
+	
+	private class EscucharBotonCargarPartida implements ActionListener{
+		private Vista vista;
+
+		public void actionPerformed(ActionEvent arg0) {
+			CargadorXML cargadorXML=new CargadorXML();
+            menuBase.setJuego(cargadorXML.cargar());
+            menuBase.setPolicia(menuBase.getJuego().obtenerPolicia());
+            
+            vista.vistaCiudad(menuBase, menuBase.getPolicia().obtenerCiudadActual());
+		}
+		
+		public EscucharBotonCargarPartida(Vista unaVista){
+			this.vista = unaVista;
+		}
+	}
+	
+	public ActionListener getListenerCargarPartida(Vista unaVista){
+		return new EscucharBotonCargarPartida(unaVista);
 	}
 }
 

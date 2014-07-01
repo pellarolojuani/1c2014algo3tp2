@@ -35,6 +35,14 @@ public class MenuBase{
     public Policia getPolicia(){
     	return this.policia;
     }
+    
+    public void setJuego(Juego unJuego){
+    	this.juego = unJuego;
+    }
+    
+    public void setPolicia(Policia unPolicia){
+    	this.policia = unPolicia;
+    }
 	
 	public MenuBase(){
 		this.vista = new VistaPrincipal(this);
