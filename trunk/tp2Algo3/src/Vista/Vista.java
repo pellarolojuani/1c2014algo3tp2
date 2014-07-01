@@ -132,6 +132,18 @@ public class Vista extends JFrame implements Observer{
 		add("South", panelBotones);
 		
 		this.setVisible(true);
+		
+		String texto =  "<html><font color = " + comilla + "red" + comilla + " size = 4>" +
+						"Tiempo agotado...</font></html>";
+		
+		JLabel label = new JLabel();
+		Dimension dimension = new Dimension();
+		dimension.height = 100;
+		dimension.width = getSize().width;
+		label.setSize(dimension);
+		label.setText(texto);
+		add("North", label);
+		this.setVisible(true);
 	}
 	
 	public void imprimirTexto(String texto){
