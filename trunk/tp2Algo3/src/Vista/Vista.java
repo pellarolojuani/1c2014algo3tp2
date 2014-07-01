@@ -200,6 +200,28 @@ public class Vista extends JFrame implements Observer{
 		add("South", panelBotones);
 		
 		this.setVisible(true);
+		
+		if (Tiempo.getTiempoEnHs() >= 150){
+			Vista frameAdvertencia = new Vista("ATENCION");
+			frameAdvertencia.setSize(350,200);  //seteamos las dimensiones del marco
+			frameAdvertencia.setLocation(50, 50);
+			frameAdvertencia.setLocationRelativeTo(rootPane);
+			frameAdvertencia.addWindowListener(new CloseFrameListener());
+			JLabel label = new JLabel();
+			label.setSize(frameAdvertencia.getSize());
+			
+			String texto =  "<html><font color = " + comilla + "red" + comilla + "size = 4>" + 
+					 "ATENCION!!<br><font size = 3>Se esta agotando el tiempo.<br><br>" + 
+					 "Emita orden de arresto cuanto antes.</font><html>";
+			label.setText(texto);
+			frameAdvertencia.add("North", label);
+			
+			this.setVisible(true);
+			frameAdvertencia.setVisible(true);  //mostramos el marco
+		}
+		
+		
+		
 	}
 	
 public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
@@ -209,10 +231,25 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
+		
+		Vista framePista = new Vista("Pista");
+		framePista.setImagen("imagenesVista/pistas.jpg");
+		framePista.setSize(350,200);  //seteamos las dimensiones del marco
+		framePista.setLocation(50, 50);
+		framePista.setLocationRelativeTo(rootPane);
+		framePista.addWindowListener(new CloseFrameListener());
+		JLabel label = new JLabel();
+		label.setSize(framePista.getSize());
+		
+		String texto =  "<html><font color = " + comilla + "black" + comilla + "size = 3>" + 
+				 pista + "</font><html>";
+		label.setText(texto);
+		framePista.add("North", label);
+		
 	
 		JButton botonVolver = new JButton();
 		botonVolver.setText("Volver");
-		botonVolver.addActionListener(control.getListenerComenzarInvestigacion());
+		botonVolver.addActionListener(control.getListenerVolver(this, framePista));
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonVolver);
@@ -220,21 +257,8 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		add("South", panelBotones);
 		
 		this.setVisible(true);
+		framePista.setVisible(true);  //mostramos el marco
 		
-		Vista frameCreditos = new Vista("Pista");
-		frameCreditos.setImagen("imagenesVista/pistas.jpg");
-		frameCreditos.setSize(350,200);  //seteamos las dimensiones del marco
-		frameCreditos.setLocation(50, 50);
-		frameCreditos.setLocationRelativeTo(rootPane);
-		frameCreditos.addWindowListener(new CloseFrameListener());
-		JLabel label = new JLabel();
-		label.setSize(frameCreditos.getSize());
-		
-		String texto =  "<html><font color = " + comilla + "black" + comilla + "size = 3>" + 
-				 pista + "</font><html>";
-		label.setText(texto);
-		frameCreditos.add("North", label);
-		frameCreditos.setVisible(true);  //mostramos el marco
 	}
 
 	
@@ -319,7 +343,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		JButton botonEmitir = new JButton("Emitir Orden");
 		botonEmitir.addActionListener(control.getListenerEmitirOrden());
 		JButton botonVolver = new JButton("Volver");
-		botonVolver.addActionListener(control.getListenerVolver());
+		botonVolver.addActionListener(control.getListenerVolver(this, null));
 		
 		String texto = "<html><font size = 10><font color = 'yellow'>Caracteristicas del Sospechoso:</font></html>";
 		JLabel panelTexto = new JLabel();
