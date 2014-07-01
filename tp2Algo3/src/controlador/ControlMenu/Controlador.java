@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import Vista.Vista;
 import modelo.*;
+import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
 import modelo.personajes.Sospechoso;
@@ -104,8 +105,13 @@ public class Controlador {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			menuBase.getPolicia().viajarA(ciudadesDisponibles.get(this.pos));
-			menuBase.menuPrincipal();
+	        try{
+	        	menuBase.getPolicia().viajarA(ciudadesDisponibles.get(this.pos));
+	            }
+	            catch(SeAcaboElTiempoDelCasoExcepcion i){
+	        			System.out.println(i.AvisoAlJugador());
+	        	}
+	        menuBase.menuPrincipal();
 		}
 	}
 	

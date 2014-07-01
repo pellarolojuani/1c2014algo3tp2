@@ -25,10 +25,10 @@ public class CreadorDeCiudades {
     
     private void setearciudadesvisitables(ArrayList<Ciudad> ciudades){
     	for(int i2 = 0; i2 < ciudades.size(); i2++){
-    		List<Integer> visitables=this.creadordegrafo.obtenerciudadesvisitables(i2);
+    		List<Ciudad> visitables=this.creadordegrafo.obtenerciudadesvisitables(i2);
     		
     		for(int i3 = 0; i3 < visitables.size(); i3++){
-    		this.ciudades.get(i2).agregarCiudadVisitable(this.ciudades.get(visitables.get(i3)));
+    		this.ciudades.get(i2).agregarCiudadVisitable(visitables.get(i3));
     		
     		}
     	}
@@ -80,7 +80,7 @@ public class CreadorDeCiudades {
 
     public ArrayList<Ciudad> obtenerCiudadesConVisitables() {
 
-        this.creadordegrafo = new CreadorDeGrafoCiudades(this.ciudades.size());
+        this.creadordegrafo = new CreadorDeGrafoCiudades(this.ciudades, this.ciudades.size());
         this.setearciudadesvisitables(this.ciudades);
         return ciudades;
     }
