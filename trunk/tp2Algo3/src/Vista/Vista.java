@@ -65,6 +65,7 @@ public class Vista extends JFrame implements Observer{
 		guardar = new MenuItem("Guardar");
 		guardar.addActionListener(control.getListenerGuardar(this));
 		cargarPartida = new MenuItem("Cargar partida guardada");
+		cargarPartida.addActionListener(control.getListenerCargarPartida(this));
 		salir = new MenuItem("Salir");
 		salir.addActionListener(control.getListenerSalir());
 		
