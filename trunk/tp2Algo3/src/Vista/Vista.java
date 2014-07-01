@@ -113,6 +113,27 @@ public class Vista extends JFrame implements Observer{
 		this.setVisible(true);
 	}
 	
+	public void vistaGameOver(){
+		this.setImagen("imagenesVista/game over.jpg");
+		this.setVisible(true);
+		
+		JButton botonNuevoCaso = new JButton();
+		botonNuevoCaso.setText("Nuevo caso");
+		botonNuevoCaso.addActionListener(control.getListenerNuevo());
+		
+		JButton botonSalir = new JButton();
+		botonSalir.setText("Salir");
+		botonSalir.addActionListener(control.getListenerSalir());
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.add(botonNuevoCaso);
+		panelBotones.add(botonSalir);
+		
+		add("South", panelBotones);
+		
+		this.setVisible(true);
+	}
+	
 	public void imprimirTexto(String texto){
 		JLabel label = new JLabel();
 		Dimension dimension = new Dimension();
@@ -216,7 +237,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		for (Ciudad unaCiudad: ciudadesDisponibles){
 			String nombre = unaCiudad.getNombre();
 			Button unBoton = new Button(nombre);
-			unBoton.addActionListener(control.getListenerViajarACiudad(i, ciudadesDisponibles));
+			unBoton.addActionListener(control.getListenerViajarACiudad(i, ciudadesDisponibles, this));
 			panel.add(unBoton);
 			i++;
 		}

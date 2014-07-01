@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import Vista.Vista;
 import modelo.*;
 import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
+import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
 import modelo.personajes.Sospechoso;
@@ -97,26 +98,32 @@ public class Controlador {
 	
 	private class EscuchaBotonViajarACiudad implements ActionListener{
 		private ArrayList<Ciudad> ciudadesDisponibles;
-		int pos;
+		private int pos;
+		private Vista vista;
 		
-		public EscuchaBotonViajarACiudad(int posicion, ArrayList<Ciudad> ciudades){
+		public EscuchaBotonViajarACiudad(int posicion, ArrayList<Ciudad> ciudades, Vista unaVista){
 			this.ciudadesDisponibles = ciudades;
 			this.pos = posicion;
+			this.vista = unaVista;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
 	        try{
 	        	menuBase.getPolicia().viajarA(ciudadesDisponibles.get(this.pos));
-	            }
+	           }
 	            catch(SeAcaboElTiempoDelCasoExcepcion i){
-	        			System.out.println(i.AvisoAlJugador());
+	        		System.out.println(i.AvisoAlJugador());
+	        		vista.vistaGameOver();
+	            	vista.setVisible(true);
 	        	}
 	        menuBase.menuPrincipal();
+	        vista.setVisible(true);
+
 		}
 	}
 	
-	public ActionListener getListenerViajarACiudad(int pos, ArrayList<Ciudad> ciudadesDisponibles){
-		return new EscuchaBotonViajarACiudad(pos, ciudadesDisponibles);
+	public ActionListener getListenerViajarACiudad(int pos, ArrayList<Ciudad> ciudadesDisponibles, Vista vista){
+		return new EscuchaBotonViajarACiudad(pos, ciudadesDisponibles, vista);
 	}
 	
 	private class EscuchaBotonPistas implements ActionListener{

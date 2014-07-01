@@ -12,8 +12,8 @@ public class Principal{
 		//Controlador control = new Controlador();
 		
 		//new Vista(control);
-		VistaPrincipal vista = new VistaPrincipal();
-		vista.setVisible(true);
+		//VistaPrincipal vista = new VistaPrincipal();
+		//vista.setVisible(true);
 	}
 	
 
