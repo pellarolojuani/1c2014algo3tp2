@@ -187,6 +187,8 @@ public class MenuBase{
     }
     
     public void menuOrdenDeArresto(){
+    	vista.vistaOrdenDeArresto();
+    	/*
         Sexo sexo;
         Senia senia;
         Pelo pelo;
@@ -270,7 +272,9 @@ public class MenuBase{
             System.out.println("Emitida la orden de arresto para "+sospechosos.get(0).getNombre());
         }
         menuPrincipal();
+        */
     }
+
     
     public void setOpcionMenuBase(int valorOpcion){
     	opcionMenuBase = valorOpcion;
