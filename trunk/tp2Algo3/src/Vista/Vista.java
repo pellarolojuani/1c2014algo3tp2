@@ -255,11 +255,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 	}
 	
 	public void vistaOrdenDeArresto(){
-		Sexo sexo = null;
-		Hobby hobby = null;
-		Senia senia = null;
-		Pelo pelo = null;
-		Vehiculo vehiculo = null;		
+		Descripcion descripcion;	
 		
 		this.setImagen("imagenesVista/ordenDeArresto.jpg");
 		this.setVisible(true);
@@ -269,7 +265,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		sexoPanel.add(sexoLabel);
 		for (Sexo s: Sexo.values()){
 			JButton botonAux = new JButton(s.toString());
-			botonAux.addActionListener(control.getListenerSeteadorSexo(sexo, s));
+			botonAux.addActionListener(control.getListenerSeteadorSexo(s));
 			sexoPanel.add(botonAux);
 		}
 		
@@ -278,7 +274,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		hobbyPanel.add(hobbyLabel);
 		for (Hobby h: Hobby.values()){
 			JButton botonAux = new JButton(h.toString());
-			botonAux.addActionListener(control.getListenerSeteadorHobby(hobby, h));
+			botonAux.addActionListener(control.getListenerSeteadorHobby(h));
 			hobbyPanel.add(botonAux);
 		}
 		
@@ -287,7 +283,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		peloPanel.add(peloLabel);
 		for (Pelo p: Pelo.values()){
 			JButton botonAux = new JButton(p.toString());
-			botonAux.addActionListener(control.getListenerSeteadorPelo(pelo, p));
+			botonAux.addActionListener(control.getListenerSeteadorPelo(p));
 			peloPanel.add(botonAux);
 		}
 		
@@ -296,7 +292,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		seniaPanel.add(seniaLabel);
 		for (Senia s: Senia.values()){
 			JButton botonAux = new JButton(s.toString());
-			botonAux.addActionListener(control.getListenerSeteadorSenia(senia, s));
+			botonAux.addActionListener(control.getListenerSeteadorSenia(s));
 			seniaPanel.add(botonAux);
 		}
 		
@@ -305,14 +301,14 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		vehiculoPanel.add(vehiculoLabel);
 		for (Vehiculo v: Vehiculo.values()){
 			JButton botonAux = new JButton(v.toString());
-			botonAux.addActionListener(control.getListenerSeteadorVehiculo(vehiculo, v));
+			botonAux.addActionListener(control.getListenerSeteadorVehiculo(v));
 			vehiculoPanel.add(botonAux);
 		}
 		
 		JButton botonEmitir = new JButton("Emitir Orden");
-		botonEmitir.addActionListener(control.getListenerEmitirOrden(new Descripcion(sexo,hobby,pelo,senia,vehiculo)));
-		JButton botonVolverPrincipal = new JButton("Volver");
-		botonVolverPrincipal.addActionListener(control.getListenerVolverPrincipal());
+		botonEmitir.addActionListener(control.getListenerEmitirOrden());
+		JButton botonVolver = new JButton("Volver");
+		botonVolver.addActionListener(control.getListenerVolver());
 		
 		String texto = "<html><font size = 10><font color = 'yellow'>Caracteristicas del Sospechoso:</font></html>";
 		JLabel panelTexto = new JLabel();
@@ -332,7 +328,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		add(vehiculoPanel);
 		vehiculoPanel.setVisible(true);
 		add("South", botonEmitir);
-		add("South", botonVolverPrincipal);
+		add("South", botonVolver);
 		
 		
 		this.setVisible(true);
