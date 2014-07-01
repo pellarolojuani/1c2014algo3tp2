@@ -255,7 +255,6 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 	}
 	
 	public void vistaOrdenDeArresto(){
-		Descripcion descripcion;	
 		
 		this.setImagen("imagenesVista/ordenDeArresto.jpg");
 		this.setVisible(true);
