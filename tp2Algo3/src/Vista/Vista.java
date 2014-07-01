@@ -157,6 +157,7 @@ public class Vista extends JFrame implements Observer{
 		botonVisitarLugar.addActionListener(control.getListenerVisitarLugar(unMenuBase, this, unaCiudad.obtenerLugaresDisponibles()));
 		JButton botonEmitirOrdenArresto = new JButton();
 		botonEmitirOrdenArresto.setText("Emitir orden de arresto");
+		botonEmitirOrdenArresto.addActionListener(control.getListenerOrdenArresto());
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonViajar);
 		panelBotones.add(botonVisitarLugar);
