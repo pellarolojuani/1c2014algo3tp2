@@ -274,7 +274,7 @@ public class Controlador {
 	        }
 			if(sospechosos.size()==1){
 	            menuBase.getPolicia().emitirOrdenDeArrestoPara(sospechosos.get(0));
-	            texto.concat("<br><br>Emitida la orden de arresto para "+sospechosos.get(0).getNombre());
+	            texto += "<br><br>Emitida la orden de arresto para "+sospechosos.get(0).getNombre();
 	        }
 			
 			texto += "</body></html>";
