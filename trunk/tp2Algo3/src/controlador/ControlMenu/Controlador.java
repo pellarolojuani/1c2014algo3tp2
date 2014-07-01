@@ -6,11 +6,15 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 import Vista.Vista;
 import modelo.*;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
+import modelo.personajes.Sospechoso;
+import modelo.descripciones.*;
+import modelo.elementosDelJuego.CuartelGeneral;
 import modelo.juego.MenuBase;
 
 public class Controlador {
@@ -185,7 +189,7 @@ public class Controlador {
 		public void actionPerformed(ActionEvent e){
 			//ORDEN ARRESTO
 			System.out.println("Generando Orden de Arresto...");
-			menuBase.setOpcionMenuPrincipal(3);
+			menuBase.menuOrdenDeArresto();
 		}
 	}
 	
@@ -202,7 +206,143 @@ public class Controlador {
 	public ActionListener getListenerComenzarInvestigacion(){
 		return new EscuchaBotonComenzarInvestigacion();
 	}
-	//REPETIDO! BORRAR
+	
+	private class EscuchaBotonEmitirOrden implements ActionListener{
+		private ArrayList<Sospechoso> sospechosos;
+		private Descripcion descripcion;
+		
+		public EscuchaBotonEmitirOrden(Descripcion unaDescripcion){
+			this.descripcion = unaDescripcion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			CuartelGeneral cuartelGeneral = CuartelGeneral.getInstance();
+			sospechosos = cuartelGeneral.buscarSospechoso(descripcion);
+			
+			JFrame sospechososVentana = new JFrame();
+			sospechososVentana.setDefaultCloseOperation(sospechososVentana.DISPOSE_ON_CLOSE);
+			sospechososVentana.setSize(350, 350);
+			JLabel mensajeLabel = new JLabel();
+			mensajeLabel.setSize(sospechososVentana.getSize());
+			String texto = "<html><body>Coincidencias:<br>";
+			for (Sospechoso s: sospechosos){
+				texto.concat("<br>");
+				texto.concat(s.getNombre());
+			}
+			
+			if(sospechosos.size()==0){
+	            texto.concat("<br><br>No se encontro ningun sospechoso que concuerde con la decripcion seleccionada");
+	        }
+			if(sospechosos.size()==1){
+	            menuBase.getPolicia().emitirOrdenDeArrestoPara(sospechosos.get(0));
+	            texto.concat("<br><br>Emitida la orden de arresto para "+sospechosos.get(0).getNombre());
+	        }
+			
+			texto.concat("</body></html>");
+			mensajeLabel.setText(texto);
+			sospechososVentana.add("North",mensajeLabel);
+			sospechososVentana.setVisible(true);
+		}
+	}
+	public ActionListener getListenerEmitirOrden(Descripcion unaDescripcion){
+		return new EscuchaBotonEmitirOrden(unaDescripcion);
+	}
+	
+	private class EscuchaBotonVolverPrincipal implements ActionListener{
+
+		public void actionPerformed(ActionEvent arg0) {
+			menuBase.menuPrincipal();
+		}
+	}
+	public ActionListener getListenerVolverPrincipal(){
+		return new EscuchaBotonVolverPrincipal();
+	}
+	
+	private class EscuchaBotonSeteadorSexo implements ActionListener{
+		private Sexo sexoElegido;
+		private Sexo sexoOpcion;
+		
+		public EscuchaBotonSeteadorSexo(Sexo sexoElegido, Sexo sexoOpcion){
+			this.sexoElegido = sexoElegido;
+			this.sexoOpcion = sexoOpcion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			this.sexoElegido = this.sexoOpcion;
+		}
+	}
+	public ActionListener getListenerSeteadorSexo(Sexo sexoElegido, Sexo sexoOpcion){
+		return new EscuchaBotonSeteadorSexo(sexoElegido, sexoOpcion);
+	}
+	
+	private class EscuchaBotonSeteadorHobby implements ActionListener{
+		private Hobby hobbyElegido;
+		private Hobby hobbyOpcion;
+		
+		public EscuchaBotonSeteadorHobby(Hobby hobbyElegido, Hobby hobbyOpcion){
+			this.hobbyElegido = hobbyElegido;
+			this.hobbyOpcion = hobbyOpcion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			this.hobbyElegido = this.hobbyOpcion;
+		}
+	}
+	public ActionListener getListenerSeteadorHobby(Hobby hobbyElegido, Hobby hobbyOpcion){
+		return new EscuchaBotonSeteadorHobby(hobbyElegido, hobbyOpcion);
+	}
+	
+	private class EscuchaBotonSeteadorPelo implements ActionListener{
+		private Pelo peloElegido;
+		private Pelo peloOpcion;
+		
+		public EscuchaBotonSeteadorPelo(Pelo peloElegido, Pelo peloOpcion){
+			this.peloElegido = peloElegido;
+			this.peloOpcion = peloOpcion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			this.peloElegido = this.peloOpcion;
+		}
+	}
+	public ActionListener getListenerSeteadorPelo(Pelo peloElegido, Pelo peloOpcion){
+		return new EscuchaBotonSeteadorPelo(peloElegido, peloOpcion);
+	}
+	
+	private class EscuchaBotonSeteadorSenia implements ActionListener{
+		private Senia seniaElegido;
+		private Senia seniaOpcion;
+		
+		public EscuchaBotonSeteadorSenia(Senia seniaElegido, Senia seniaOpcion){
+			this.seniaElegido = seniaElegido;
+			this.seniaOpcion = seniaOpcion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			this.seniaElegido = this.seniaOpcion;
+		}
+	}
+	public ActionListener getListenerSeteadorSenia(Senia seniaElegido, Senia seniaOpcion){
+		return new EscuchaBotonSeteadorSenia(seniaElegido, seniaOpcion);
+	}
+	
+	private class EscuchaBotonSeteadorVehiculo implements ActionListener{
+		private Vehiculo vehiculoElegido;
+		private Vehiculo vehiculoOpcion;
+		
+		public EscuchaBotonSeteadorVehiculo(Vehiculo vehiculoElegido, Vehiculo vehiculoOpcion){
+			this.vehiculoElegido = vehiculoElegido;
+			this.vehiculoOpcion = vehiculoOpcion;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			this.vehiculoElegido = this.vehiculoOpcion;
+		}
+	}
+	public ActionListener getListenerSeteadorVehiculo(Vehiculo vehiculoElegido, Vehiculo vehiculoOpcion){
+		return new EscuchaBotonSeteadorVehiculo(vehiculoElegido, vehiculoOpcion);
+	}
+
 	private class EscucharBotonVolver implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
