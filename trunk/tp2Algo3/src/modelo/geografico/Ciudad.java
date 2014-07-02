@@ -126,11 +126,23 @@ public class Ciudad {
 		return this.lugaresdeinteres;
 	}
 
+
+	public String obtenerPersonaje() {
+		return this.personaje;
+	}
+
+
+	public String obtenerFauna() {
+		return this.fauna;
+	}
+
+
     public Lugar obtenerLugar(TipoEdificio tipoEdificio) {
         for(Lugar l: lugares){
             if(l.obtenerTipo()==tipoEdificio)return l;
         }
         return null;
     }
+
 }
 
