@@ -7,9 +7,5 @@ public class PistaHeridaPistola extends Pista {
 		this.pista = "¡Te han disparado";
 	}
 	
-	public String contenidoComoString(){
-		
-		throw new SeDisparaArmaExcepcion();
-	}
 
 }
