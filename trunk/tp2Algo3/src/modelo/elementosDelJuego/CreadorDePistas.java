@@ -130,7 +130,6 @@ public class CreadorDePistas {
 		this.aux_heridaCuchillo = 3;
 		this.aux_heridaPistola = 10;
 		this.dificultad = Dificultad.FACIL;
-		this.plantarPistas();
 		
 	}
 
@@ -139,8 +138,6 @@ public class CreadorDePistas {
 		this.aux_heridaCuchillo = 3;
 		this.aux_heridaPistola = 4;
 		this.dificultad = Dificultad.INTERMEDIO;
-
-		this.plantarPistas();
 		
 	}
 
@@ -149,8 +146,6 @@ public class CreadorDePistas {
 		this.aux_heridaCuchillo = 3;
 		this.aux_heridaPistola = 5;
 		this.dificultad = Dificultad.DIFICIL;
-
-		this.plantarPistas();
 		
 	}
 
@@ -158,10 +153,10 @@ public class CreadorDePistas {
 
     public Pista crearNuevaPista(TipoEdificio tipo){
     	
-    	if( this.heridaCuchillo == true && Math.random()< 0.3 ) {
+    	if( (this.heridaCuchillo == true) && Math.random()< 0.3 ) {
     		return crearHeridaCuchillo();
     	}
-    	if( this.heridaPistola == true && Math.random() < 0.3 ){
+    	if( (this.heridaPistola == true) && Math.random() < 0.3 ){
     		return crearHeridaPistola();
     	}
     	if(this.ciudadSiguiente!=null){
