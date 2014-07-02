@@ -287,80 +287,101 @@ public class Controlador {
 		return new EscuchaBotonEmitirOrden();
 	}
 		
-	private class EscuchaBotonSeteadorSexo implements ActionListener{
-		private Sexo sexoOpcion;
+
+	
+	
+	
+	
+	
+	private class EscuchaSeleccionSexo implements ItemListener{
 		
-		public EscuchaBotonSeteadorSexo(Sexo sexoOpcion){
-			this.sexoOpcion = sexoOpcion;
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getItem()==""){
+					sexoElegido = null;
+				}
+				else {
+					sexoElegido = (Sexo)e.getItem();
+					}
+			}
 		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			sexoElegido = this.sexoOpcion;
-		}
-	}
-	public ActionListener getListenerSeteadorSexo(Sexo sexoOpcion){
-		return new EscuchaBotonSeteadorSexo(sexoOpcion);
 	}
 	
-	private class EscuchaBotonSeteadorHobby implements ActionListener{
-		private Hobby hobbyOpcion;
-		
-		public EscuchaBotonSeteadorHobby(Hobby hobbyOpcion){
-			this.hobbyOpcion = hobbyOpcion;
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			hobbyElegido = this.hobbyOpcion;
-		}
-	}
-	public ActionListener getListenerSeteadorHobby(Hobby hobbyOpcion){
-		return new EscuchaBotonSeteadorHobby(hobbyOpcion);
+	public ItemListener getListenerSeleccionSexo(){
+		return new EscuchaSeleccionSexo();
 	}
 	
-	private class EscuchaBotonSeteadorPelo implements ActionListener{
-		private Pelo peloOpcion;
+	private class EscuchaSeleccionHobby implements ItemListener{
 		
-		public EscuchaBotonSeteadorPelo(Pelo peloOpcion){
-			this.peloOpcion = peloOpcion;
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getItem()==""){
+					hobbyElegido = null;
+				}
+				else {
+					hobbyElegido = (Hobby)e.getItem();
+					}
+			}
 		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			peloElegido = this.peloOpcion;
-		}
-	}
-	public ActionListener getListenerSeteadorPelo(Pelo peloOpcion){
-		return new EscuchaBotonSeteadorPelo(peloOpcion);
 	}
 	
-	private class EscuchaBotonSeteadorSenia implements ActionListener{
-		private Senia seniaOpcion;
-		
-		public EscuchaBotonSeteadorSenia(Senia seniaOpcion){
-			this.seniaOpcion = seniaOpcion;
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			seniaElegida = this.seniaOpcion;
-		}
-	}
-	public ActionListener getListenerSeteadorSenia(Senia seniaOpcion){
-		return new EscuchaBotonSeteadorSenia(seniaOpcion);
+	public ItemListener getListenerSeleccionHobby(){
+		return new EscuchaSeleccionHobby();
 	}
 	
-	private class EscuchaBotonSeteadorVehiculo implements ActionListener{
-		private Vehiculo vehiculoOpcion;
+	private class EscuchaSeleccionPelo implements ItemListener{
 		
-		public EscuchaBotonSeteadorVehiculo(Vehiculo vehiculoOpcion){
-			this.vehiculoOpcion = vehiculoOpcion;
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			vehiculoElegido = this.vehiculoOpcion;
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getItem()==""){
+					peloElegido = null;
+				}
+				else {
+					peloElegido = (Pelo)e.getItem();
+					}
+			}
 		}
 	}
-	public ActionListener getListenerSeteadorVehiculo(Vehiculo vehiculoOpcion){
-		return new EscuchaBotonSeteadorVehiculo(vehiculoOpcion);
+	
+	public ItemListener getListenerSeleccionPelo(){
+		return new EscuchaSeleccionPelo();
+	}	
+		
+	private class EscuchaSeleccionSenia implements ItemListener{
+		
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getItem()==""){
+					seniaElegida = null;
+				}
+				else {
+					seniaElegida = (Senia)e.getItem();
+					}
+			}
+		}
 	}
+	
+	public ItemListener getListenerSeleccionSenia(){
+		return new EscuchaSeleccionSenia();
+	}	
+	
+	private class EscuchaSeleccionVehiculo implements ItemListener{
+		
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED){
+				if (e.getItem()==""){
+					vehiculoElegido = null;
+				}
+				else {
+					vehiculoElegido = (Vehiculo)e.getItem();
+					}
+			}
+		}
+	}
+	
+	public ItemListener getListenerSeleccionVehiculo(){
+		return new EscuchaSeleccionVehiculo();
+	}		
 
 	private class EscucharBotonVolver implements ActionListener{
 		private Vista vista;
