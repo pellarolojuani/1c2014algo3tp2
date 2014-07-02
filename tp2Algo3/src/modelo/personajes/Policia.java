@@ -4,6 +4,7 @@
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -136,4 +137,8 @@ public class Policia extends Observable{
         System.out.println("El poli es de grado:"+grado);
         System.out.println("El poli esta en:"+ciudadActual.getNombre());
     }
+
+	public int obtenerVelocidadViaje() {
+		return this.velocidadKmHora;
+	}
 }

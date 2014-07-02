@@ -2,9 +2,10 @@ package modelo.elementosDelJuego;
 
 import static org.junit.Assert.*;
 import modelo.geografico.Ciudad;
-import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class ObjetoRobadoTest {
 
@@ -13,7 +14,7 @@ public class ObjetoRobadoTest {
 	@Before
 	public void setUp(){
 		
-		unaCiudad = new Ciudad();
+		unaCiudad = mock(Ciudad.class);
 	}
 	@Test
 	public void testContenidoComoStringDevuelveLaDescripcionDelObjeto() {

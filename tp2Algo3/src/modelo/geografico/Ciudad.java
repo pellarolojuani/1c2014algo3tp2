@@ -122,6 +122,12 @@ public class Ciudad {
     }
 
 
+	public Ciudad() {
+		this.lugares = new ArrayList<Lugar>();
+		this.ciudadesvisitables = new ArrayList<Ciudad>();
+	}
+
+
 	public String obtenerPuntosInteres() {
 		return this.lugaresdeinteres;
 	}
@@ -143,6 +149,12 @@ public class Ciudad {
         }
         return null;
     }
+
+
+	public void agregarLugar(Lugar unLugar) {
+		this.lugares.add(unLugar);
+		
+	}
 
 }
 
