@@ -96,9 +96,9 @@ public class Vista extends JFrame implements Observer{
 		String descripcionRobo = unMenuBase.getJuego().obtenerCaso().obtenerDescripcionDelRobo();
 		String horario = Tiempo.tiempoComoString();
 		String texto =  "<html><font style=color:#7FE817><font size= 4>"+ descripcionRobo.substring(0, 9) +
-						"</font><br><font style=color:#7FE817><font size= 3>" + descripcionRobo.substring(10, descripcionRobo.length()) +
-						"</font><br><font style=color:#7FE817><font size= 3>" + horario + "</font><html>";
-		System.out.println(texto);
+						"<br><font style=color:#7FE817><font size= 3>" + descripcionRobo.substring(10, descripcionRobo.length()) +
+						"<br><font style=color:#7FE817><font size= 3>" + horario + "</font></html>";
+		System.out.println(descripcionRobo.substring(0, 9)+descripcionRobo.substring(10, descripcionRobo.length())+ "\n"+ horario);
 		JLabel panelTexto = new JLabel();
 		panelTexto.setText(texto);
 		
