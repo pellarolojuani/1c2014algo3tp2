@@ -36,7 +36,7 @@ public class Juego implements Observer{
         sospechosos=creadorDeSospechosos.obtenerSospechosos();
         creadorDeObjetos=new CreadorDeObjetos(ciudades);
         objetos=creadorDeObjetos.obtenerListaDeObjetos();
-        policia = new Policia();
+        policia = new Policia("Policia a cargo");
         CuartelGeneral.getInstance().asignarAJuego(this);
         CuartelGeneral.getInstance().cargarSospechosos(sospechosos);
         CuartelGeneral.getInstance().incorporarPolicia(policia);

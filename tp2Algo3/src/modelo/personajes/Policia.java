@@ -19,11 +19,7 @@ public class Policia extends Observable{
     private int nroArrestos;
 
 
-    public Policia(){
-		nombre="unNombre";
-		grado = Grado.NOVATO;
-		velocidadKmHora=grado.obtenerVelocidad();
-	}
+   
     
     public Policia(String nombre){
     	
@@ -35,9 +31,10 @@ public class Policia extends Observable{
     
     public void visitarLugar(Lugar lugar){
 		
-    	if(lugar.obtenerPista()=="¡Te han disparado" || lugar.obtenerPista()=="¡Te han arrojado un cuchillo!")
+    	if(lugar.obtenerPista()=="¡Te han disparado!" || lugar.obtenerPista()=="¡Te han arrojado un cuchillo!")
     	{
     		this.visitarLugarHerida(lugar);
+    		return;
     	}
     	
     			
@@ -111,6 +108,13 @@ public class Policia extends Observable{
 
     public void arrestarLadron() {
         nroArrestos++;
+        
+        if(nroArrestos==5) this.promoverGrado();
+        
+        if(nroArrestos==10) this.promoverGrado();
+        
+        if(nroArrestos==20) this.promoverGrado();
+
     }
 
     public int obtenerNroArrestos(){

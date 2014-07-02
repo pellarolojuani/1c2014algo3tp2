@@ -14,7 +14,7 @@ public class Tests {
 
 	@Test(expected = NoSePuedeVisitarLugarExcepcion.class)
 	public void testPoliciaNoPuedeVisitarLugarDeOtraCiudad() throws Exception {
-		Policia policia = new Policia();
+		Policia policia = new Policia("Mario");
 		Ciudad ciudad = new Ciudad();
 		Ciudad ciudad1 = new Ciudad();
 		Lugar banco = new Lugar(TipoEdificio.BANCO);
