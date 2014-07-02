@@ -33,7 +33,7 @@ public class Caso {
         }
         System.out.println("Fin del recorrido");
         this.ciudadDelRobo=recorridoLadron.obtenerCiudadDelRobo();
-        reiniciarPistas(ciudades);
+        //reiniciarPistas(ciudades);
         plantarPistas();
     }
 
@@ -74,11 +74,10 @@ public class Caso {
 	}
 
     private void plantarPistas() {
-        for(Ciudad ciudad: recorridoLadron.obtenerCiudades()){
-            Ciudad ciudadSiguiente = recorridoLadron.obtenerCiudadSiguiente(ciudad);
-            CreadorDePistas creadorDePistas = new CreadorDePistas(ciudadSiguiente, ladron);
-            creadorDePistas.plantarPistas(ciudad);
-        }
+        
+        CreadorDePistas creadorDePistas = new CreadorDePistas(recorridoLadron, ladron);
+        creadorDePistas.plantarPistas();
+        
     }
 
     public boolean ladronEstaEnLugar(Lugar lugar) {

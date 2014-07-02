@@ -39,4 +39,9 @@ public class Sospechoso {
 		return this.obtenerDescripcion().getPelo().toString();
 
 	}
+	
+	public String vehiculoComoString() {
+		return this.obtenerDescripcion().getVehiculo().toString();
+
+	}
 }

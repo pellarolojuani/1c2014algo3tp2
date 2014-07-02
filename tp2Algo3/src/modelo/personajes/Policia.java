@@ -23,28 +23,58 @@ public class Policia extends Observable{
 		grado = Grado.NOVATO;
 		velocidadKmHora=grado.obtenerVelocidad();
 	}
-	
+    
+    public Policia(String nombre){
+    	
+		this.nombre  = nombre;
+		this.nroArrestos = 0;
+		grado = Grado.NOVATO;
+		velocidadKmHora=grado.obtenerVelocidad();
+	}
+    
     public void visitarLugar(Lugar lugar){
 		
-		if( lugar.obtenerNumVisitas() == 0)
-		{
-			Tiempo.aumentarHoras(1);
-			lugar.aumentarNumVisitas();
-		}
-		else if(lugar.obtenerNumVisitas() == 1)
-			{
-			lugar.aumentarNumVisitas();
-			Tiempo.aumentarHoras(2);
-			}
-		else 
-			{
-			Tiempo.aumentarHoras(3);
-			lugar.aumentarNumVisitas();
-			}
+    	if(lugar.obtenerPista()=="¡Te han disparado" || lugar.obtenerPista()=="¡Te han arrojado un cuchillo!")
+    	{
+    		this.visitarLugarHerida(lugar);
+    	}
+    	
+    			
+    	if( lugar.obtenerNumVisitas() == 0)
+    	{
+    		Tiempo.aumentarHoras(1);
+    		lugar.aumentarNumVisitas();
+    	}
+    	else if(lugar.obtenerNumVisitas() == 1)
+    	{
+    		lugar.aumentarNumVisitas();
+    		Tiempo.aumentarHoras(2);
+    	}
+    	else 
+    	{
+    		Tiempo.aumentarHoras(3);
+    		lugar.aumentarNumVisitas();
+    	}
         ultimaPista=lugar.obtenerPista();
+        
         CuartelGeneral.getInstance().notificarVisitaA(lugar);
 	}
 	
+	private void visitarLugarHerida(Lugar lugar) {
+		
+		if( lugar.obtenerPista()=="¡Te han disparado" )
+    	{
+    		Tiempo.aumentarHoras(4);
+    	}
+    	else //herida cuchillo
+    	{
+    		Tiempo.aumentarHoras(2);
+    	}
+        ultimaPista=lugar.obtenerPista();
+        
+        CuartelGeneral.getInstance().notificarVisitaA(lugar);
+	}
+
 	public void viajarA(Ciudad destino){
 		double auxTiempoViajeHs = this.ciudadActual.distanciaA(destino) / this.velocidadKmHora;
 		this.ciudadActual = destino;
