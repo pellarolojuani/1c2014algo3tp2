@@ -297,56 +297,71 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		this.setVisible(true);
 		
 		JPanel sexoPanel = new JPanel();
-		JLabel sexoLabel = new JLabel("Sexo:");
+		sexoPanel.setOpaque(false);
+		JLabel sexoLabel = new JLabel("<html><font size= 5><font style=color:#FFD801>Sexo:</font></html>");
 		sexoPanel.add(sexoLabel);
+		JComboBox sexoBox = new JComboBox();
+		sexoBox.addItemListener(control.getListenerSeleccionSexo());
+		sexoBox.addItem("");
 		for (Sexo s: Sexo.values()){
-			JButton botonAux = new JButton(s.toString());
-			botonAux.addActionListener(control.getListenerSeteadorSexo(s));
-			sexoPanel.add(botonAux);
+			sexoBox.addItem(s);
 		}
+		sexoPanel.add(sexoBox);
 		
 		JPanel hobbyPanel = new JPanel();
-		JLabel hobbyLabel = new JLabel("Hobby:");
+		hobbyPanel.setOpaque(false);
+		JLabel hobbyLabel = new JLabel("<html><font size= 5><font style=color:#FFD801>Hobby:</font></html>");
 		hobbyPanel.add(hobbyLabel);
+		JComboBox hobbyBox = new JComboBox();
+		hobbyBox.addItemListener(control.getListenerSeleccionHobby());
+		hobbyBox.addItem("");
 		for (Hobby h: Hobby.values()){
-			JButton botonAux = new JButton(h.toString());
-			botonAux.addActionListener(control.getListenerSeteadorHobby(h));
-			hobbyPanel.add(botonAux);
+			hobbyBox.addItem(h);
 		}
+		hobbyPanel.add(hobbyBox);
 		
 		JPanel peloPanel = new JPanel();
-		JLabel peloLabel = new JLabel("Pelo:");
+		peloPanel.setOpaque(false);
+		JLabel peloLabel = new JLabel("<html><font size= 5><font style=color:#FFD801>Pelo:</font></html>");
 		peloPanel.add(peloLabel);
+		JComboBox peloBox = new JComboBox();
+		peloBox.addItemListener(control.getListenerSeleccionPelo());
+		peloBox.addItem("");
 		for (Pelo p: Pelo.values()){
-			JButton botonAux = new JButton(p.toString());
-			botonAux.addActionListener(control.getListenerSeteadorPelo(p));
-			peloPanel.add(botonAux);
+			peloBox.addItem(p);
 		}
+		peloPanel.add(peloBox);
 		
 		JPanel seniaPanel = new JPanel();
-		JLabel seniaLabel = new JLabel("Seña:");
+		seniaPanel.setOpaque(false);
+		JLabel seniaLabel = new JLabel("<html><font size= 5><font style=color:#FFD801>Seña:</font></html>");
 		seniaPanel.add(seniaLabel);
+		JComboBox seniaBox = new JComboBox();
+		seniaBox.addItemListener(control.getListenerSeleccionSenia());
+		seniaBox.addItem("");
 		for (Senia s: Senia.values()){
-			JButton botonAux = new JButton(s.toString());
-			botonAux.addActionListener(control.getListenerSeteadorSenia(s));
-			seniaPanel.add(botonAux);
+			seniaBox.addItem(s);
 		}
+		seniaPanel.add(seniaBox);
 		
 		JPanel vehiculoPanel = new JPanel();
-		JLabel vehiculoLabel = new JLabel("Vehiculo:");
+		vehiculoPanel.setOpaque(false);
+		JLabel vehiculoLabel = new JLabel("<html><font size= 5><font style=color:#FFD801>Vehiculo:</font><html>");
 		vehiculoPanel.add(vehiculoLabel);
+		JComboBox vehiculoBox = new JComboBox();
+		vehiculoBox.addItemListener(control.getListenerSeleccionVehiculo());
+		vehiculoBox.addItem("");
 		for (Vehiculo v: Vehiculo.values()){
-			JButton botonAux = new JButton(v.toString());
-			botonAux.addActionListener(control.getListenerSeteadorVehiculo(v));
-			vehiculoPanel.add(botonAux);
+			vehiculoBox.addItem(v);
 		}
+		vehiculoPanel.add(vehiculoBox);
 		
 		JButton botonEmitir = new JButton("Emitir Orden");
 		botonEmitir.addActionListener(control.getListenerEmitirOrden());
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addActionListener(control.getListenerVolver(this, null));
 		
-		String texto = "<html><font size = 10><font color = 'yellow'>Caracteristicas del Sospechoso:</font></html>";
+		String texto = "<html><font size = 10><font style=color:#9F000F>Caracteristicas del Sospechoso:</font></html>";
 		JLabel panelTexto = new JLabel();
 		panelTexto.setText(texto);
 		add("North", panelTexto);
