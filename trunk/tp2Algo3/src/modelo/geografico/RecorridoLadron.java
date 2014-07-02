@@ -39,9 +39,7 @@ public class RecorridoLadron {
         }
     }
 
-    public Ciudad obtenerCiudadFinal() {
-        return this.recorrido.get(this.recorrido.size() - 1);
-    }
+
 
     public Ciudad obtenerCiudadSiguiente(Ciudad ciudad) {
         for (int i = 0; i < this.recorrido.size() - 1; i++) {

@@ -52,9 +52,6 @@ public class Lugar {
 		
 	}
 
-    public Ciudad estaEnCiudad() {
-        return ciudad;
-    }
 
     public void setVisitas(int nroVisitas){
         this.numVisitas=nroVisitas;

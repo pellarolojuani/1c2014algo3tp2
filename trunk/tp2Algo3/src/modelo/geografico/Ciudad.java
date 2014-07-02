@@ -9,7 +9,6 @@ public class Ciudad {
 
 	private ArrayList<Lugar> lugares;
     private ArrayList<Ciudad> ciudadesvisitables;
-    private boolean ciudadvisitadaladron;
     private String nombre;
 	private double Latitud;   
 	private double Longitud;
@@ -32,18 +31,11 @@ public class Ciudad {
     	this.idiomas=idiomas;
     	ArrayList<Ciudad> ciudades = new ArrayList<Ciudad>();
         this.ciudadesvisitables = ciudades;
-        this.ciudadvisitadaladron = false;
         this.bandera = bandera;
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
     }
 
-    
-    // NO BORRAR
-    public Ciudad(){
-    	this.lugares = new ArrayList<Lugar>();
-    	this.ciudadesvisitables = new ArrayList<Ciudad>();
-    }
 
     public ArrayList<Ciudad> obtenerCiudadesDestinoDisponibles() {
         return this.ciudadesvisitables;
@@ -78,28 +70,7 @@ public class Ciudad {
     public String getNombre(){
     	return this.nombre;
     }
-    
-    // NO BORRAR
- 	public void setNombre(String nombreCiudad) {
- 		this.nombre = nombreCiudad;
- 		
- 	}
 
- 	public void agregarLugar(Lugar lugar) {
-
- 		this.lugares.add(lugar);
- 		
- 	}
-
- 	public void setLatitud(double latitud) {
- 		this.Latitud = latitud;
- 		
- 	}
-
- 	public void setLongitud(double longitud) {
- 		this.Longitud = longitud;
- 		
- 	}
 
     public void agregarLugares(ArrayList<Lugar> lugares) {
         this.lugares=lugares;

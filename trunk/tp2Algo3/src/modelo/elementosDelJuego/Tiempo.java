@@ -74,10 +74,6 @@ public class Tiempo {
         return elementoTiempo;
     }
 
-	public static Object obtenerTiempoEnHs() {
-		
-		return horas;
-	}
 	
 	public static int getTiempoEnHs(){
 		return horas;

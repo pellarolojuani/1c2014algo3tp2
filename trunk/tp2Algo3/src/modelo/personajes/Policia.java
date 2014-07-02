@@ -69,14 +69,6 @@ public class Policia extends Observable{
 	public Ciudad obtenerCiudadActual(){
 		return this.ciudadActual;
 	};
-	
-	public boolean debeDormir(){
-		return true;
-	}
-
-	public Object obtenerVelocidadViaje() {
-		return this.velocidadKmHora;
-	};
 
     public void emitirOrdenDeArrestoPara(Sospechoso sospechoso){
         CuartelGeneral.getInstance().emitirOrdenDeArrestoPara(sospechoso);
