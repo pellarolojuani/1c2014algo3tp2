@@ -89,6 +89,10 @@ public class Caso {
         return ladron;
     }
 
+    public Valor obtenerValorObjeto() {
+        return this.valorObjeto;
+    }
+    
     public String obtenerDescripcionDelRobo() {
         return "Atencion! Se ha registrado el robo de "+objetoRobado.obtenerDescripcion()+" en la ciudad "+ciudadDelRobo.getNombre()+".Testigos afirman que el ladron es de sexo "+obtenerSexoLadron();
     }

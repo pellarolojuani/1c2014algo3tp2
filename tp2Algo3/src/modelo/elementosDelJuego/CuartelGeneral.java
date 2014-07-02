@@ -19,7 +19,7 @@ public class CuartelGeneral extends Observable {
     private static Policia policia;
     private static CuartelGeneral instance;
 
-    private CuartelGeneral(){
+    public CuartelGeneral(){
     }
 
     public void asignarAJuego(Juego unJuego){

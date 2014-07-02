@@ -1,12 +1,13 @@
 package modelo.personajes;
-
 import static org.junit.Assert.*;
 
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
+import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.*;
+import modelo.juego.Juego;
 
 
 public class PoliciaTest {
@@ -16,63 +17,17 @@ public class PoliciaTest {
 	@Before
 	public void setUp(){
 		
-		unPoliNovato = new Policia("Carlos");
-		
+		unPoliNovato = new Policia();
 	}
 	
 	@Test
 	public void testPoliciaEsCreadoNovato() {
 
-		Policia policia = new Policia("Nombre");
+		Policia policia = new Policia();
 		assertEquals(policia.obtenerGrado(), Grado.NOVATO);
 
 	}
 	
-	@Test
-	public void testPoliciaEsAsignadoAUnCasoEnUnaCiudad() {
-
-		Ciudad ciudad = EasyMock.createMock(Ciudad.class);
-		
-		unPoliNovato.asignarNuevoCasoEn(ciudad);
-		
-		assertEquals(ciudad, unPoliNovato.obtenerCiudadActual());
-	}
-	
-//	@Test
-//	public void testVisitarLugar() {
-//		
-//		Ciudad unaCiudadActual = new Ciudad();
-//		unaCiudadActual.setNombre("Buenos Aires");
-//		
-//		Lugar unaBiblioteca = new Lugar(TipoEdificio.BIBLIOTECA);
-//		Lugar unPuerto = new Lugar(TipoEdificio.PUERTO);
-//		Lugar unBanco = new Lugar(TipoEdificio.BANCO);
-//		
-//		unaCiudadActual.agregarLugar(unaBiblioteca);
-//		unaCiudadActual.agregarLugar(unPuerto);
-//		unaCiudadActual.agregarLugar(unBanco);
-//		
-//		Policia unPolicia = new Policia("Perez");
-//		unPoliNovato.asignarCiudadActual(unaCiudadActual);
-//		
-//		unPoliNovato.visitarLugar(new Lugar(TipoEdificio.BIBLIOTECA));
-//		assertEquals(unPoliNovato.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
-//		
-//		unPoliNovato.visitarLugar(new Lugar(TipoEdificio.BOLSA));
-//		assertNotEquals(unPoliNovato.getLugarActual().obtenerTipo(), TipoEdificio.BOLSA);
-//		assertEquals(unPoliNovato.getLugarActual().obtenerTipo(), TipoEdificio.BIBLIOTECA);
-//	}
-
-//	@Test
-//	public void testViajarADestinoCambiaCiudadActual() {
-//		
-//		Policia poli = new Policia();
-//		
-//		Ciudad destino = new Ciudad();
-//		
-//		
-//	}
-
 
 	@Test
 	public void testObtenerGradoDevuelveElGradoDelPolicia() {
@@ -129,38 +84,6 @@ public class PoliciaTest {
 
 	}
 
-	@Test
-	public void testPoliciaViajaCambiaCiudadActual() {
-
-		
-		Ciudad ciudad1 = EasyMock.createMock(Ciudad.class);
-		Ciudad ciudad2 = EasyMock.createMock(Ciudad.class);
-
-		
-		unPoliNovato.asignarNuevoCasoEn(ciudad1);
-		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad1);
-		
-		unPoliNovato.viajarA(ciudad2);
-		assertNotEquals(ciudad1, ciudad2);
-		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad2);
-		
-		
-	}
-	
-	@Test
-	public void testPoliciaViajaALaMismaCiudadNoCambiaCiudadActual() {
-
-		
-		Ciudad ciudad1 = EasyMock.createMock(Ciudad.class);
-		
-		unPoliNovato.asignarNuevoCasoEn(ciudad1);
-		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad1);
-		
-		unPoliNovato.viajarA(ciudad1);
-		assertEquals(unPoliNovato.obtenerCiudadActual(), ciudad1);
-		
-		
-	}
 	
 	@Test
 	public void testPoliciaNovatoViajaA900KmPorHora(){

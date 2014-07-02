@@ -18,11 +18,13 @@
 		<mkdir dir="${build}/classes"/>
 		<mkdir dir="${build}/tests"/>
 	</target>
-
+	
+	
 	<target name="compilar.aplicacion" depends="setup">
-		<javac srcdir="src" destdir="${build}" includeantruntime="false"></javac>
+		<javac srcdir="src" destdir="${build}" includeantruntime="false" debug="yes" source="1.8" target="1.8">
+		</javac>
 	</target>
-
+	
 	<target name="compilar.tests" depends="compilar.aplicacion">
 			<javac srcdir="test" destdir="${build}/tests" includeantruntime="false">
 				<classpath refid="classpath" />
@@ -41,5 +43,19 @@
 			</junit>
 			<fail message="Pruebas fallidas" if="test.failure" />
 		</target>
+	
+	<target name="compilar.Vista" depends="setup">
+			<copydir src="src/Vista/imagenesVista"
+				dest="${build}/classes/Vista/imagenesVista"
+				includes="**/*.jpg " />
+			<jar destfile="${build}/dist/GPS.jar" basedir="${build}/classes"/>
+	</target>
 
+	<target name="ejecutar.aplicacion" depends="compilar.Vista">
+		<java classname="tp2algo3.src.Main" fork="true">
+			<classpath refid="classpath"/>
+			<classpath location="${build}/dist/GPS.jar" />
+		</java>
+	</target>
+	
 </project>
