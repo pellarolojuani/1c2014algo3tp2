@@ -156,7 +156,7 @@ public class CreadorDePistas {
     	if( (this.heridaCuchillo == true) && Math.random()< 0.3 ) {
     		return crearHeridaCuchillo();
     	}
-    	if( (this.heridaPistola == true) && Math.random() < 0.3 ){
+    	if( (this.heridaPistola == true) && Math.random() < 0.4 ){
     		return crearHeridaPistola();
     	}
     	if(this.ciudadSiguiente!=null){
