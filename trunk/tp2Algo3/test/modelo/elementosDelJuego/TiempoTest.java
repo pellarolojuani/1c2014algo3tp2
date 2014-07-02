@@ -13,6 +13,13 @@ public class TiempoTest {
 	}
 	
 	@Test
+	public void testIniciarElTiempoEnNHs() {
+		
+		Tiempo.iniciarEn(10, 15);
+		assertEquals(10, Tiempo.getTiempoEnHs() );
+	}
+	
+	@Test
 	public void testIniciarIniciaLunesAlas7Hs() {
 		Tiempo.iniciar();
 		assertEquals("Lunes 7 Hs", Tiempo.tiempoComoString() );

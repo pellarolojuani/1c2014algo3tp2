@@ -27,19 +27,19 @@ public class CreadorDePistas {
     private Ciudad ciudadSiguiente;
     private Sospechoso ladron;
 
-	protected String textoSenia;
-	protected String textoPelo;
-	protected String textoHobby;
-	protected String textoVehiculo;
+	private String textoSenia;
+	private String textoPelo;
+	private String textoHobby;
+	private String textoVehiculo;
 
-	protected String textoFauna;
-	protected String textoIndustria;
-	protected String textoIdioma;
-	protected String textoPersonaje;
-	protected String textoLugarinteres;
-	protected String textoBanderaAeropuerto;
-	protected String textoBanderaPuerto;
-	protected String textoMoneda;
+	private String textoFauna;
+	private String textoIndustria;
+	private String textoIdioma;
+	private String textoPersonaje;
+	private String textoLugarinteres;
+	private String textoBanderaAeropuerto;
+	private String textoBanderaPuerto;
+	private String textoMoneda;
 	private ArrayList<Pista> pistasLadron;
 	private RecorridoLadron recorridoLadron;
 	private Boolean heridaCuchillo;
@@ -151,7 +151,7 @@ public class CreadorDePistas {
 
 	public CreadorDePistas(){this.ciudadSiguiente=null;this.ladron=null;}
 
-    public Pista crearNuevaPista(TipoEdificio tipo){
+    private Pista crearNuevaPista(TipoEdificio tipo){
     	
     	if( (this.heridaCuchillo == true) && Math.random()< 0.3 ) {
     		return crearHeridaCuchillo();
@@ -253,7 +253,7 @@ public class CreadorDePistas {
         return new Pista(this.textoBanderaAeropuerto + ciudadSiguiente.obtenerBandera());
     }
 
-    public void plantarPistasEnCiudad(Ciudad ciudad, Pista pistaLadron) {
+    private void plantarPistasEnCiudad(Ciudad ciudad, Pista pistaLadron) {
     	
         for(Lugar lugar: ciudad.obtenerLugaresDisponibles()){
         	
