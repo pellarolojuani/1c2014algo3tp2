@@ -358,12 +358,12 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addActionListener(control.getListenerVolver(this, null));
 		
-		String texto = "<html><font size = 8><font style=color:#9F000F><font style=background:#E5E4E2>Caracteristicas del Sospechoso:<br></font></html>";
-		JLabel textoLabel = new JLabel();
-		textoLabel.setText(texto);
-		add("North", textoLabel);
+		JLabel texto = new JLabel("<html><font size = 5><font style=color:#9F000F>Caracteristicas del Sospechoso:<br></font></html>");
+		JPanel textoPanel = new JPanel();
+		textoPanel.add(texto);
+		add("North", textoPanel);
 		
-		setLayout(new FlowLayout());
+		setLayout(new GridLayout(0,1));
 		
 		add(sexoPanel);
 		sexoPanel.setVisible(true);
@@ -375,8 +375,11 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		seniaPanel.setVisible(true);
 		add(vehiculoPanel);
 		vehiculoPanel.setVisible(true);
-		add("South", botonEmitir);
-		add("South", botonVolver);
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.add(botonEmitir);
+		panelBotones.add(botonVolver);
+		add("South", panelBotones);
 		
 		
 		this.setVisible(true);
