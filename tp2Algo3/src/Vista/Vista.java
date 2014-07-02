@@ -26,8 +26,6 @@ public class Vista extends JFrame implements Observer{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private char comilla = (char)34;
-	
 	//Clase auxiliar para escuchar el evento de cerrado de la ventana principal
 	public static class CloseListener extends WindowAdapter
 	{	public void windowClosing(WindowEvent e)
@@ -97,9 +95,9 @@ public class Vista extends JFrame implements Observer{
 		this.setVisible(true);
 		String descripcionRobo = unMenuBase.getJuego().obtenerCaso().obtenerDescripcionDelRobo();
 		String horario = Tiempo.tiempoComoString();
-		String texto =  "<html><font color = " + comilla + "red" + comilla +  "size = 4>" + descripcionRobo.substring(0, 9) +
-						"</font><br><font color = " + comilla + "red" + comilla + "size = 3>" + descripcionRobo.substring(10, descripcionRobo.length()) +
-						"</font><br>" + "</font><br><font color = " + comilla + "red" + comilla + "size = 3>" + horario + "<font><html>";
+		String texto =  "<html><font style=color:#7FE817><font size= 4>"+ descripcionRobo.substring(0, 9) +
+						"</font><br><font style=color:#7FE817><font size= 3>" + descripcionRobo.substring(10, descripcionRobo.length()) +
+						"</font><br><font style=color:#7FE817><font size= 3>" + horario + "</font><html>";
 		System.out.println(texto);
 		JLabel panelTexto = new JLabel();
 		panelTexto.setText(texto);
@@ -134,7 +132,7 @@ public class Vista extends JFrame implements Observer{
 		
 		this.setVisible(true);
 		
-		String texto =  "<html><font color = " + comilla + "red" + comilla + " size = 4>" +
+		String texto =  "<html><font style=color:#7FE817><font size= 4>" +
 						"Tiempo agotado...</font></html>";
 		
 		JLabel label = new JLabel();
@@ -174,10 +172,9 @@ public class Vista extends JFrame implements Observer{
 		p.setLayout(new BorderLayout(0, 0));
 		setContentPane(p);
 		
-		//@TODO : Corregir este mamarracho
-		String horario = "<html><font color = " + comilla + "white" + comilla + "size = 4>" + 
+		String horario = "<html><font style=color:#BDEDFF><font size =3>" + 
 						 Tiempo.tiempoComoString()+ 
-						 "</font>" + "<br><br><font color = " + comilla + "white" + comilla + "size = 3>" +
+						 "</font>" + "<br><br><font style=color:#BDEDFF><font size =3>" +
 						 "Usted se encuentra en: " + unaCiudad.getNombre() + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</font></html>";
 		
 		JLabel panelTiempo = new JLabel();
@@ -211,7 +208,7 @@ public class Vista extends JFrame implements Observer{
 			JLabel label = new JLabel();
 			label.setSize(frameAdvertencia.getSize());
 			
-			String texto =  "<html><font color = " + comilla + "red" + comilla + "size = 4>" + 
+			String texto =  "<html><font style=color:#F70D1A><font size= 4>" + 
 					 "ATENCION!!<br><font size = 3>Se esta agotando el tiempo.<br><br>" + 
 					 "Emita orden de arresto cuanto antes.</font><html>";
 			label.setText(texto);
@@ -242,7 +239,7 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		JLabel label = new JLabel();
 		label.setSize(framePista.getSize());
 		
-		String texto =  "<html><font color = " + comilla + "black" + comilla + "size = 3>" + 
+		String texto =  "<html><font size = 3>" + 
 				 pista + "</font><html>";
 		label.setText(texto);
 		framePista.add("North", label);
@@ -361,10 +358,10 @@ public void vistaLugar(MenuBase menuBase, Lugar unLugar, String pista){
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addActionListener(control.getListenerVolver(this, null));
 		
-		String texto = "<html><font size = 10><font style=color:#9F000F>Caracteristicas del Sospechoso:</font></html>";
-		JLabel panelTexto = new JLabel();
-		panelTexto.setText(texto);
-		add("North", panelTexto);
+		String texto = "<html><font size = 8><font style=color:#9F000F><font style=background:#E5E4E2>Caracteristicas del Sospechoso:<br></font></html>";
+		JLabel textoLabel = new JLabel();
+		textoLabel.setText(texto);
+		add("North", textoLabel);
 		
 		setLayout(new FlowLayout());
 		
