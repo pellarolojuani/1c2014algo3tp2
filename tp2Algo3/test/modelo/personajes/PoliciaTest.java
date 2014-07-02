@@ -48,6 +48,22 @@ public class PoliciaTest {
 	}
 	
 	@Test
+	public void testPoliciaConDiezArrestosAumentaDeRango() {
+		for(int i=10; i > 0 ;i--)
+			unPoliNovato.arrestarLadron();
+		
+		assertEquals(Grado.INVESTIGADOR, unPoliNovato.obtenerGrado());
+	}
+	
+	@Test
+	public void testPoliciaConVeinteArrestosAumentaDeRango() {
+		for(int i=20; i > 0 ;i--)
+			unPoliNovato.arrestarLadron();
+		
+		assertEquals(Grado.SARGENTO, unPoliNovato.obtenerGrado());
+	}
+	
+	@Test
 	public void testPromoverGradoDeNovatoADetective(){
 		
 		
