@@ -47,7 +47,7 @@ public class Caso {
 
     private void elegirObjeto(ArrayList<ObjetoRobado> objetos, Grado gradoPolicia){
         //Elegimos el valor del objeto de acuerdo al grado del policia.
-        valorObjeto=Valor.MUY_VALIOSO;
+        valorObjeto=Valor.COMUN;
         if(gradoPolicia==Grado.INVESTIGADOR)valorObjeto=Valor.VALIOSO;
         else if(gradoPolicia==Grado.SARGENTO)valorObjeto=Valor.MUY_VALIOSO;
         objetoRobado=objetos.get((int)(Math.random()*objetos.size()));
