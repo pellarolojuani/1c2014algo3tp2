@@ -3,14 +3,12 @@ package modelo.elementosDelJuego;
 import modelo.geografico.Ciudad;
 import modelo.personajes.Sospechoso;
 
-/**
- * Created by chris on 06/06/2014.
- */
+
 public class PistaBanco extends Pista {
 
     public PistaBanco(Ciudad ciudadSiguiente, Sospechoso ladron) {
     	
-    	super(ladron);//Puede ser cualquier string, lo hice sólo para no pisar el constructor por defecto
+    	super(ladron);//Puede ser cualquier string, lo hice sï¿½lo para no pisar el constructor por defecto
     	
         if(ciudadSiguiente==null){pista="El ladron esta cerca!";}
         
@@ -18,7 +16,7 @@ public class PistaBanco extends Pista {
         
 }
 
-    // Voy a querer manejar la dificultad de las pistas complejizando los siguientes métodos
+    // Voy a querer manejar la dificultad de las pistas complejizando los siguientes mï¿½todos
 	private String auxTextoPistaCiudad(Ciudad ciudad){
 		
 		return this.textoMoneda + ciudad.obtenerMoneda();

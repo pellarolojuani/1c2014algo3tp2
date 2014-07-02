@@ -3,9 +3,7 @@ package modelo.elementosDelJuego;
 import modelo.geografico.Ciudad;
 import modelo.personajes.Sospechoso;
 
-/**
- * Created by chris on 06/06/2014.
- */
+
 public class PistaBolsa extends Pista {
 	
     public PistaBolsa(Ciudad ciudadSiguiente, Sospechoso ladron) {
@@ -18,7 +16,7 @@ public class PistaBolsa extends Pista {
         
     }
 
-        // Voy a querer manejar la dificultad de las pistas complejizando los siguientes métodos
+        // Voy a querer manejar la dificultad de las pistas complejizando los siguientes mï¿½todos
     	private String auxTextoPistaCiudad(Ciudad ciudad){
     		
     		return this.textoMoneda + ciudad.obtenerMoneda();

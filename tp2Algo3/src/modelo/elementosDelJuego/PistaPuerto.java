@@ -3,9 +3,7 @@ package modelo.elementosDelJuego;
 import modelo.geografico.Ciudad;
 import modelo.personajes.Sospechoso;
 
-/**
- * Created by chris on 06/06/2014.
- */
+
 public class PistaPuerto extends Pista {
 	
     public PistaPuerto(Ciudad ciudadSiguiente, Sospechoso ladron) {
@@ -18,7 +16,7 @@ public class PistaPuerto extends Pista {
         
     }
 
-        // Voy a querer manejar la dificultad de las pistas complejizando los siguientes métodos
+        // Voy a querer manejar la dificultad de las pistas complejizando los siguientes mï¿½todos
         // Voy a usar probabilidad
     	private String auxTextoPistaCiudad(Ciudad ciudad){
     		

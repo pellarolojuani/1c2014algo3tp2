@@ -2,9 +2,6 @@ package modelo.elementosDelJuego;
 
 import modelo.personajes.Sospechoso;
 
-/**
- * Created by chris on 24/06/2014.
- */
 public class OrdenDeArresto {
 
     private Sospechoso sospechoso;

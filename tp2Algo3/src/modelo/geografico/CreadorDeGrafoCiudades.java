@@ -53,7 +53,4 @@ public class CreadorDeGrafoCiudades{
         return this.grafociudades.obtenerciudadesvisitables(v); 
 	}
 
-	public Grafo obtenergrafo(){
-		return this.grafociudades;
-	}
 }
