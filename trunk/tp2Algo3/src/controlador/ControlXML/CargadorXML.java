@@ -85,6 +85,7 @@ public class CargadorXML {
     private void cargarCuartelGeneral(Document document, ArrayList<Sospechoso> sospechosos){
         Element elementoCuartel= (Element) document.getElementsByTagName("CuartelGeneral").item(0);
         String orden=elementoCuartel.getAttribute("orden");
+        CuartelGeneral.getInstance().cargarSospechosos(sospechosos);
         for (Sospechoso s: sospechosos){
             if (s.getNombre().equals(orden)){
                 CuartelGeneral.getInstance().emitirOrdenDeArrestoPara(s);
