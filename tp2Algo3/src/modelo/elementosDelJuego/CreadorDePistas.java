@@ -270,11 +270,6 @@ public class CreadorDePistas {
         }
     }
 
-    public void reiniciarPistasEn(Ciudad ciudad) {
-        for(Lugar lugar: ciudad.obtenerLugaresDisponibles()){
-            lugar.plantarPista(new Pista());
-        }
-    }
 
 public void plantarPistas() {
 	

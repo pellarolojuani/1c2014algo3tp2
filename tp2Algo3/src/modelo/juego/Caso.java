@@ -33,7 +33,7 @@ public class Caso {
         }
         System.out.println("Fin del recorrido");
         this.ciudadDelRobo=recorridoLadron.obtenerCiudadDelRobo();
-        //reiniciarPistas(ciudades);
+        
         plantarPistas();
     }
 
@@ -44,12 +44,6 @@ public class Caso {
         recorridoLadron=new RecorridoLadron(ciudadDelRobo,nroCiudades);
     }
 
-    private void reiniciarPistas(ArrayList<Ciudad> ciudades) {
-        CreadorDePistas creadorDePistas=new CreadorDePistas();
-        for(Ciudad ciudad: ciudades){
-            creadorDePistas.reiniciarPistasEn(ciudad);
-        }
-    }
 
     private void elegirObjeto(ArrayList<ObjetoRobado> objetos, Grado gradoPolicia){
         //Elegimos el valor del objeto de acuerdo al grado del policia.
