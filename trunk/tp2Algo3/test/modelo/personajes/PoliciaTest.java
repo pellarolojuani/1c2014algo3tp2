@@ -1,13 +1,10 @@
 package modelo.personajes;
 import static org.junit.Assert.*;
 
-import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
-import modelo.elementosDelJuego.Tiempo;
-import modelo.geografico.*;
-import modelo.juego.Juego;
+
 
 
 public class PoliciaTest {
