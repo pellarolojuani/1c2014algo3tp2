@@ -21,7 +21,7 @@
 	
 	
 	<target name="compilar.aplicacion" depends="setup">
-		<javac srcdir="src" destdir="${build}" includeantruntime="false" debug="yes" source="1.8" target="1.8">
+		<javac srcdir="src" destdir="${build}" includeantruntime="false" debug="yes" source="1.6" target="1.6">
 		</javac>
 	</target>
 	
