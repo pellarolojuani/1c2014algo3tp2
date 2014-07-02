@@ -14,17 +14,24 @@ public class PoliciaTest {
 	@Before
 	public void setUp(){
 		
-		unPoliNovato = new Policia();
+		unPoliNovato = new Policia("Carlos");
 	}
 	
 	@Test
 	public void testPoliciaEsCreadoNovato() {
 
-		Policia policia = new Policia();
+		Policia policia = new Policia("Jorge");
 		assertEquals(policia.obtenerGrado(), Grado.NOVATO);
 
 	}
 	
+	@Test
+	public void testPoliciaRecienCreadoTieneCeroArrestos() {
+
+		Policia policia = new Policia("Jorge");
+		assertEquals(0,policia.obtenerNroArrestos());
+
+	}
 
 	@Test
 	public void testObtenerGradoDevuelveElGradoDelPolicia() {
@@ -32,7 +39,13 @@ public class PoliciaTest {
 		assertEquals(Grado.NOVATO, unPoliNovato.obtenerGrado());
 	}
 
-
+	@Test
+	public void testPoliciaConCincoArrestosAumentaDeRango() {
+		for(int i=5; i > 0 ;i--)
+			unPoliNovato.arrestarLadron();
+		
+		assertEquals(Grado.DETECTIVE, unPoliNovato.obtenerGrado());
+	}
 	
 	@Test
 	public void testPromoverGradoDeNovatoADetective(){

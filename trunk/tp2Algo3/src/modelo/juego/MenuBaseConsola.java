@@ -4,11 +4,9 @@ import controlador.ControlXML.CargadorXML;
 import controlador.ControlXML.GuardadorXML;
 import modelo.descripciones.*;
 import modelo.elementosDelJuego.CuartelGeneral;
-import modelo.elementosDelJuego.SeAcaboElTiempoDelCasoExcepcion;
 import modelo.elementosDelJuego.Tiempo;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
-import modelo.geografico.TipoEdificio;
 import modelo.personajes.Policia;
 import modelo.personajes.Sospechoso;
 
@@ -23,7 +21,7 @@ public class MenuBaseConsola{
     private int opcionMenuBase, opcionMenuPrincipal;
  
     public Juego getJuego(){
-    	return this.juego;
+    	return juego;
     }
     
     public Policia getPolicia(){
