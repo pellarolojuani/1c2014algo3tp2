@@ -8,51 +8,69 @@ import java.util.ArrayList;
 public class Ciudad {
 
 	private ArrayList<Lugar> lugares;
-    private ArrayList<Ciudad> ciudadesvisitables;
+    private ArrayList<Ciudad> ciudadesVisitables;
     private String nombre;
 	private double Latitud;   
 	private double Longitud;
 	private String moneda;
 	private String bandera;
-	private String lugaresdeinteres;
+	private String lugaresDeInteres;
 	private String personaje;
 	private String industria;
 	private String fauna;
 	private String idiomas;
 	
-    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Ciudad> ciudadesvisitables, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
+    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresDeInteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Ciudad> ciudadesVisitables, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
     	this.nombre = nombre;
         this.lugares = lugares;
     	this.moneda = unamoneda;
-    	this.lugaresdeinteres=lugaresdeinteres;
+    	this.lugaresDeInteres = lugaresDeInteres;
     	this.personaje=personaje;
     	this.industria=industria;
     	this.fauna=fauna;
     	this.idiomas=idiomas;
     	ArrayList<Ciudad> ciudades = new ArrayList<Ciudad>();
-        this.ciudadesvisitables = ciudades;
+        this.ciudadesVisitables = ciudades;
         this.bandera = bandera;
         this.Latitud = unalatitud;
         this.Longitud = unalongitud;
     }
 
+    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresDeInteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
+        this.nombre = nombre;
+        this.lugares = lugares;
+        this.moneda = unamoneda;
+        this.lugaresDeInteres = lugaresDeInteres;
+        this.personaje=personaje;
+        this.industria=industria;
+        this.fauna=fauna;
+        this.idiomas=idiomas;
+        this.bandera = bandera;
+        this.Latitud = unalatitud;
+        this.Longitud = unalongitud;
+    }
+
+    public Ciudad() {
+        this.lugares = new ArrayList<Lugar>();
+        this.ciudadesVisitables = new ArrayList<Ciudad>();
+    }
 
     public ArrayList<Ciudad> obtenerCiudadesDestinoDisponibles() {
-        return this.ciudadesvisitables;
+        return this.ciudadesVisitables;
     }
 
 	public ArrayList<Lugar> obtenerLugaresDisponibles(){
 		return this.lugares;
 	}
-	
-	//Devuelve la distancia a una ciudad desde la ciudad actual
+
 	public double distanciaA(Ciudad unaCiudad){
+        //Devuelve la distancia a una ciudad desde la ciudad actual
 
 		return distancia(this.Latitud, this.Longitud, unaCiudad.Latitud, unaCiudad.Longitud);
 	}
-	
-	//Devuelve la distancia entre dos puntos dadas sus latitudes y longitudes.
+
 	private double distancia(double lat1, double lon1, double lat2, double lon2) {
+        //Devuelve la distancia entre dos puntos dadas sus latitudes y longitudes.
 		
 		double radioTerrestre = 6372.795; //radio terrestre en km
 		
@@ -64,13 +82,12 @@ public class Ciudad {
 	}
     
     public void agregarCiudadVisitable(Ciudad unaCiudad){
-    	this.ciudadesvisitables.add(unaCiudad);
+    	this.ciudadesVisitables.add(unaCiudad);
     }
     
     public String getNombre(){
     	return this.nombre;
     }
-
 
     public void agregarLugares(ArrayList<Lugar> lugares) {
         this.lugares=lugares;
@@ -96,10 +113,10 @@ public class Ciudad {
         Element elementoCiudad=doc.createElement("Ciudad");
         elementoCiudad.setAttribute("nombre",nombre);
         String ciudadesDestino="";
-        for (int i = 0; i < ciudadesvisitables.size()-1; i++) {
-            ciudadesDestino=ciudadesDestino+ciudadesvisitables.get(i).getNombre()+",";
+        for (int i = 0; i < ciudadesVisitables.size()-1; i++) {
+            ciudadesDestino=ciudadesDestino+ ciudadesVisitables.get(i).getNombre()+",";
         }
-        ciudadesDestino=ciudadesDestino+ciudadesvisitables.get(ciudadesvisitables.size()-1).getNombre();
+        ciudadesDestino=ciudadesDestino+ ciudadesVisitables.get(ciudadesVisitables.size()-1).getNombre();
         elementoCiudad.setAttribute("ciudadesDestino",ciudadesDestino);
         for(Lugar l: lugares){
             elementoCiudad.appendChild(l.serializar(doc));
@@ -107,41 +124,17 @@ public class Ciudad {
         return elementoCiudad;
     }
 
-    public Ciudad(String nombre, String bandera, String unamoneda, String lugaresdeinteres, String personaje, String industria, String fauna, String idiomas, ArrayList<Lugar> lugares,double unalatitud, double unalongitud){
-        this.nombre = nombre;
-        this.lugares = lugares;
-        this.moneda = unamoneda;
-        this.lugaresdeinteres=lugaresdeinteres;
-        this.personaje=personaje;
-        this.industria=industria;
-        this.fauna=fauna;
-        this.idiomas=idiomas;
-        this.bandera = bandera;
-        this.Latitud = unalatitud;
-        this.Longitud = unalongitud;
-    }
-
-
-	public Ciudad() {
-		this.lugares = new ArrayList<Lugar>();
-		this.ciudadesvisitables = new ArrayList<Ciudad>();
-	}
-
-
 	public String obtenerPuntosInteres() {
-		return this.lugaresdeinteres;
+		return this.lugaresDeInteres;
 	}
-
 
 	public String obtenerPersonaje() {
 		return this.personaje;
 	}
 
-
 	public String obtenerFauna() {
 		return this.fauna;
 	}
-
 
     public Lugar obtenerLugar(TipoEdificio tipoEdificio) {
         for(Lugar l: lugares){
@@ -149,7 +142,6 @@ public class Ciudad {
         }
         return null;
     }
-
 
 	public void agregarLugar(Lugar unLugar) {
 		this.lugares.add(unLugar);

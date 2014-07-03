@@ -20,7 +20,6 @@ public class Sospechoso {
         return descripcion;
     }
 
-
     public String getNombre(){
        return nombre;
     }

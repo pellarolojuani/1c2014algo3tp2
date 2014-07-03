@@ -44,7 +44,6 @@ public class Caso {
         recorridoLadron=new RecorridoLadron(ciudadDelRobo,nroCiudades);
     }
 
-
     private void elegirObjeto(ArrayList<ObjetoRobado> objetos, Grado gradoPolicia){
         //Elegimos el valor del objeto de acuerdo al grado del policia.
         valorObjeto=Valor.COMUN;
