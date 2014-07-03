@@ -1,61 +1,141 @@
-<project name="tp2Algo3" basedir="." default="ejecutar.tests">
-	<property name="build" location="build" />
-	<property name="libs" location="libs" />
-	<property name="classes.dir" location="build" />
-	<property name="src.dir" location="src" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="main" name="tp2algo3">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="C:/Users/Seba/Desktop/Seba/Programas/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="Plug-in Dependencies.libraryclasspath"/>
+    <path id="tp2algo3.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <path refid="Plug-in Dependencies.libraryclasspath"/>
+        <pathelement location="libs/cglib-3.1.jar"/>
+        <pathelement location="libs/cglib-nodep-3.1.jar"/>
+        <pathelement location="libs/easymock-3.2-javadoc.jar"/>
+        <pathelement location="libs/easymock-3.2-samples.jar"/>
+        <pathelement location="libs/easymock-3.2-sources.jar"/>
+        <pathelement location="libs/easymock-3.2-tests.jar"/>
+        <pathelement location="libs/easymock-3.2.jar"/>
+        <pathelement location="libs/objenesis-2.1-javadoc.jar"/>
+        <pathelement location="libs/objenesis-2.1-sources.jar"/>
+        <pathelement location="libs/objenesis-2.1.jar"/>
+        <pathelement location="libs/mockito-all-1.9.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.ucls"/>
+                <exclude name="**/*.useq"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.ucls"/>
+                <exclude name="**/*.useq"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="test"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="CasoTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="juego.CasoTest" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
+    <target name="JuegoTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="juego.JuegoTest" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
+    <target name="main">
+        <java classname="modelo.juego.Main" failonerror="true" fork="yes">
+            <classpath refid="tp2algo3.classpath"/>
+        </java>
+    </target>
+    <target name="MenuBase (1)">
+        <java classname="modelo.juego.MenuBase" failonerror="true" fork="yes">
+            <classpath refid="tp2algo3.classpath"/>
+        </java>
+    </target>
+    <target name="ObjetoRobadoTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="modelo.elementosDelJuego.ObjetoRobadoTest" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
+    <target name="PoliciaTest (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="modelo.personajes.PoliciaTest" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
+    <target name="PoliciaTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="personajes.PoliciaTest" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
 
-	<path id="classpath">
-		<fileset dir="${libs}">
-			<include name="*.jar" />
-		</fileset>
-		<pathelement location="${build}" />
-		<pathelement location="${build}/tests" />
-	</path>
-
-	<target name="setup">
-		<delete dir="${build}" />
-		<mkdir dir="${build}"/>
-		<mkdir dir="${build}/classes"/>
-		<mkdir dir="${build}/tests"/>
-	</target>
-	
-	
-	<target name="compilar.aplicacion" depends="setup">
-		<javac srcdir="src" destdir="${build}" includeantruntime="false" debug="yes" source="1.6" target="1.6">
-		</javac>
-	</target>
-	
-	<target name="compilar.tests" depends="compilar.aplicacion">
-			<javac srcdir="test" destdir="${build}/tests" includeantruntime="false">
-				<classpath refid="classpath" />
-			</javac>
-		</target>
-
-
-		<target name="ejecutar.tests" depends="compilar.tests">
-			<junit fork="yes" failureProperty="test.failure"  forkmode="once" showoutput="true" printsummary="on">
-				<classpath refid="classpath" />
-				<classpath location="${build}" />
-				<classpath refid="classpath" />
-				<batchtest>
-					<fileset dir="${build}/tests" includes="**/*Test.class" />
-				</batchtest>
-			</junit>
-			<fail message="Pruebas fallidas" if="test.failure" />
-		</target>
-	
-	<target name="compilar.Vista" depends="setup">
-			<copydir src="src/Vista/imagenesVista"
-				dest="${build}/classes/Vista/imagenesVista"
-				includes="**/*.jpg " />
-			<jar destfile="${build}/dist/GPS.jar" basedir="${build}/classes"/>
-	</target>
-
-	<target name="ejecutar.aplicacion" depends="compilar.Vista">
-		<java classname="tp2algo3.src.Main" fork="true">
-			<classpath refid="classpath"/>
-			<classpath location="${build}/dist/GPS.jar" />
-		</java>
-	</target>
-	
+    <target name="SospechosoTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="personajes.SospechosoTest" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
+    <target name="Tests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Tests" todir="${junit.output.dir}"/>
+            <classpath refid="tp2algo3.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
 </project>
