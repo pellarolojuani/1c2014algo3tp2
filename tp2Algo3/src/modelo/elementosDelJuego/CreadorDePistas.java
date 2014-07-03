@@ -230,7 +230,7 @@ public class CreadorDePistas {
 
     private Pista crearPistaPuerto(){
     	
-    	if(this.dificultad == Valor.COMUN){
+    	if(this.dificultad == Valor.MUY_VALIOSO){
     		
     		if(Math.random() < 0.8 )
     			return new Pista(this.textoIdioma + ciudadSiguiente.obtenerIdioma());
