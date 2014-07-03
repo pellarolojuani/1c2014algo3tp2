@@ -222,7 +222,7 @@ public class Vista extends JFrame implements Observer {
         JLabel label = new JLabel();
         label.setSize(framePista.getSize());
 
-        String texto = "<html><font size = 3>" +
+        String texto = "<html><font size = 4><font style=color:#000000>" +
                 pista + "</font><html>";
         label.setText(texto);
         framePista.add("North", label);
