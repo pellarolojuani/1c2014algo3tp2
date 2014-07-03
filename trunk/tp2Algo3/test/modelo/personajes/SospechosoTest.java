@@ -1,49 +1,63 @@
 package modelo.personajes;
 
 import static org.junit.Assert.*;
+import modelo.descripciones.Descripcion;
+import modelo.descripciones.Hobby;
+import modelo.descripciones.Pelo;
+import modelo.descripciones.Senia;
+import modelo.descripciones.Sexo;
+import modelo.descripciones.Vehiculo;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class SospechosoTest {
+	
+	Sospechoso ladron;
+	Descripcion desc;
+	
+	@Before
+	public void setUp(){
+		
+		desc = new Descripcion(Sexo.MASCULINO, Hobby.ALPINISMO, Pelo.NEGRO, Senia.ANILLO, Vehiculo.MOTO);
+		ladron = new Sospechoso("Nik", desc);
+	}
 
     @Test
-    public void testSospechosoDescripcion() {
-        fail("Not yet implemented");
+    public void testSospechosoObtenerDescripcion() {
+
+    	assertEquals(desc, ladron.obtenerDescripcion());
     }
 
-    @Test
-    public void testSospechosoStringDescripcion() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testObtenerDescripcion() {
-        fail("Not yet implemented");
-    }
 
     @Test
     public void testGetNombre() {
-        fail("Not yet implemented");
+    	
+        assertEquals("Nik", ladron.getNombre());
     }
 
     @Test
     public void testSeniaComoString() {
-        fail("Not yet implemented");
+
+    	assertEquals("ANILLO",ladron.seniaComoString());
     }
 
     @Test
     public void testHobbyComoString() {
-        fail("Not yet implemented");
+
+    	assertEquals("ALPINISMO",ladron.hobbyComoString());
     }
 
     @Test
     public void testPeloComoString() {
-        fail("Not yet implemented");
+        
+    	assertEquals("NEGRO",ladron.peloComoString());
     }
 
     @Test
     public void testVehiculoComoString() {
-        fail("Not yet implemented");
+
+    	assertEquals("MOTO",ladron.vehiculoComoString());
     }
 
 }

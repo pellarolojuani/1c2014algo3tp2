@@ -2,43 +2,60 @@ package modelo.descripciones;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class DescripcionTest {
 
-    @Test
-    public void testDescripcion() {
-        fail("Not yet implemented");
-    }
-
+	Descripcion unaDesc;
+	
+	@Before
+	public void setUp(){
+		
+		unaDesc = new Descripcion(Sexo.MASCULINO, Hobby.ALPINISMO, Pelo.NEGRO, Senia.ANILLO, Vehiculo.MOTO);
+	}
+   
     @Test
     public void testGetSenia() {
-        fail("Not yet implemented");
+    	
+        assertEquals(Senia.ANILLO, unaDesc.getSenia());
     }
 
     @Test
     public void testGetHobby() {
-        fail("Not yet implemented");
+
+    	assertEquals(Hobby.ALPINISMO, unaDesc.getHobby());
     }
 
     @Test
     public void testGetPelo() {
-        fail("Not yet implemented");
+
+    	assertEquals(Pelo.NEGRO,unaDesc.getPelo());
+    	
     }
 
     @Test
     public void testGetVehiculo() {
-        fail("Not yet implemented");
+
+    	assertEquals(Vehiculo.MOTO, unaDesc.getVehiculo());
     }
 
     @Test
     public void testGetSexo() {
-        fail("Not yet implemented");
+        assertEquals(Sexo.MASCULINO, unaDesc.getSexo());
     }
 
     @Test
-    public void testPuedeSerIgualA() {
-        fail("Not yet implemented");
+    public void testPuedeSerIgualALaMismaDescripcionDevuelveTrue() {
+
+    	assertTrue(unaDesc.puedeSerIgualA(unaDesc));
+    }
+    
+    @Test
+    public void testPuedeSerIgualAOtraDescripcionDevuelveFalse() {
+    	
+    	Descripcion otraDesc = new Descripcion(Sexo.FEMENINO, Hobby.TENIS, Pelo.ROJO, Senia.CICATRIZ, Vehiculo.MOTO);
+    	assertFalse(unaDesc.puedeSerIgualA( otraDesc));
     }
 
 }
