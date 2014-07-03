@@ -18,8 +18,6 @@ public class Policia extends Observable{
     private String ultimaPista;
     private int nroArrestos;
 
-
-   
     
     public Policia(String nombre){
     	
@@ -31,7 +29,7 @@ public class Policia extends Observable{
     
     public void visitarLugar(Lugar lugar){
 		
-    	if(lugar.obtenerPista()=="¡Te han disparado!" || lugar.obtenerPista()=="¡Te han arrojado un cuchillo!")
+    	if(lugar.obtenerPista()=="ï¿½Te han disparado!" || lugar.obtenerPista()=="ï¿½Te han arrojado un cuchillo!")
     	{
     		this.visitarLugarHerida(lugar);
     		return;
@@ -60,7 +58,7 @@ public class Policia extends Observable{
 	
 	private void visitarLugarHerida(Lugar lugar) {
 		
-		if( lugar.obtenerPista()=="¡Te han disparado" )
+		if( lugar.obtenerPista()=="ï¿½Te han disparado" )
     	{
     		Tiempo.aumentarHoras(4);
     	}

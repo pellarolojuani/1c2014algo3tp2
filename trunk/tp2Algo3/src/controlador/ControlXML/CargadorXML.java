@@ -53,8 +53,6 @@ public class CargadorXML {
 
             RecorridoLadron recorridoLadron=cargarRecorridoLadron(document, ciudadesMap);
 
-            //Para todas las ciudades que esten en el recorrido, guardar las pistas, si es
-
             CreadorDeSospechosos creadorDeSospechosos = new CreadorDeSospechosos();
             ArrayList<Sospechoso> sospechosos = creadorDeSospechosos.obtenerSospechosos();
 
@@ -97,12 +95,11 @@ public class CargadorXML {
     private void cargarLugaresVisitados(Document document, Map<String, Ciudad> ciudadesMap) {
         NodeList ciudadesList = document.getElementsByTagName("Ciudad");
         for (int i = 0; i < ciudadesList.getLength(); i++) {
-            //Para cada ciudad
             Element c = (Element) ciudadesList.item(i);
             Ciudad ciudad=ciudadesMap.get(c.getAttribute("nombre"));
             NodeList lugaresList=c.getChildNodes();
             for (int j = 0; j < lugaresList.getLength(); j++) {
-                //Para cada lugar de la ciudad, cargamos el nro de visitas, y la pista.
+                //Para cada lugar de cada ciudad, cargamos el nro de visitas, y la pista.
                 Element lugar=(Element)lugaresList.item(j);
                 TipoEdificio tipo=TipoEdificio.valueOf(lugar.getAttribute("tipo"));
                 Lugar l=ciudad.obtenerLugar(tipo);
@@ -113,7 +110,7 @@ public class CargadorXML {
     }
 
     private void cargarCiudadesVisitables(Document doc, Map<String,Ciudad> ciudadesMap){
-
+        //Cargamos las ciudades visitables desde cada ciudad.
         NodeList ciudadesList = doc.getElementsByTagName("Ciudad");
         for (int i = 0; i < ciudadesList.getLength(); i++) {
             Element c = (Element) ciudadesList.item(i);
@@ -126,7 +123,6 @@ public class CargadorXML {
     }
 
     private Policia cargarPolicia(Document doc,Map<String,Ciudad> ciudadesMap){
-
         Element eP = (Element) doc.getElementsByTagName("Policia").item(0);
         int nroArrestos = Integer.parseInt(eP.getAttribute("nroArrestos"));
         Grado grado = Grado.valueOf(eP.getAttribute("grado"));

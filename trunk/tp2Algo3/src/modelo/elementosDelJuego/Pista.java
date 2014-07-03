@@ -6,7 +6,6 @@ public class Pista {
 
 	public String pista;
 
-	
 
     public Pista(String pista){
         this.pista=pista;
@@ -15,8 +14,6 @@ public class Pista {
 	public Pista() {
 		this.pista = "Lo siento, no he visto a nadie sospechoso.";
 	}
-
-	
 
 
 	public String contenidoComoString() {

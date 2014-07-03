@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 import java.util.Observable;
 
-//El cuartel general tambien tendria que ser unico
+
 public class CuartelGeneral extends Observable {
 
     private static ArrayList<Sospechoso> sospechosos;
@@ -36,7 +36,6 @@ public class CuartelGeneral extends Observable {
     }
 
     public ArrayList<Sospechoso> buscarSospechoso(Descripcion otraDescripcion) {
-        //Hay que implementar esto para que busque bien, y encuentre un sospechoso aunque la descripcion sea parcial.
         ArrayList<Sospechoso> s=new ArrayList<Sospechoso>();
         for(Sospechoso sospechoso: sospechosos){
             if(sospechoso.obtenerDescripcion().puedeSerIgualA(otraDescripcion))s.add(sospechoso);
