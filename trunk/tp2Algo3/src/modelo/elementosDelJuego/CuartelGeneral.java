@@ -19,46 +19,45 @@ public class CuartelGeneral extends Observable {
     private static Policia policia;
     private static CuartelGeneral instance;
 
-    public CuartelGeneral(){
+    public CuartelGeneral() {
     }
 
-    public void asignarAJuego(Juego unJuego){
+    public void asignarAJuego(Juego unJuego) {
         addObserver(unJuego);
     }
 
-    public static CuartelGeneral getInstance(){
-        if(instance==null)instance=new CuartelGeneral();
+    public static CuartelGeneral getInstance() {
+        if (instance == null) instance = new CuartelGeneral();
         return instance;
     }
 
     public void cargarSospechosos(ArrayList<Sospechoso> sospechososList) {
-        sospechosos=sospechososList;
+        sospechosos = sospechososList;
     }
 
     public ArrayList<Sospechoso> buscarSospechoso(Descripcion otraDescripcion) {
-        ArrayList<Sospechoso> s=new ArrayList<Sospechoso>();
-        for(Sospechoso sospechoso: sospechosos){
-            if(sospechoso.obtenerDescripcion().puedeSerIgualA(otraDescripcion))s.add(sospechoso);
+        ArrayList<Sospechoso> s = new ArrayList<Sospechoso>();
+        for (Sospechoso sospechoso : sospechosos) {
+            if (sospechoso.obtenerDescripcion().puedeSerIgualA(otraDescripcion)) s.add(sospechoso);
         }
         return s;
     }
 
     public void notificarDeArrestoAPolicia() {
         policia.arrestarLadron();
-        if(policia.obtenerNroArrestos()==policia.obtenerGrado().arrestosParaPromover())policia.promoverGrado();
+        if (policia.obtenerNroArrestos() == policia.obtenerGrado().arrestosParaPromover()) policia.promoverGrado();
     }
 
     public boolean fueEmitidaOrdenPara(Sospechoso ladron) {
-        if(orden==null)return false;
-        return orden.obtenerSospechoso()==ladron;
+        return orden != null && orden.obtenerSospechoso() == ladron;
     }
 
     public void emitirOrdenDeArrestoPara(Sospechoso sospechoso) {
-        orden=new OrdenDeArresto(sospechoso);
+        orden = new OrdenDeArresto(sospechoso);
     }
 
     public void incorporarPolicia(Policia unPolicia) {
-        policia=unPolicia;
+        policia = unPolicia;
     }
 
     public void notificarVisitaA(Lugar lugar) {
@@ -66,10 +65,10 @@ public class CuartelGeneral extends Observable {
         notifyObservers(lugar);
     }
 
-    public Element serializar(Document doc){
-        Element elementoCuartel=doc.createElement("CuartelGeneral");
-        if(orden==null) elementoCuartel.setAttribute("orden","");
-        else elementoCuartel.setAttribute("orden",orden.obtenerSospechoso().getNombre());
+    public Element serializar(Document doc) {
+        Element elementoCuartel = doc.createElement("CuartelGeneral");
+        if (orden == null) elementoCuartel.setAttribute("orden", "");
+        else elementoCuartel.setAttribute("orden", orden.obtenerSospechoso().getNombre());
         return elementoCuartel;
     }
 }

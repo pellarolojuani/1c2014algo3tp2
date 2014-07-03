@@ -24,16 +24,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by chris on 27/06/2014.
- */
+
 public class CargadorXML {
     public Juego cargar() {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         Juego juego = null;
         try {
-            CreadorDeCiudades creadorDeCiudades=new CreadorDeCiudades();
-            ArrayList<Ciudad> ciudades= creadorDeCiudades.obtenerCiudadesSinVisitables();
+            CreadorDeCiudades creadorDeCiudades = new CreadorDeCiudades();
+            ArrayList<Ciudad> ciudades = creadorDeCiudades.obtenerCiudadesSinVisitables();
 
             Map<String, Ciudad> ciudadesMap = new HashMap<String, Ciudad>();
             for (Ciudad c : ciudades) ciudadesMap.put(c.getNombre(), c);
@@ -43,22 +41,22 @@ public class CargadorXML {
             Document document = documentBuilder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-            cargarCiudadesVisitables(document,ciudadesMap);
-            cargarLugaresVisitados(document,ciudadesMap);
+            cargarCiudadesVisitables(document, ciudadesMap);
+            cargarLugaresVisitados(document, ciudadesMap);
 
-            Policia policia=cargarPolicia(document, ciudadesMap);
+            Policia policia = cargarPolicia(document, ciudadesMap);
 
             CreadorDeObjetos creadorDeObjetos = new CreadorDeObjetos(ciudades);
             ArrayList<ObjetoRobado> objetos = creadorDeObjetos.obtenerListaDeObjetos();
 
-            RecorridoLadron recorridoLadron=cargarRecorridoLadron(document, ciudadesMap);
+            RecorridoLadron recorridoLadron = cargarRecorridoLadron(document, ciudadesMap);
 
             CreadorDeSospechosos creadorDeSospechosos = new CreadorDeSospechosos();
             ArrayList<Sospechoso> sospechosos = creadorDeSospechosos.obtenerSospechosos();
 
-            Caso caso=cargarCaso(document,sospechosos,objetos,recorridoLadron);
+            Caso caso = cargarCaso(document, sospechosos, objetos, recorridoLadron);
 
-            cargarCuartelGeneral(document,sospechosos);
+            cargarCuartelGeneral(document, sospechosos);
             cargarTiempo(document);
             juego = new Juego(sospechosos, objetos, ciudades, caso, policia);
 
@@ -73,19 +71,19 @@ public class CargadorXML {
 
     }
 
-    private void cargarTiempo(Document doc){
-        Element elementoTiempo= (Element) doc.getElementsByTagName("Tiempo").item(0);
-        int horaSuenio=Integer.parseInt(elementoTiempo.getAttribute("horaSuenio"));
-        int horas=Integer.parseInt(elementoTiempo.getAttribute("horas"));
+    private void cargarTiempo(Document doc) {
+        Element elementoTiempo = (Element) doc.getElementsByTagName("Tiempo").item(0);
+        int horaSuenio = Integer.parseInt(elementoTiempo.getAttribute("horaSuenio"));
+        int horas = Integer.parseInt(elementoTiempo.getAttribute("horas"));
         Tiempo.iniciarEn(horas, horaSuenio);
     }
 
-    private void cargarCuartelGeneral(Document document, ArrayList<Sospechoso> sospechosos){
-        Element elementoCuartel= (Element) document.getElementsByTagName("CuartelGeneral").item(0);
-        String orden=elementoCuartel.getAttribute("orden");
+    private void cargarCuartelGeneral(Document document, ArrayList<Sospechoso> sospechosos) {
+        Element elementoCuartel = (Element) document.getElementsByTagName("CuartelGeneral").item(0);
+        String orden = elementoCuartel.getAttribute("orden");
         CuartelGeneral.getInstance().cargarSospechosos(sospechosos);
-        for (Sospechoso s: sospechosos){
-            if (s.getNombre().equals(orden)){
+        for (Sospechoso s : sospechosos) {
+            if (s.getNombre().equals(orden)) {
                 CuartelGeneral.getInstance().emitirOrdenDeArrestoPara(s);
                 return;
             }
@@ -96,20 +94,20 @@ public class CargadorXML {
         NodeList ciudadesList = document.getElementsByTagName("Ciudad");
         for (int i = 0; i < ciudadesList.getLength(); i++) {
             Element c = (Element) ciudadesList.item(i);
-            Ciudad ciudad=ciudadesMap.get(c.getAttribute("nombre"));
-            NodeList lugaresList=c.getChildNodes();
+            Ciudad ciudad = ciudadesMap.get(c.getAttribute("nombre"));
+            NodeList lugaresList = c.getChildNodes();
             for (int j = 0; j < lugaresList.getLength(); j++) {
                 //Para cada lugar de cada ciudad, cargamos el nro de visitas, y la pista.
-                Element lugar=(Element)lugaresList.item(j);
-                TipoEdificio tipo=TipoEdificio.valueOf(lugar.getAttribute("tipo"));
-                Lugar l=ciudad.obtenerLugar(tipo);
+                Element lugar = (Element) lugaresList.item(j);
+                TipoEdificio tipo = TipoEdificio.valueOf(lugar.getAttribute("tipo"));
+                Lugar l = ciudad.obtenerLugar(tipo);
                 l.setVisitas(Integer.parseInt(lugar.getAttribute("numVisitas")));
                 l.plantarPista(new Pista(lugar.getAttribute("pista")));
             }
         }
     }
 
-    private void cargarCiudadesVisitables(Document doc, Map<String,Ciudad> ciudadesMap){
+    private void cargarCiudadesVisitables(Document doc, Map<String, Ciudad> ciudadesMap) {
         //Cargamos las ciudades visitables desde cada ciudad.
         NodeList ciudadesList = doc.getElementsByTagName("Ciudad");
         for (int i = 0; i < ciudadesList.getLength(); i++) {
@@ -122,17 +120,17 @@ public class CargadorXML {
         }
     }
 
-    private Policia cargarPolicia(Document doc,Map<String,Ciudad> ciudadesMap){
+    private Policia cargarPolicia(Document doc, Map<String, Ciudad> ciudadesMap) {
         Element eP = (Element) doc.getElementsByTagName("Policia").item(0);
         int nroArrestos = Integer.parseInt(eP.getAttribute("nroArrestos"));
         Grado grado = Grado.valueOf(eP.getAttribute("grado"));
         String nombre = eP.getAttribute("nombre");
         Ciudad ciudadActual = ciudadesMap.get(eP.getAttribute("ciudadActual"));
         Policia policia = new Policia(nombre, grado, nroArrestos, ciudadActual);
-        return  policia;
+        return policia;
     }
 
-    private RecorridoLadron cargarRecorridoLadron(Document document,Map<String,Ciudad> ciudadesMap){
+    private RecorridoLadron cargarRecorridoLadron(Document document, Map<String, Ciudad> ciudadesMap) {
         ArrayList<Ciudad> recorrido = new ArrayList<Ciudad>();
         Element eR = (Element) document.getElementsByTagName("RecorridoLadron").item(0);
         String recorridoString[] = eR.getAttribute("ciudades").split(",");
@@ -145,7 +143,7 @@ public class CargadorXML {
         return recorridoLadron;
     }
 
-    private Caso cargarCaso(Document document, ArrayList<Sospechoso> sospechosos, ArrayList<ObjetoRobado> objetos,RecorridoLadron recorridoLadron){
+    private Caso cargarCaso(Document document, ArrayList<Sospechoso> sospechosos, ArrayList<ObjetoRobado> objetos, RecorridoLadron recorridoLadron) {
         Sospechoso ladron = null;
         ObjetoRobado objeto = null;
         Element eC = (Element) document.getElementsByTagName("Caso").item(0);

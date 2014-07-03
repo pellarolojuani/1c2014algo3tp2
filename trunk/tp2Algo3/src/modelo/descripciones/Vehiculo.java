@@ -1,5 +1,5 @@
 package modelo.descripciones;
 
 public enum Vehiculo {
-		CONVERTIBLE, LIMUSINA, DEPORTIVO, MOTO
+    CONVERTIBLE, LIMUSINA, DEPORTIVO, MOTO
 }
