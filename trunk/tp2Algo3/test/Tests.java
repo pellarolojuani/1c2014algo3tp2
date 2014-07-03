@@ -42,7 +42,7 @@ public class Tests {
     }
 
     @Test
-    public void testPoliciaVisitaLugarDejaALugarVisitado() throws NoSePuedeVisitarLugarExcepcion {
+    public void testPoliciaVisitaLugarDejaALugarVisitado() {
 
         Juego juego = new Juego();
         Policia policia = juego.obtenerPolicia();
@@ -87,7 +87,7 @@ public class Tests {
     }
 
     @Test(expected = SeAcaboElTiempoDelCasoExcepcion.class)
-    public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() throws NoSePuedeVisitarLugarExcepcion {
+    public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() {
 
 
         Juego juego = new Juego();
