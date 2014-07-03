@@ -34,19 +34,8 @@ public class Policia extends Observable {
             return;
         }
 
-
-        if (lugar.obtenerNumVisitas() == 0) {
-            Tiempo.aumentarHoras(1);
-            lugar.aumentarNumVisitas();
-        } else if (lugar.obtenerNumVisitas() == 1) {
-            lugar.aumentarNumVisitas();
-            Tiempo.aumentarHoras(2);
-        } else {
-            Tiempo.aumentarHoras(3);
-            lugar.aumentarNumVisitas();
-        }
+        lugar.visitar();
         ultimaPista = lugar.obtenerPista();
-
         CuartelGeneral.getInstance().notificarVisitaA(lugar);
     }
 
@@ -59,7 +48,6 @@ public class Policia extends Observable {
             Tiempo.aumentarHoras(2);
         }
         ultimaPista = lugar.obtenerPista();
-
         CuartelGeneral.getInstance().notificarVisitaA(lugar);
     }
 

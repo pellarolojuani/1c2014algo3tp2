@@ -1,6 +1,7 @@
 package modelo.geografico;
 
 import modelo.elementosDelJuego.Pista;
+import modelo.elementosDelJuego.Tiempo;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -30,9 +31,15 @@ public class Lugar {
     }
 
     public void visitar() {
-
+        if (numVisitas == 0) {
+            Tiempo.aumentarHoras(1);
+        } else if (numVisitas == 1) {
+            Tiempo.aumentarHoras(2);
+        } else {
+            Tiempo.aumentarHoras(3);
+        }
+        numVisitas++;
     }
-
 
     public void plantarPista(Pista pista_) {
 
@@ -47,12 +54,6 @@ public class Lugar {
     public int obtenerNumVisitas() {
         return numVisitas;
     }
-
-    public void aumentarNumVisitas() {
-        this.numVisitas += 1;
-
-    }
-
 
     public void setVisitas(int nroVisitas) {
         this.numVisitas = nroVisitas;
