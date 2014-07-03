@@ -36,8 +36,6 @@ public class CiudadTest {
     public void testDistanciaA() {
         unaCiudad.agregarCiudadVisitable(otraCiudad);
         otraCiudad.agregarCiudadVisitable(unaCiudad);
-        System.out.println(unaCiudad.distanciaA(otraCiudad));
-        System.out.println(otraCiudad.distanciaA(unaCiudad));
         //Verificamos que el calculo de la distancia entre las ciudades de el mismo valor, llamando a distanciaA desde ambas, con una toleracia de 1m.
         assertEquals(unaCiudad.distanciaA(otraCiudad),otraCiudad.distanciaA(unaCiudad),0.001);
     }
