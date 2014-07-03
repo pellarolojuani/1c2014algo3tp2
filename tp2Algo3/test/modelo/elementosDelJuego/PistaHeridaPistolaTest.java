@@ -6,11 +6,11 @@ import org.junit.Test;
 
 public class PistaHeridaPistolaTest {
 
-	@Test
-	public void testContenidoComoString() {
+    @Test
+    public void testContenidoComoString() {
 
-		assertEquals("¡Te han disparado!", new PistaHeridaPistola().contenidoComoString());
-	
-	}
+        assertEquals("ï¿½Te han disparado!", new PistaHeridaPistola().contenidoComoString());
+
+    }
 
 }

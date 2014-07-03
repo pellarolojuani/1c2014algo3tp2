@@ -14,28 +14,26 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by chris on 11/06/2014.
- */
+
 public class CreadorDeObjetos {
 
     private ArrayList<ObjetoRobado> objetos;
 
-    public CreadorDeObjetos(ArrayList<Ciudad> ciudades){
-        objetos=new ArrayList<ObjetoRobado>();
-        DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
+    public CreadorDeObjetos(ArrayList<Ciudad> ciudades) {
+        objetos = new ArrayList<ObjetoRobado>();
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
 
             File xmlFile = new File("objetos.xml");
-            DocumentBuilder documentBuilder=documentBuilderFactory.newDocumentBuilder();
-            Document document=documentBuilder.parse(xmlFile);
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(xmlFile);
             document.getDocumentElement().normalize();
-            NodeList objetosList=document.getElementsByTagName("Objeto");
+            NodeList objetosList = document.getElementsByTagName("Objeto");
 
             for (int i = 0; i < objetosList.getLength(); i++) {
-                Element e= (Element) objetosList.item(i);
-                Ciudad ciudad=buscarCiudad(ciudades, e.getAttribute("ciudad"));
-                ObjetoRobado s=new ObjetoRobado(ciudad,e.getAttribute("descripcion"));
+                Element e = (Element) objetosList.item(i);
+                Ciudad ciudad = buscarCiudad(ciudades, e.getAttribute("ciudad"));
+                ObjetoRobado s = new ObjetoRobado(ciudad, e.getAttribute("descripcion"));
                 objetos.add(s);
             }
         } catch (ParserConfigurationException e) {
@@ -49,13 +47,13 @@ public class CreadorDeObjetos {
     }
 
     private Ciudad buscarCiudad(ArrayList<Ciudad> ciudades, String nombreCiudad) {
-        for(Ciudad ciudad: ciudades){
-            if(ciudad.getNombre().equals(nombreCiudad))return ciudad;
+        for (Ciudad ciudad : ciudades) {
+            if (ciudad.getNombre().equals(nombreCiudad)) return ciudad;
         }
         return null;
     }
 
-    public ArrayList<ObjetoRobado> obtenerListaDeObjetos(){
+    public ArrayList<ObjetoRobado> obtenerListaDeObjetos() {
         return objetos;
     }
 }

@@ -10,7 +10,7 @@ public class OrdenDeArresto {
         this.sospechoso = sospechoso;
     }
 
-    public Sospechoso obtenerSospechoso(){
+    public Sospechoso obtenerSospechoso() {
         return sospechoso;
     }
 }
