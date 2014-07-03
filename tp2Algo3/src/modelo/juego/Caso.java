@@ -61,7 +61,7 @@ public class Caso {
 
     private void plantarPistas() {
 
-        CreadorDePistas creadorDePistas = new CreadorDePistas(recorridoLadron, ladron);
+        CreadorDePistas creadorDePistas = new CreadorDePistas(recorridoLadron, ladron,valorObjeto);
         creadorDePistas.plantarPistas();
 
     }
