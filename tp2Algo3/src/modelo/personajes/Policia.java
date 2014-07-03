@@ -33,7 +33,8 @@ public class Policia extends Observable {
             this.visitarLugarHerida(lugar);
             return;
         }
-
+        if (lugar != this.ciudadActual.obtenerLugar(lugar.obtenerTipo()))
+        	throw new NoSePuedeVisitarLugarExcepcion();
         lugar.visitar();
         ultimaPista = lugar.obtenerPista();
         CuartelGeneral.getInstance().notificarVisitaA(lugar);

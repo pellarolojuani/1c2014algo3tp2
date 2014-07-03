@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotSame;
 public class Tests {
 
     @Test(expected = NoSePuedeVisitarLugarExcepcion.class)
-    public void testPoliciaNoPuedeVisitarLugarDeOtraCiudad() throws Exception {
+    public void testPoliciaNoPuedeVisitarLugarDeOtraCiudad() {
         Policia policia = new Policia("Mario");
         Ciudad ciudad = new Ciudad();
         Ciudad ciudad1 = new Ciudad();
@@ -42,7 +42,7 @@ public class Tests {
     }
 
     @Test
-    public void testPoliciaVisitaLugarDejaALugarVisitado() {
+    public void testPoliciaVisitaLugarDejaALugarVisitado() throws NoSePuedeVisitarLugarExcepcion {
 
         Juego juego = new Juego();
         Policia policia = juego.obtenerPolicia();
@@ -87,7 +87,7 @@ public class Tests {
     }
 
     @Test(expected = SeAcaboElTiempoDelCasoExcepcion.class)
-    public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() {
+    public void testPoliciaBuscaALadronYSeLeAcabaEltiempo() throws NoSePuedeVisitarLugarExcepcion {
 
 
         Juego juego = new Juego();
