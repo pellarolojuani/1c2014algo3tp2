@@ -1,26 +1,24 @@
 package modelo.elementosDelJuego;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import modelo.descripciones.Senia;
 import modelo.geografico.Ciudad;
 import modelo.geografico.Lugar;
 import modelo.geografico.RecorridoLadron;
 import modelo.geografico.TipoEdificio;
 import modelo.personajes.Sospechoso;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class CreadorDePistas {
 
@@ -166,7 +164,7 @@ public class CreadorDePistas {
     		if(tipo==TipoEdificio.BOLSA)return crearPistaBolsa();
     		return crearPistaBiblioteca();
     	}
-    	return new Pista("Está cerca");
+    	return new Pista("Estï¿½ cerca");
     }
 
     private Pista crearHeridaPistola() {
